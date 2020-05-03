@@ -12,3 +12,4 @@ A PYTHA Plugin is represented by a folder. The name of that folder is the displa
 
 ## Developer-Documentation
 
+The full developer documentation can be found [>>> here <<<](https://github.com/daniel-flassig/pytha-lua-api/wiki).
