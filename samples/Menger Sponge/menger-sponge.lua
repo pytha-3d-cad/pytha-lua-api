@@ -1,5 +1,4 @@
---Beispiel eines einfachen Schrankkorpus mit variabler Anzahl an Fachboeden
-
+--Example of a Menger Sponge
 function main()
 	local data = {
 		origin = {0, 0, 0},
