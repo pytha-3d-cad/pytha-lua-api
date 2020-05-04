@@ -4,7 +4,7 @@
 
 - Game of Life
 
-  This is a fun little sample that runs J. H. Conway's Game of Life inside PYTHA. The fields are represented by cubes.
+  This is a fun little sample that runs J. H. Conway's [Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) inside PYTHA. The fields are represented by cubes.
   
 - Menger Sponge
 
