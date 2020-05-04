@@ -5,3 +5,7 @@
 - Game of Life
 
   This is a fun little sample that runs J. H. Conway's Game of Life inside PYTHA. The fields are represented by cubes.
+  
+- Menger Sponge
+
+  This sample creates a [Menger Sponge](https://en.wikipedia.org/wiki/Menger_sponge) of arbitrary size and level.
