@@ -142,7 +142,7 @@ function recreate_corner(general_data, specific_data)
 						{specific_data.door_width + 100 - general_data.top_over, -general_data.top_over, z}, 
 						{specific_data.door_width + 100 - general_data.top_over, -100, z}, 
 						{specific_data.door_width + 100 + general_data.depth, -100, z}, 
-						{specific_data.door_width + 100 + general_data.depth, z}, 
+						{specific_data.door_width + 100 + general_data.depth, general_data.depth, z}, 
 						{0, general_data.depth, z}}
 	end
 	

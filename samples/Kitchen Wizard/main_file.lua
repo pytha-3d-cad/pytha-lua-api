@@ -1,4 +1,5 @@
 --Example of a Kitchen wizard generator
+--Example of a Kitchen wizard generator
 local controls = {}
 local in_loop = false
 function main()
@@ -179,7 +180,7 @@ function wizard_dialog(dialog, data)
 	
 	controls.door_side:set_on_click_handler(function(state)
 		data.cabinet_list[data.current_cabinet].door_rh = state
-		recreate_all(data, false)
+		recreate_all(data, true)
 	end)
 	controls.radio1:set_on_click_handler(function(state)
 		data.cabinet_list[data.current_cabinet].this_type = "straight"
@@ -293,10 +294,11 @@ function update_ui(data, soft_update)
 				controls.door_side:enable_control()
 			end
 		else 
-			controls.door_side:disable_control()
+			controls.door_side:enable_control()
 		end
 	elseif specific_data.this_type == "corner" then
 		controls.door_side:enable_control()
+	elseif specific_data.this_type == "diagonal" then
 		if get_diag_door_length(data, specific_data) - 2 * data.gap > 0 then
 			if get_diag_door_length(data, specific_data)  > specific_data.door_width then
 				controls.door_side:disable_control()
@@ -304,10 +306,8 @@ function update_ui(data, soft_update)
 				controls.door_side:enable_control()
 			end
 		else 
-			controls.door_side:disable_control()
+			controls.door_side:enable_control()
 		end
-	elseif specific_data.this_type == "diagonal" then
-	
 	elseif specific_data.this_type == "end" then
 	end
 	if soft_update == true then return end
