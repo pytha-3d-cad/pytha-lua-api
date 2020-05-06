@@ -35,5 +35,5 @@ function recreate_geometry(data)
         pytha.delete_element(data.current_element)
     end
 	data.current_element = pytha.create_block(data.size, data.size, data.size, {0, 0, 0})
-	pytha.set_element_attributes(data.current_element, "name", data.name)
+	pytha.set_element_attribute(data.current_element, "name", data.name)
 end
