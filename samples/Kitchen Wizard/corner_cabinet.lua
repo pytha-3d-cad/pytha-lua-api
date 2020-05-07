@@ -64,8 +64,8 @@ function recreate_corner(general_data, specific_data)
 						{general_data.thickness, -general_data.thickness, 0}, 
 						{100 - general_data.gap, -general_data.thickness, 0}, 
 						{100 - general_data.gap, 0, 0}}
-		local corner_face = pytha.create_poly_face(p_array)
-		local corner_angle =  pytha.create_profile(corner_face, specific_data.height - general_data.top_gap)
+		local corner_face = pytha.create_polygon(p_array)
+		local corner_angle =  pytha.create_profile(corner_face, specific_data.height - general_data.top_gap)[1]
 		table.insert(specific_data.cur_elements, corner_angle)
 		pytha.delete_element(corner_face)
 		loc_origin[1] = specific_data.width - specific_data.door_width  - 100
@@ -79,8 +79,8 @@ function recreate_corner(general_data, specific_data)
 						{100 - general_data.gap - general_data.thickness, -100 + general_data.gap, 0},
 						{100 - general_data.gap, -100 + general_data.gap, 0},
 						{100 - general_data.gap, 0, 0}}
-		local corner_face = pytha.create_poly_face(p_array)
-		local corner_angle =  pytha.create_profile(corner_face, specific_data.height - general_data.top_gap)
+		local corner_face = pytha.create_polygon(p_array)
+		local corner_angle =  pytha.create_profile(corner_face, specific_data.height - general_data.top_gap)[1]
 		table.insert(specific_data.cur_elements, corner_angle)
 		pytha.delete_element(corner_face)
 		loc_origin[1] = specific_data.door_width + general_data.gap
@@ -148,7 +148,7 @@ function recreate_corner(general_data, specific_data)
 	
 	specific_data.main_group = pytha.group_elements(specific_data.cur_elements)
 	
-	specific_data.elem_handle_for_top = pytha.create_poly_face(poly_array)
+	specific_data.elem_handle_for_top = pytha.create_polygon(poly_array)
 	
 	return specific_data.main_group
 end

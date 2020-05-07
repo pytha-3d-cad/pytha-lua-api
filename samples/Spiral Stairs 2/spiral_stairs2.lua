@@ -10,7 +10,8 @@ function main()
 		total_angle = 360,			--how much will the stairs wind? 360 is one full turn
 		rail_height = 900,			--height of the rail, measured to the center of the rail handle
 		vertical_bar_radius = 4,	--radius of the vertical railing bars 
-		diameter = 1600,			--diameter of the stairs to the center of the handrail. There is an additional offset (see outer_radius)
+		diameter = 2400,			--diameter of the stairs to the center of the handrail. There is an additional offset (see outer_radius)
+		inner_diameter = 400,			--diameter of the stairs to the center of the handrail. There is an additional offset (see outer_radius)
 		step_excess = 10,			--excess of the steps at the central pole and at the vertical rail bars
 		clockwise = false,				--rotation direction
 		handrail_type = 0,			--cross section of handrail: line, round, square

@@ -29,8 +29,8 @@ function recreate_diagonal(general_data, specific_data)
 						{general_data.thickness, -door_diag_offset_y1 - general_data.thickness * slope, 0}, 
 						{general_data.thickness, general_data.depth, 0}, 
 						{0, general_data.depth, 0}}
-	local fla_handle = pytha.create_poly_face(poly_array)
-	local profile = pytha.create_profile(fla_handle, specific_data.height)
+	local fla_handle = pytha.create_polygon(poly_array)
+	local profile = pytha.create_profile(fla_handle, specific_data.height)[1]
 	pytha.delete_element(fla_handle)
 	pytha.move_element(profile, loc_origin)
 	table.insert(specific_data.cur_elements, profile)
@@ -40,8 +40,8 @@ function recreate_diagonal(general_data, specific_data)
 					{specific_data.width - general_data.depth - general_data.thickness / slope - door_diag_offset_x2, general_data.depth - specific_data.width2 + general_data.thickness, 0}, 
 					{specific_data.width - general_data.depth - door_diag_offset_x2, general_data.depth - specific_data.width2, 0}, 
 					{specific_data.width, general_data.depth - specific_data.width2, 0}}
-	fla_handle = pytha.create_poly_face(poly_array)
-	profile = pytha.create_profile(fla_handle, specific_data.height)
+	fla_handle = pytha.create_polygon(poly_array)
+	profile = pytha.create_profile(fla_handle, specific_data.height)[1]
 	pytha.delete_element(fla_handle)
 	pytha.move_element(profile, loc_origin)
 	table.insert(specific_data.cur_elements, profile)
@@ -53,14 +53,14 @@ function recreate_diagonal(general_data, specific_data)
 					{specific_data.width - groove_dist_back_off, general_data.depth - specific_data.width2 + general_data.thickness, 0}, 
 					{specific_data.width - groove_dist_back_off, general_data.depth - groove_dist_back_off, 0},
 					{general_data.thickness, general_data.depth - groove_dist_back_off, 0}}
-	fla_handle = pytha.create_poly_face(poly_array)
-	profile = pytha.create_profile(fla_handle, general_data.thickness)
+	fla_handle = pytha.create_polygon(poly_array)
+	profile = pytha.create_profile(fla_handle, general_data.thickness)[1]
 	pytha.move_element(profile, loc_origin)
 	table.insert(specific_data.cur_elements, profile)
 	
 	--We reuse the fla handle for the top and the shelves
 	loc_origin[3] = base_height + specific_data.height - general_data.thickness
-	profile = pytha.create_profile(fla_handle, general_data.thickness)
+	profile = pytha.create_profile(fla_handle, general_data.thickness)[1]
 	pytha.delete_element(fla_handle)
 	pytha.move_element(profile, loc_origin)
 	table.insert(specific_data.cur_elements, profile)
@@ -72,11 +72,11 @@ function recreate_diagonal(general_data, specific_data)
 					{specific_data.width - groove_dist_back_off, general_data.depth - specific_data.width2 + general_data.thickness, 0}, 
 					{specific_data.width - groove_dist_back_off, general_data.depth - groove_dist_back_off, 0},
 					{general_data.thickness, general_data.depth - groove_dist_back_off, 0}}
-	fla_handle = pytha.create_poly_face(poly_array)
+	fla_handle = pytha.create_polygon(poly_array)
 	
 	for i=1,specific_data.shelf_count,1 do
 		loc_origin[3] = base_height + i * door_height / (specific_data.shelf_count + 1)
-		profile = pytha.create_profile(fla_handle, general_data.thickness)
+		profile = pytha.create_profile(fla_handle, general_data.thickness)[1]
 		pytha.move_element(profile, loc_origin)
 		table.insert(specific_data.cur_elements, profile)
 	end
@@ -151,7 +151,7 @@ function recreate_diagonal(general_data, specific_data)
 						{specific_data.width, general_data.depth - specific_data.width2, z}, 
 						{specific_data.width, general_data.depth, z}, 
 						{0, general_data.depth, z}}
-	specific_data.elem_handle_for_top = pytha.create_poly_face(poly_array)
+	specific_data.elem_handle_for_top = pytha.create_polygon(poly_array)
 	
 	return specific_data.main_group
 end

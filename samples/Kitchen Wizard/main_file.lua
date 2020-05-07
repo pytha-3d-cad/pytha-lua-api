@@ -454,7 +454,7 @@ function create_geometry_for_element(general_data, element, finalize)
 		pytha.set_element_pen(subgroup,4)
 	end
 	if specific_data.elem_handle_for_top ~= nil then
-		benchtop = pytha.create_profile(specific_data.elem_handle_for_top, general_data.benchtop_thickness)
+		benchtop = pytha.create_profile(specific_data.elem_handle_for_top, general_data.benchtop_thickness)[1]
 		pytha.delete_element(specific_data.elem_handle_for_top)
 		specific_data.elem_handle_for_top = nil
 	end
