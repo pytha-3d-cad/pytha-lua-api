@@ -536,7 +536,7 @@ function recreate_geometry(data, finalize)
 		end
 	end
 	if #bool_group > 1 then
-		data.benchtop = pytha.add_parts(bool_group)
+		data.benchtop = pytha.boole_part_union(bool_group)
 	else
 		data.benchtop = bool_group[1]
 	end

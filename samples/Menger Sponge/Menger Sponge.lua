@@ -72,7 +72,7 @@ function recreate_geometry(data)
 		my_copy(base_elem, {0, 2 * l, 0}, bottom_elements)
 		my_copy(base_elem, {0, l, 0}, bottom_elements)
 		
-		local bottom = pytha.add_parts(bottom_elements)
+		local bottom = pytha.boole_part_union(bottom_elements)
 		
 		-- Middle level
 		local middle_elements = {}
@@ -81,7 +81,7 @@ function recreate_geometry(data)
 		my_copy(base_elem, {2 * l, 2 * l, l}, middle_elements)
 		my_copy(base_elem, {0, 2 * l, l}, middle_elements)
 		
-		local middle = pytha.add_parts(middle_elements)
+		local middle = pytha.boole_part_union(middle_elements)
 		
 		-- Top level
 		local top_elements = {}
@@ -94,11 +94,11 @@ function recreate_geometry(data)
 		my_copy(base_elem, {0, 2 * l, 2 * l}, top_elements)
 		my_copy(base_elem, {0, l, 2 * l}, top_elements)
 		
-		local top = pytha.add_parts(top_elements)
+		local top = pytha.boole_part_union(top_elements)
 		
 		pytha.delete_element(base_elem);
 
-		base_elem = pytha.add_parts({bottom, middle, top})
+		base_elem = pytha.boole_part_union({bottom, middle, top})
 		l = 3 * l
 	end
 	
