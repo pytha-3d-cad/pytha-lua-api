@@ -69,7 +69,6 @@ function test_dialog(dialog, data)
 	local ok = dialog:create_ok_button(1)
 	local cancel = dialog:create_cancel_button(2)
 	dialog:equalize_column_widths({1,2,4})
-	
 	bt_height:set_on_change_handler(function(text)
 		data.benchtop_height = pyui.parse_length(text)
 		recreate_geometry(data)

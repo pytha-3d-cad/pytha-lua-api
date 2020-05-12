@@ -184,7 +184,7 @@ function recreate_geometry(data)
 		local z = data.rail_height + step_height  + i * data.total_height / (segs)
 		table.insert(points, {x, y, z})
 	end
-	local rail_edges = pytha.create_polyline(points,false)	--create the polyline
+	local rail_edges = pytha.create_polyline("open", points)	--create the polyline
 	if data.handrail_type < 2 then
 		local sweep_cross_section = {}
 		local sweep_options = {keep_vertical = 1}

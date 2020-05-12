@@ -63,14 +63,17 @@ function recreate_straight(general_data, specific_data)
 			local door_width = specific_data.width / 2 - 2 * general_data.gap
 		--left handed door
 			loc_origin[1] = general_data.gap
-			create_door(general_data, specific_data, door_width, door_height, loc_origin, false, coordinate_system)
+			local door_group = create_door(general_data, specific_data, door_width, door_height, loc_origin, false, coordinate_system)
+			table.insert(specific_data.cur_elements, door_group)
 		--right handed door
 			loc_origin[1] = specific_data.width - door_width - general_data.gap
-			create_door(general_data, specific_data, door_width, door_height, loc_origin, true, coordinate_system)
+			door_group = create_door(general_data, specific_data, door_width, door_height, loc_origin, true, coordinate_system)
+			table.insert(specific_data.cur_elements, door_group)
 		else
 		--only one door 
 			loc_origin[1] = general_data.gap
-			create_door(general_data, specific_data, specific_data.width - 2 * general_data.gap, door_height, loc_origin, specific_data.door_rh, coordinate_system)
+			local door_group = create_door(general_data, specific_data, specific_data.width - 2 * general_data.gap, door_height, loc_origin, specific_data.door_rh, coordinate_system)
+			table.insert(specific_data.cur_elements, door_group)
 		end
 		
 		--Drawer
@@ -79,7 +82,8 @@ function recreate_straight(general_data, specific_data)
 			loc_origin[3] = base_height + specific_data.height - general_data.top_gap - specific_data.drawer_height
 			new_elem = pytha.create_block(specific_data.width - 2 * general_data.gap, general_data.thickness, specific_data.drawer_height, loc_origin)
 			table.insert(specific_data.cur_elements, new_elem)
-			create_handle(general_data, specific_data, loc_origin, specific_data.width - 2 * general_data.gap, specific_data.drawer_height, false, coordinate_system, 'center', 'center')
+			new_elem = create_handle(general_data, specific_data, loc_origin, specific_data.width - 2 * general_data.gap, specific_data.drawer_height, false, coordinate_system, 'center', 'center')
+			table.insert(specific_data.cur_elements, new_elem)
 		end
 	end
 	specific_data.right_connection_point = {specific_data.width,0,0}
@@ -88,7 +92,7 @@ function recreate_straight(general_data, specific_data)
 	specific_data.left_direction = 0
 	specific_data.main_group = pytha.group_elements(specific_data.cur_elements)
 	
-	specific_data.elem_handle_for_top = pytha.create_rectangle_face(specific_data.width, general_data.top_over + general_data.depth, {0, -general_data.top_over, general_data.benchtop_height - general_data.benchtop_thickness})
+	specific_data.elem_handle_for_top = pytha.create_rectangle(specific_data.width, general_data.top_over + general_data.depth, {0, -general_data.top_over, general_data.benchtop_height - general_data.benchtop_thickness})
 	
 	return specific_data.main_group
 end

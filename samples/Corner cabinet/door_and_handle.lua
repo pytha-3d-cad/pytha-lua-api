@@ -3,7 +3,7 @@ function create_door(data, width, door_height, origin, door_rh, coordinate_syste
 	local loc_origin = {origin[1], origin[2], origin[3]} 	--tables are by reference, so you could overwrite the origin in the calling function. Therefore we assign by value.
 	local axes = {u_axis = coordinate_system[1], v_axis = coordinate_system[2], w_axis = coordinate_system[3]}
 	
-	new_elem = pytha.create_block(width, data.thickness, door_height, loc_origin, axes)
+	local new_elem = pytha.create_block(width, data.thickness, door_height, loc_origin, axes)
 	table.insert(data.cur_elements, new_elem)
 	local h_posi_code = ''
 	local v_posi_code = 'top'

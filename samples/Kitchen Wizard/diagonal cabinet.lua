@@ -1,9 +1,6 @@
 --Diagonal Corner Cabinet
 
 function recreate_diagonal(general_data, specific_data)
-	if specific_data.cur_elements ~= nil then
-		pytha.delete_element(specific_data.cur_elements)
-	end
 	specific_data.cur_elements = {}
 	local base_height = general_data.benchtop_height - specific_data.height - general_data.benchtop_thickness
 
@@ -116,14 +113,17 @@ function recreate_diagonal(general_data, specific_data)
 		if door_length > specific_data.door_width then	--create two doors
 			local door_width = door_length / 2 - general_data.gap
 		--left handed door
-			create_door(general_data, specific_data, door_width, door_height, loc_origin, false, diag_coos)
+			local door_group = create_door(general_data, specific_data, door_width, door_height, loc_origin, false, diag_coos)
+			table.insert(specific_data.cur_elements, door_group)
 		--right handed door
 			loc_origin[1] = loc_origin[1] + (door_width + 2 * general_data.gap) * main_dir[1]
 			loc_origin[2] = loc_origin[2] + (door_width + 2 * general_data.gap) * main_dir[2]
-			create_door(general_data, specific_data, door_width, door_height, loc_origin, true, diag_coos)
+			door_group = create_door(general_data, specific_data, door_width, door_height, loc_origin, true, diag_coos)
+			table.insert(specific_data.cur_elements, door_group)
 		else
 		--only one door 
-			create_door(general_data, specific_data, door_length, door_height, loc_origin, specific_data.door_rh, diag_coos)
+			local door_group = create_door(general_data, specific_data, door_length, door_height, loc_origin, specific_data.door_rh, diag_coos)
+			table.insert(specific_data.cur_elements, door_group)
 		end
 		
 		--Drawer
@@ -135,7 +135,8 @@ function recreate_diagonal(general_data, specific_data)
 
 			new_elem = pytha.create_block(door_length, general_data.thickness, specific_data.drawer_height, loc_origin, axes)
 			table.insert(specific_data.cur_elements, new_elem)
-			create_handle(general_data, specific_data, loc_origin, door_length, specific_data.drawer_height, false, diag_coos, 'center', 'center')
+			new_elem = create_handle(general_data, specific_data, loc_origin, door_length, specific_data.drawer_height, false, diag_coos, 'center', 'center')
+			table.insert(specific_data.cur_elements, new_elem)
 		end
 	end
 	specific_data.right_connection_point = {specific_data.width - general_data.depth, general_data.depth - specific_data.width2, 0}

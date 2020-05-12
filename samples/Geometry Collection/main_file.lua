@@ -4,7 +4,7 @@ function main()
 	
 	local aussen = {{0,0,0},{600,0,0},{800,1000,0},{0,1000,0}}
 	local innen = {{200,200,0},{200,500,0},{300,500,0},{400,400,0},{400,200,0}}
-	local fla_handle = pytha.create_polygon(aussen, innen)
+	local fla_handle = pytha.create_polygon(aussen)
 	local profile = pytha.create_profile(fla_handle, 50)[1]
 	pytha.delete_element(fla_handle)
 	pytha.create_element_ref_point(profile, {0,0,0})
@@ -28,6 +28,6 @@ function main()
 		local z = math.cos(3* i*2 * math.pi/72)
 		table.insert(points, {1500 + radius * x, 1000 + radius2 * y, 50 * z})
 	end
-	pytha.create_polyline(points,true)
+	pytha.create_polyline("closed", points)
 
 end

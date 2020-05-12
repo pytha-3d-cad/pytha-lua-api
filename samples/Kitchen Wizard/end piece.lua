@@ -1,9 +1,6 @@
 --Blind End Side
 
 function recreate_endpiece(general_data, specific_data)
-	if specific_data.cur_elements ~= nil then
-		pytha.delete_element(specific_data.cur_elements)
-	end
 	specific_data.cur_elements = {}
 	
 	local loc_origin= {}
@@ -23,7 +20,7 @@ function recreate_endpiece(general_data, specific_data)
 	specific_data.left_direction = 0
 	specific_data.main_group = pytha.group_elements(specific_data.cur_elements)
 	
-	specific_data.elem_handle_for_top = pytha.create_rectangle_face(general_data.thickness, general_data.top_over + general_data.depth, {0, -general_data.top_over, general_data.benchtop_height - general_data.benchtop_thickness})
+	specific_data.elem_handle_for_top = pytha.create_rectangle(general_data.thickness, general_data.top_over + general_data.depth, {0, -general_data.top_over, general_data.benchtop_height - general_data.benchtop_thickness})
 	
 	return specific_data.main_group
 end

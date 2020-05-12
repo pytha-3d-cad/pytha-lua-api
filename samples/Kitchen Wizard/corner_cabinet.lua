@@ -1,9 +1,6 @@
 --Corner cabinet, both left and right sided door
 
 function recreate_corner(general_data, specific_data)
-	if specific_data.cur_elements ~= nil then
-		pytha.delete_element(specific_data.cur_elements)
-	end
 	specific_data.cur_elements = {}
 	local base_height = general_data.benchtop_height - specific_data.height - general_data.benchtop_thickness
 	--if the kitchen is L-shaped. The angle is inherited from the previous cabinet
@@ -40,7 +37,7 @@ function recreate_corner(general_data, specific_data)
 	--Shelves
 	for i=1, specific_data.shelf_count, 1 do
 		loc_origin[2] = general_data.setback_shelves
-		loc_origin[3] = base_height + i * (specific_data.height - general_data.thickness) / (specific_data.shelf_count + 1)
+		loc_origin[3] = base_height + i * door_height / (specific_data.shelf_count + 1)
 		local shelf_depth = general_data.depth - general_data.setback_shelves - groove_dist_back_off
 		new_elem = pytha.create_block(specific_data.width - 2 * general_data.thickness, shelf_depth, general_data.thickness, loc_origin)
 		table.insert(specific_data.cur_elements, new_elem)
@@ -108,15 +105,16 @@ function recreate_corner(general_data, specific_data)
 		loc_origin[2] = -general_data.thickness
 		loc_origin[3] = base_height
 		
-		create_door(general_data, specific_data, specific_data.door_width - 2 * general_data.gap, door_height, loc_origin, not specific_data.door_rh, coordinate_system)
-			
+		local door_group = create_door(general_data, specific_data, specific_data.door_width - 2 * general_data.gap, door_height, loc_origin, not specific_data.door_rh, coordinate_system)
+		table.insert(specific_data.cur_elements, door_group)
 		
 		--Drawer
 		if specific_data.drawer_height > 0 then
 			loc_origin[3] = base_height + specific_data.height - general_data.top_gap - specific_data.drawer_height
 			new_elem = pytha.create_block(specific_data.door_width - 2 * general_data.gap, general_data.thickness, specific_data.drawer_height, loc_origin)
 			table.insert(specific_data.cur_elements, new_elem)
-			create_handle(general_data, specific_data, loc_origin, specific_data.door_width - 2 * general_data.gap, specific_data.drawer_height, false, coordinate_system, 'center', 'center')
+			new_elem = create_handle(general_data, specific_data, loc_origin, specific_data.door_width - 2 * general_data.gap, specific_data.drawer_height, false, coordinate_system, 'center', 'center')
+			table.insert(specific_data.cur_elements, new_elem)
 		end
 	end
 	
