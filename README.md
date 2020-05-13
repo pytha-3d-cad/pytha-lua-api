@@ -4,7 +4,7 @@ Documentation and Samples for PYTHA-Plugins written against the Lua Api.
 
 ## Sample Plugins
 
-You can find several sample plugins in the samples folder. 
+You can find several sample plugins in the [samples](samples) folder. 
 
 ## Plugin Installation
 
