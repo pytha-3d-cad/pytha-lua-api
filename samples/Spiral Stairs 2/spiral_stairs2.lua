@@ -24,25 +24,6 @@ end
 
 function test_dialog(dialog, data)
 	dialog:set_window_title("Spiral Staircase")
-
-	if data.material_glas == nil then 
-		btn_glass = dialog:create_button({3,4}, "Material Glass")
-	end
-	local btn_frame = dialog:create_button({1,2}, "Material Frame")
-	
-	local btn_steps = dialog:create_button({3,4}, "Material Steps")
-	if data.material_steps then
-		btn_steps:set_control_text(data.material_steps:get_name())
-	else 
-		btn_steps:set_control_text("Material Steps")
-	end
-	if data.material_frame then
-		btn_frame:set_control_text(data.material_frame:get_name())
-	else 
-		btn_frame:set_control_text("Material Frame")
-	end
-	
-	local align1 = dialog:create_align({1,4}) -- So that OK and Cancel will be in the same row
 	
 	local label2 = dialog:create_label(1, "Total Height")
 	local total_height = dialog:create_text_box(2, pyui.format_length(data.total_height))
@@ -55,6 +36,23 @@ function test_dialog(dialog, data)
 	
 --	local clockwise = dialog:create_check_box({3,4}, "Clockwise")
 
+	local btn_frame = dialog:create_button({1,2}, "Material Frame")
+	if data.material_glas == nil then 
+		btn_glass = dialog:create_button({3,4}, "Material Glass")
+	end
+	local btn_steps = dialog:create_button({3,4}, "Material Steps")
+	if data.material_steps then
+		btn_steps:set_control_text(data.material_steps:get_name())
+	else 
+		btn_steps:set_control_text("Material Steps")
+	end
+	if data.material_frame then
+		btn_frame:set_control_text(data.material_frame:get_name())
+	else 
+		btn_frame:set_control_text("Material Frame")
+	end
+	
+
 	local align1 = dialog:create_align({1,4}) -- So that OK and Cancel will be in the same row
 	local ok = dialog:create_ok_button(3)
 	local cancel = dialog:create_cancel_button(4)
@@ -62,12 +60,12 @@ function test_dialog(dialog, data)
 	dialog:equalize_column_widths({3,4})
 	
 	diameter:set_on_change_handler(function(text)
-		data.diameter = pyui.parse_length(text)
+		data.diameter = math.max(pyui.parse_length(text), 1500)
 		recreate_geometry(data)
 	end)
 	
 	diameter2:set_on_change_handler(function(text)
-		data.inner_diameter = pyui.parse_length(text)
+		data.inner_diameter = math.max(pyui.parse_length(text), 100)
 		recreate_geometry(data)
 	end)
 	
@@ -104,7 +102,7 @@ function test_dialog(dialog, data)
 	
 	
 	total_height:set_on_change_handler(function(text)
-		data.total_height = pyui.parse_length(text)
+		data.total_height = math.max(pyui.parse_length(text), 500)
 		recreate_geometry(data)
 	end)
 	
@@ -130,8 +128,8 @@ function create_step(outer_radius, inner_radius, height, angle, base_height)
 	local z = base_height
 	local segs = 12
 	local length = outer_radius - inner_radius
-	local inner_angle = angle + (30) /inner_radius * 180 / math.pi
-	local outer_angle = angle + (30) /outer_radius * 180 / math.pi
+	local inner_angle = angle + (35) /inner_radius * 180 / math.pi
+	local outer_angle = angle + (35) /outer_radius * 180 / math.pi
 	local inner_phi = inner_angle / segs
 	local outer_phi = outer_angle / segs
 

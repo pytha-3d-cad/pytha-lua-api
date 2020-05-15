@@ -26,8 +26,8 @@ function main()
 		current_cabinet = nil,
 		benchtop = nil
 	}
-	local loaded_data = pyio.load_values("default_dimensions")
-	if loaded_data ~= nil then general_data = loaded_data end
+--	local loaded_data = pyio.load_values("default_dimensions")
+--	if loaded_data ~= nil then general_data = loaded_data end
 	
 	general_data.current_cabinet = initialize_cabinet_values(general_data)
 	
@@ -37,7 +37,7 @@ function main()
 	pyui.run_modal_dialog(wizard_dialog, general_data)
 	recreate_geometry(general_data, true)
 	
-	pyio.save_values("default_dimensions", general_data)
+--	pyio.save_values("default_dimensions", general_data)
 end
 
 function wizard_dialog(dialog, data)
