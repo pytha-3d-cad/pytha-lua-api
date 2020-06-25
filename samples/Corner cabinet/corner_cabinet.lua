@@ -39,6 +39,7 @@ function main()
 	
 	pyui.run_modal_dialog(test_dialog, data)
 	pyio.save_values("default_dimensions", data)
+	
 end
 
 function test_dialog(dialog, data)
@@ -110,7 +111,7 @@ function test_dialog(dialog, data)
 	
 	shelve_count:set_on_change_handler(function(text)
 		data.shelve_count = pyui.parse_length(text)
-		recreate_all(data)
+		recreate_geometry(data)
 	end)
 	
 	check:set_on_click_handler(function(state)
@@ -125,6 +126,10 @@ function recreate_geometry(data)
 		pytha.delete_element(pytha.get_group_members(data.main_group))
 	end
 	data.cur_elements = {}
+	
+	pytha.push_local_coordinates({1000,0,0}, {u_axis = {1,0,0}, v_axis = {0,1,0}})
+	pytha.push_local_coordinates({0,0,0}, {u_axis = {0,1,0}, v_axis = {-1,0,0}})
+	pytha.push_local_coordinates({100,1000,0}, {u_axis = {0,0,1}, w_axis = {-1,0,0}})
 	local base_height = data.benchtop_height - data.height - data.benchtop_thickness
 	--if the kitchen is L-shaped. The angle is inherited from the previous cabinet
 	local coordinate_system = {{1, 0, 0}, {0, 1, 0}, {0,0,1}}
@@ -171,6 +176,7 @@ function recreate_geometry(data)
 	loc_origin[3] = base_height
 	new_elem = pytha.create_block(data.width - 2 * (data.thickness - data.groove_depth), data.thickness_back, data.height, loc_origin)
 	table.insert(data.cur_elements, new_elem)
+	pytha.set_element_history(new_elem, "", {})
 	
 	
 	--This section is influenced by "door right"
@@ -240,7 +246,13 @@ function recreate_geometry(data)
 		end
 	end
 	
-	pytha.group_elements(data.cur_elements)
-	data.main_group = pytha.group_elements(data.cur_elements)
+	data.main_group = pytha.create_group(data.cur_elements)
+	pytha.pop_local_coordinates()
+	pytha.pop_local_coordinates()
+	pytha.pop_local_coordinates()
 end
 
+function edit(element)
+	pyui.alert("Beep")
+
+end

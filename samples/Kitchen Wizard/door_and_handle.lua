@@ -13,7 +13,7 @@ function create_door(general_data, specific_data, width, door_height, origin, do
 		h_posi_code = 'left'
 	end
 	local handle = create_handle(general_data, specific_data, loc_origin, width, door_height, true, coordinate_system, h_posi_code, v_posi_code)
-	return pytha.group_elements({handle, new_elem})
+	return pytha.create_group({handle, new_elem})
 end
 
 --origin, width and height are for the whole door. The handle then is positioned according to the posi codes
@@ -129,7 +129,7 @@ function create_handle(general_data, specific_data, origin, width, height, vert,
 	handle_block2 = pytha.create_block(depth, block_height, block_length, block_origin, options)
 	
 	local grouping_table = {handle_cyl, handle_block1, handle_block2}
-	local handle_group = pytha.group_elements(grouping_table)
+	local handle_group = pytha.create_group(grouping_table)
 	return handle_group
 end
 

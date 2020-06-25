@@ -41,7 +41,7 @@ function cube_dialog(dialog, data)
     end)
 	
     btn:set_on_click_handler(function()
-        data.mat_handle = pyio.select_material(data.mat_handle)
+        data.mat_handle = pyux.select_pyo(data.mat_handle)
 		if data.mat_handle then
 			btn:set_control_text(data.mat_handle:get_name())
 		end
@@ -55,16 +55,23 @@ function recreate_geometry(data)
     if data.current_element ~= nil then
         pytha.delete_element(data.current_element)
     end
-    if data.current_element2 ~= nil then
-        pytha.delete_element(data.current_element2)
+    if data.imported_parts ~= nil then
+        pytha.delete_element(data.imported_parts)
     end
 	
-	data.current_element = pytha.create_block(data.size, data.size, data.size, {0, 0, 0})
-	data.current_element2 = pytha.create_block(data.size, data.size, data.size, {300, 0, 0}, {u_axis = {1,1,1}, v_axis = {-1,1,1}, price=50, name="asdf"})
-	pytha.set_element_attributes(data.current_element, {name = data.name})
-	data.new_group = pytha.group_elements({data.current_element, data.current_element2})
-	if data.mat_handle ~= nil then 
-		pytha.set_element_material(data.new_group, data.mat_handle)
+	data.current_element = pytha.create_cylinder(data.size, data.size, {0,0,0})
+	if data.mat_handle then
+		data.imported_parts = pytha.import_pyo(data.mat_handle, {0,0,500},{u_axis = {1,1,0}, v_axis = {-1,1,1}},{Length = 1000, width = 3000})
 	end
-	pytha.dissolve_group(data.new_group)
+	
+	local refpt = pytha.get_element_bounding_box(data.current_element)
+	
+	for i,k in pairs(refpt) do
+		for j,l in pairs(k) do
+--			pyui.alert(l)
+		end
+	end
+		
+	
+	
 end

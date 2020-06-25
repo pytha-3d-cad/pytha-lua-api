@@ -70,7 +70,7 @@ function test_dialog(dialog, data)
 	end)
 	
 	btn_steps:set_on_click_handler(function()
-		data.material_steps = pyio.select_material(data.material_steps)
+		data.material_steps = pyux.select_material(data.material_steps)
 		if data.material_steps then
 			btn_steps:set_control_text(data.material_steps:get_name())
 		else 
@@ -81,7 +81,7 @@ function test_dialog(dialog, data)
 	
 	if data.material_glas == nil then 
 		btn_glass:set_on_click_handler(function()
-			data.material_glas = pyio.select_material(data.material_glas)
+			data.material_glas = pyux.select_material(data.material_glas)
 			if data.material_glas then
 				btn_glass:set_control_text(data.material_glas:get_name())
 			else 
@@ -91,7 +91,7 @@ function test_dialog(dialog, data)
 		end)
 	end
 	btn_frame:set_on_click_handler(function()
-		data.material_frame = pyio.select_material(data.material_frame)
+		data.material_frame = pyux.select_material(data.material_frame)
 		if data.material_frame then
 			btn_frame:set_control_text(data.material_frame:get_name())
 		else 
@@ -299,7 +299,6 @@ function recreate_geometry(data)
 	pytha.delete_element(rail)
 
 
-
 	rail_edges = pytha.create_polyline("open", points3)	--create the polyline
 
 	sweep_cross_section = {type = "rectangle", length = 10, width = data.rail_height + step_height - 20 - 250} 
@@ -309,12 +308,11 @@ function recreate_geometry(data)
 	pytha.delete_element(rail_edges)	--delete the line
 	table.insert(data.cur_elements, rail)
 	
-	
 
 	if data.clockwise == true then
 		local dir = "y"
 		pytha.mirror_element(data.cur_elements, {0,0,0}, dir)
 	end
-	pytha.group_elements(data.cur_elements)
+	pytha.create_group(data.cur_elements)
 end
 

@@ -288,7 +288,7 @@ function recreate_geometry(data)
 		end
 	end
 	data.right_connection_point = {data.width,0}
-	data.main_group = pytha.group_elements(data.cur_elements)
+	data.main_group = pytha.create_group(data.cur_elements)
 end
 
 function get_diag_door_length(data)

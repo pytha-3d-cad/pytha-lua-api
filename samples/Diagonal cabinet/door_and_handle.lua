@@ -127,7 +127,7 @@ function create_handle(data, origin, width, height, vert, coordinate_system, h_p
 	handle_block2 = pytha.create_block(depth, block_height, block_length, block_origin, options)
 	
 	local grouping_table = {handle_cyl, handle_block1, handle_block2}
-	local handle_group = pytha.group_elements(grouping_table)
+	local handle_group = pytha.create_group(grouping_table)
 	table.insert(data.cur_elements, handle_group)
 end
 

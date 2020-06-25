@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://xmlns.pytha.com/plugin_config/1.0">
+  <header>
+    <guid>744fd747-bf28-429d-8b0d-ad8a29e0735d</guid>
+    <version>1.0</version>
+    <pytha-version>25.0</pytha-version>
+    <name>Game of Life</name>
+    <description>The description of your plugin goes here.</description>
+    <licensing>Information about the licensing terms goes here.</licensing>
+  </header>
+  <extension type="function">
+    <entry-point>main</entry-point>
+    <caption>Game of Life</caption>
+    <description>A short description of the function goes here.</description>
+    <help-file>help.html</help-file>
+  </extension>
+</plugin>

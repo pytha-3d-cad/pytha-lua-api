@@ -100,7 +100,7 @@ function wizard_dialog(dialog, data)
 	button_ori:set_on_click_handler(function()
 		-- Pick in graphics
 		button_ori:disable_control()
-		local ret_wert = pytha.pick_a_point()
+		local ret_wert = pyux.select_coordinate()
 		if ret_wert ~= nil then
 			data.origin = ret_wert
 		end
@@ -111,7 +111,7 @@ function wizard_dialog(dialog, data)
 	button_dir:set_on_click_handler(function()
 		-- Pick in graphics
 		button_dir:disable_control()
-		local ret_wert = pytha.pick_a_point()
+		local ret_wert = pyux.select_coordinate()
 		if ret_wert ~= nil then
 			data.direction = {ret_wert[1] - data.origin[1], ret_wert[2] - data.origin[2], ret_wert[3] - data.origin[3]}
 			local dir_length = PYTHAGORAS(data.direction[1], data.direction[2], data.direction[3])
@@ -541,7 +541,7 @@ function recreate_geometry(data, finalize)
 		data.benchtop = bool_group[1]
 	end
 	table.insert(data.cur_elements, data.benchtop)
-	data.main_group = pytha.group_elements(data.cur_elements)
+	data.main_group = pytha.create_group(data.cur_elements)
 	
 end
 

@@ -144,7 +144,7 @@ function recreate_diagonal(general_data, specific_data)
 	specific_data.right_direction = -90
 	specific_data.left_direction = 0
 	
-	specific_data.main_group = pytha.group_elements(specific_data.cur_elements)
+	specific_data.main_group = pytha.create_group(specific_data.cur_elements)
 	
 	local z = general_data.benchtop_height - general_data.benchtop_thickness
 	poly_array = {{0, -general_data.top_over,z}, 

@@ -204,6 +204,6 @@ function recreate_geometry(data)
 		local dir = "y"
 		pytha.mirror_element(data.cur_elements, {0,0,0}, dir)
 	end
-	pytha.group_elements(data.cur_elements)
+	pytha.create_group(data.cur_elements)
 end
 

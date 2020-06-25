@@ -144,7 +144,7 @@ function recreate_corner(general_data, specific_data)
 						{0, general_data.depth, z}}
 	end
 	
-	specific_data.main_group = pytha.group_elements(specific_data.cur_elements)
+	specific_data.main_group = pytha.create_group(specific_data.cur_elements)
 	
 	specific_data.elem_handle_for_top = pytha.create_polygon(poly_array)
 	
