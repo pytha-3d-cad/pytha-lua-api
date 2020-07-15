@@ -127,9 +127,6 @@ function recreate_geometry(data)
 	end
 	data.cur_elements = {}
 	
-	pytha.push_local_coordinates({1000,0,0}, {u_axis = {1,0,0}, v_axis = {0,1,0}})
-	pytha.push_local_coordinates({0,0,0}, {u_axis = {0,1,0}, v_axis = {-1,0,0}})
-	pytha.push_local_coordinates({100,1000,0}, {u_axis = {0,0,1}, w_axis = {-1,0,0}})
 	local base_height = data.benchtop_height - data.height - data.benchtop_thickness
 	--if the kitchen is L-shaped. The angle is inherited from the previous cabinet
 	local coordinate_system = {{1, 0, 0}, {0, 1, 0}, {0,0,1}}
@@ -247,9 +244,6 @@ function recreate_geometry(data)
 	end
 	
 	data.main_group = pytha.create_group(data.cur_elements)
-	pytha.pop_local_coordinates()
-	pytha.pop_local_coordinates()
-	pytha.pop_local_coordinates()
 end
 
 function edit(element)
