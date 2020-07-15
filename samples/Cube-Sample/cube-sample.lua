@@ -15,10 +15,10 @@ end
 function cube_dialog(dialog, data)
 	dialog:set_window_title("My Cube")
 	
-	local label1 = dialog:create_label(1, "Size")
+	local label1 = dialog:create_label(1, "Size", {align = "left"})
 	local size = dialog:create_text_box(2, pyui.format_length(data.size))
 	local btn = dialog:create_button({3,4}, "Material")
-	local label2 = dialog:create_label({1,2}, "Name")
+	local label2 = dialog:create_label({1,2}, "Name", {align = "left"})
 	local name = dialog:create_text_box({3,4}, data.name)
 	
 	dialog:create_align({1,4})

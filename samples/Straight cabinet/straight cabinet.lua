@@ -1,5 +1,4 @@
---Beispiel eines einfachen Schrankkorpus mit variabler Anzahl an Fachboeden
-
+--Example of a simple cabinet with a variable number of shelves
 function main()
 	local data = {
 		cur_elements = {},
@@ -22,13 +21,6 @@ function main()
 		max_door_width = 700,
 		drawer_height = 125,
 		door_rh = false,
-		right_element = nil,
-		left_element = nil, 
-		right_connection_point = {0,0},
-		left_connection_point = {0,0},
-		right_direction = 0,
-		left_direction = 0,
-		own_direction = 0,
 		handle_length = 128,
 	}
 	local loaded_data = pyio.load_values("default_dimensions")
@@ -215,7 +207,6 @@ function recreate_geometry(data)
 			create_handle(data, loc_origin, data.width - 2 * data.gap, data.drawer_height, false, coordinate_system, 'center', 'center')
 		end
 	end
-	data.right_connection_point = {data.width,0}
 	data.main_group = pytha.create_group(data.cur_elements)
 end
 

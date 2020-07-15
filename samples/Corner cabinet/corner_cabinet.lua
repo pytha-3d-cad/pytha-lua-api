@@ -173,7 +173,6 @@ function recreate_geometry(data)
 	loc_origin[3] = base_height
 	new_elem = pytha.create_block(data.width - 2 * (data.thickness - data.groove_depth), data.thickness_back, data.height, loc_origin)
 	table.insert(data.cur_elements, new_elem)
-	pytha.set_element_history(new_elem, {})
 	
 	
 	--This section is influenced by "door right"

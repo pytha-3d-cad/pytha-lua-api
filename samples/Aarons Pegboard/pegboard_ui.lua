@@ -3,7 +3,7 @@ function main()
 				  height=500,
 				  thickness=15,
 				  diameter=10,
-				  margin=50,
+				  margin=100/3,
 				  x_number=9,
 				  y_number=9,
 				  x_spacing=0,		--functionality later
@@ -35,14 +35,15 @@ function pegboard_dialog(dialog, data)
 	local x_number = dialog:create_text_box(2, pyui.format_length(data.x_number))
 	local label_y_number = dialog:create_label(3, pyloc "Vertical number")
 	local y_number = dialog:create_text_box(4, pyui.format_length(data.y_number))
-	local label_x_spacing = dialog:create_label(1, pyloc "Horizontal spacing")
+--	local label_x_spacing = dialog:create_label(1, pyloc "Horizontal spacing")
 	--[[local x_spacing = dialog:create_text_box(2, pyui.format_length(data.x_spacing))
 	local label_y_spacing = dialog:create_label(3, pyloc "Vertical spacing")
 	local y_spacing = dialog:create_text_box(4, pyui.format_length(data.y_spacing))
 	local diagonal = dialog:create_check_box({1,2}, "Diagonal peg holes?")--]]
 	dialog:create_align({1,4})
-	local ok = dialog:create_ok_button(1)
-    local cancel = dialog:create_cancel_button(2)
+	local ok = dialog:create_ok_button(3)
+    local cancel = dialog:create_cancel_button(4)
+	dialog:equalize_column_widths({3,4})
 	
 	width:set_on_change_handler(function(text)
         data.width = pyui.parse_length(text)
@@ -70,12 +71,12 @@ function pegboard_dialog(dialog, data)
     end)
 		
 	x_number:set_on_change_handler(function(text)
-        data.x_number = pyui.parse_length(text)
+        data.x_number = pyui.parse_number(text)
         recreate_geometry(data)
     end)
 		
 	y_number:set_on_change_handler(function(text)
-        data.y_number = pyui.parse_length(text)
+        data.y_number = pyui.parse_number(text)
         recreate_geometry(data)
     end)
 			
@@ -100,6 +101,7 @@ function recreate_geometry(data)
 	if data.cur_elem ~= nil then
         pytha.delete_element(data.cur_elem)
     end
+		
     data.cur_elem = {}
 	local y_spacing = 0
 	local x_spacing = 0

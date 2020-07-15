@@ -1,5 +1,4 @@
 --Example of a Kitchen wizard generator
---Example of a Kitchen wizard generator
 local controls = {}
 local in_loop = false
 function main()
