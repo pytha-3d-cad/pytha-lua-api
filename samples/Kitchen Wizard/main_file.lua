@@ -45,14 +45,16 @@ function wizard_dialog(dialog, data)
 	local bt_thick = dialog:create_text_box(2, pyui.format_length(data.benchtop_thickness))
 	local label_general_height_top = dialog:create_label(1, pyloc "Wall cabinet height")
 	local general_height_top = dialog:create_text_box(2, pyui.format_length(data.general_height_top))
-	local label4 = dialog:create_label(1, pyloc "Board thickness")
-	local thickness = dialog:create_text_box(2, pyui.format_length(data.thickness))
+	local label_wall_to_base = dialog:create_label(1, pyloc "Benchtop wall spacing")
+	local wall_to_base_spacing = dialog:create_text_box(2, pyui.format_length(data.wall_to_base_spacing))
 	local label3 = dialog:create_label(3, pyloc "Depth")
 	local depth = dialog:create_text_box(4, pyui.format_length(data.depth))
 	local label_dw = dialog:create_label(3, pyloc "Depth Wall")
 	local depth_wall = dialog:create_text_box(4, pyui.format_length(data.depth_wall))
 	local label_handle = dialog:create_label(3, pyloc "Handle length")
 	local handle_length = dialog:create_text_box(4, pyui.format_length(data.handle_length))
+	local label4 = dialog:create_label(3, pyloc "Board thickness")
+	local thickness = dialog:create_text_box(4, pyui.format_length(data.thickness))
 	
 	dialog:create_label({1,4}, pyloc "This cabinet")	
 	
@@ -144,6 +146,11 @@ function wizard_dialog(dialog, data)
 				spec_data.height_top = data.general_height_top
 			end
 		end
+		recreate_all(data, true)
+	end)
+	
+	wall_to_base_spacing:set_on_change_handler(function(text)
+		data.wall_to_base_spacing = pyui.parse_length(text)
 		recreate_all(data, true)
 	end)
 	

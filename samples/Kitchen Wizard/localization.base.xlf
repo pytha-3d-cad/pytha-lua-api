@@ -444,9 +444,9 @@
         <source>Wall cabinet height</source>
       </segment>
     </unit>
-    <unit id="735460bb49573218">
+    <unit id="4448bc806795bd66">
       <segment>
-        <source>Board thickness</source>
+        <source>Benchtop wall spacing</source>
       </segment>
     </unit>
     <unit id="6f3609ef9692f359">
@@ -462,6 +462,11 @@
     <unit id="637c36fdda431790">
       <segment>
         <source>Handle length</source>
+      </segment>
+    </unit>
+    <unit id="735460bb49573218">
+      <segment>
+        <source>Board thickness</source>
       </segment>
     </unit>
     <unit id="029121b90e1a0b3a">
