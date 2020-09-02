@@ -283,6 +283,36 @@
         <source>Drawer</source>
       </segment>
     </unit>
+    <unit id="2a8bae4ff97600f9">
+      <segment>
+        <source>Bottom</source>
+      </segment>
+    </unit>
+    <unit id="192861b4bb767014">
+      <segment>
+        <source>Front</source>
+      </segment>
+    </unit>
+    <unit id="6d177252597f556b">
+      <segment>
+        <source>Left Side</source>
+      </segment>
+    </unit>
+    <unit id="7c5c187af1d4d95f">
+      <segment>
+        <source>Right Side</source>
+      </segment>
+    </unit>
+    <unit id="14cee00a9144cc72">
+      <segment>
+        <source>Back</source>
+      </segment>
+    </unit>
+    <unit id="2d70f76eaff6ef92">
+      <segment>
+        <source>Drawer box</source>
+      </segment>
+    </unit>
     <unit id="187400dfdc31748b">
       <segment>
         <source>Drawer</source>

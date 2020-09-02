@@ -193,7 +193,7 @@ function recreate_straight(general_data, specific_data)
 		if specific_data.drawer_height > 0 then
 			loc_origin[1] = general_data.gap
 			loc_origin[3] = base_height + specific_data.height - general_data.top_gap - specific_data.drawer_height
-			new_elem = create_drawer(general_data, specific_data, specific_data.width - 2 * general_data.gap, specific_data.drawer_height, loc_origin, false, coordinate_system, 'center', 'center')
+			new_elem = create_drawer(general_data, specific_data, specific_data.width - 2 * general_data.gap, specific_data.drawer_height, loc_origin, coordinate_system, 'center', 'center')
 			table.insert(specific_data.cur_elements, new_elem)
 		end
 	end

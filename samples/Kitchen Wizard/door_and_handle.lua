@@ -1,13 +1,37 @@
 
-function create_drawer(general_data, specific_data, width, door_height, origin, door_rh, coordinate_system, h_posi_code, v_posi_code)
+function create_drawer(general_data, specific_data, width, drawer_height, origin, coordinate_system, h_posi_code, v_posi_code)
 	local loc_origin = {origin[1], origin[2], origin[3]} 	--tables are by reference, so you could overwrite the origin in the calling function. Therefore we assign by value.
 	local axes = {u_axis = coordinate_system[1], v_axis = coordinate_system[2], w_axis = coordinate_system[3], name = pyloc "Drawer"}
+	--Drawer Front
+	local drawer_front = pytha.create_block(width, general_data.thickness, drawer_height, loc_origin, axes)
 	
-	new_elem = pytha.create_block(width, general_data.thickness, door_height, loc_origin, axes)
-
-	local handle = create_handle(general_data, specific_data, loc_origin, width, door_height, false, coordinate_system, h_posi_code, v_posi_code)
-	local drawer_group = pytha.create_group({handle, new_elem}, {name = pyloc "Drawer"})
-	drawer_group:set_element_attributes({action_string = "MOVE(-0,-350,-0S34)"})
+	--Drawer Box: values are max values to allow for replacement with drawer box with runners
+	local drawer_box_collection = {}
+	local depth = general_data.depth - general_data.groove_dist - general_data.thickness_back
+	if specific_data.row == 0x2 then
+		depth = general_data.depth_wall - general_data.groove_dist - general_data.thickness_back
+	end
+	local token = pytha.push_local_coordinates(loc_origin, axes)
+	new_elem = pytha.create_block(width - 4 * general_data.thickness + 2 * general_data.gap, depth - 2 * general_data.thickness, general_data.thickness, {2 * general_data.thickness - general_data.gap, 2 * general_data.thickness, 0}, {name = pyloc "Bottom"})
+	table.insert(drawer_box_collection, new_elem)
+	new_elem = pytha.create_block(width - 4 * general_data.thickness + 2 * general_data.gap, general_data.thickness, drawer_height - general_data.thickness + general_data.top_gap, {2 * general_data.thickness - general_data.gap, general_data.thickness, 0}, {name = pyloc "Front"})
+	table.insert(drawer_box_collection, new_elem)
+	new_elem = pytha.create_block(general_data.thickness, depth - general_data.thickness, drawer_height - general_data.thickness + general_data.top_gap, {general_data.thickness - general_data.gap, general_data.thickness, 0}, {name = pyloc "Left Side"})
+	table.insert(drawer_box_collection, new_elem)
+	new_elem = pytha.create_block(general_data.thickness, depth - general_data.thickness, drawer_height - general_data.thickness + general_data.top_gap, {width - 2 * general_data.thickness + general_data.gap, general_data.thickness, 0}, {name = pyloc "Right Side"})
+	table.insert(drawer_box_collection, new_elem)
+	new_elem = pytha.create_block(width - 2 * general_data.thickness + 2 * general_data.gap, general_data.thickness, drawer_height - general_data.thickness + general_data.top_gap, {general_data.thickness - general_data.gap, depth, 0}, {name = pyloc "Back"})
+	table.insert(drawer_box_collection, new_elem)
+	
+	
+	pytha.pop_local_coordinates(token)
+	
+	local drawer_box = pytha.create_group(drawer_box_collection, {name = pyloc "Drawer box"})
+	
+	loc_origin = {origin[1], origin[2], origin[3]} 
+	local handle = create_handle(general_data, specific_data, loc_origin, width, drawer_height, false, coordinate_system, h_posi_code, v_posi_code)
+	local drawer_group = pytha.create_group({handle, drawer_front, drawer_box}, {name = pyloc "Drawer"})
+	drawer_group:set_element_attributes({action_string = "MOVE(-0,-" .. 0.75*depth .. ",-0S34)"})
 	return drawer_group
 end
 

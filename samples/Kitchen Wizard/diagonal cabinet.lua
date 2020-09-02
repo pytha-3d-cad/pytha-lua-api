@@ -254,16 +254,18 @@ function recreate_diagonal(general_data, specific_data)
 		end
 		
 		--Drawer
+		local coordinate_system = {{1, 0, 0}, {0, 1, 0}, {0,0,1}}
 		if specific_data.drawer_height > 0 then
 			loc_origin[1] = general_data.gap
 			loc_origin[2] = -general_data.thickness
 			loc_origin[3] = base_height + specific_data.height - general_data.top_gap - specific_data.drawer_height
-			new_elem = create_drawer(general_data, specific_data, door_length, specific_data.drawer_height, loc_origin, false, diag_coos, 'center', 'center')
+			new_elem = create_drawer(general_data, specific_data, door_length, specific_data.drawer_height, loc_origin, coordinate_system, 'center', 'center')
+			pytha.rotate_element(new_elem, loc_origin, 'z', -slope_angle)--this will also rotate the group vector and therefore gives the correct action
 			table.insert(specific_data.cur_elements, new_elem)
 		end
 	end
 	
-	--Kickboardc
+	--Kickboard
 	local front_setback = general_data.thickness + general_data.kickboard_setback
 	loc_origin[1] = general_data.gap
 	loc_origin[2] = -general_data.thickness
