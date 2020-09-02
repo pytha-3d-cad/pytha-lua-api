@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://xmlns.pytha.com/plugin_config/1.0">
+  <header>
+    <guid>ed00aa5a-edff-486f-8d1b-1b2f841eab98</guid>
+    <version>1.0</version>
+    <pytha-version>25.0</pytha-version>
+    <name>Udos Table Generator</name>
+    <description>This plugin generates a table with a variable number of legs based on the dimensions of the table plate.</description>
+    <licensing>Information about the licensing terms goes here.</licensing>
+  </header>
+  <extension type="function">
+    <entry-point>main</entry-point>
+    <caption>Udos Table Generator</caption>
+    <description>This plugin generates a table with a variable number of legs based on the dimensions of the table plate.</description>
+    <help-file>help.html</help-file>
+  </extension>
+</plugin>

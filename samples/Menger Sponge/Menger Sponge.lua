@@ -17,7 +17,7 @@ function cube_dialog(dialog, data)
 	local label1 = dialog:create_label(1, "Size")
 	local size = dialog:create_text_box(2, pyui.format_length(data.size))
 	local label2 = dialog:create_label(1, "Depth")
-	local depth = dialog:create_text_box(2, pyui.format_number(data.depth))
+	local depth = dialog:create_text_spin(2, pyui.format_number(data.depth), {1,5})
 	local ok = dialog:create_ok_button(1)
 	local cancel = dialog:create_cancel_button(2)
 	
@@ -30,7 +30,7 @@ function cube_dialog(dialog, data)
 	
     depth:set_on_change_handler(function(text)
         data.depth = math.floor(pyui.parse_number(text))
-		data.depth = math.min(data.depth, 5)
+		data.depth = math.max(1, math.min(data.depth, 4))
         recreate_geometry(data)
     end)
 	

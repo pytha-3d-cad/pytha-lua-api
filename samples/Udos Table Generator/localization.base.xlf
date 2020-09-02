@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff srcLang="de-DE" version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0">
+  <file original="udos_table_generator.lua">
+    <unit id="04293d405a164a1e">
+      <segment>
+        <source>Table length</source>
+      </segment>
+    </unit>
+    <unit id="3372c32ac32a1765">
+      <segment>
+        <source>Table width</source>
+      </segment>
+    </unit>
+    <unit id="6aa1def71e5975f2">
+      <segment>
+        <source>Table thickness</source>
+      </segment>
+    </unit>
+    <unit id="1d5dcbc0f92a0178">
+      <segment>
+        <source>Table height</source>
+      </segment>
+    </unit>
+    <unit id="6ace6195f0de95a6">
+      <segment>
+        <source>Leg distance</source>
+      </segment>
+    </unit>
+    <unit id="133afd06bf6bd058">
+      <segment>
+        <source>Leg diameter</source>
+      </segment>
+    </unit>
+  </file>
+</xliff>

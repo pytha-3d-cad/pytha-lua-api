@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff srcLang="de-DE" version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0">
-  <file original="diagonal cabinet.lua"></file>
-  <file original="door_and_handle.lua"></file>
+  <file original="polygon_samples.lua"></file>
 </xliff>

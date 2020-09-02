@@ -1,19 +1,54 @@
 
-function create_door(general_data, specific_data, width, door_height, origin, door_rh, coordinate_system)
+function create_drawer(general_data, specific_data, width, door_height, origin, door_rh, coordinate_system, h_posi_code, v_posi_code)
 	local loc_origin = {origin[1], origin[2], origin[3]} 	--tables are by reference, so you could overwrite the origin in the calling function. Therefore we assign by value.
-	local axes = {u_axis = coordinate_system[1], v_axis = coordinate_system[2], w_axis = coordinate_system[3]}
+	local axes = {u_axis = coordinate_system[1], v_axis = coordinate_system[2], w_axis = coordinate_system[3], name = pyloc "Drawer"}
+	
+	new_elem = pytha.create_block(width, general_data.thickness, door_height, loc_origin, axes)
+
+	local handle = create_handle(general_data, specific_data, loc_origin, width, door_height, false, coordinate_system, h_posi_code, v_posi_code)
+	local drawer_group = pytha.create_group({handle, new_elem}, {name = pyloc "Drawer"})
+	drawer_group:set_element_attributes({action_string = "MOVE(-0,-350,-0S34)"})
+	return drawer_group
+end
+
+function create_door(general_data, specific_data, width, door_height, origin, door_rh, coordinate_system, v_posi_code)
+	local loc_origin = {origin[1], origin[2], origin[3]} 	--tables are by reference, so you could overwrite the origin in the calling function. Therefore we assign by value.
+	local door_name = ""
+	if door_rh == false then
+		door_name = pyloc "Door LH"
+	else 
+		door_name = pyloc "Door RH"
+	end
+	
+	local axes = {u_axis = coordinate_system[1], v_axis = coordinate_system[2], w_axis = coordinate_system[3], name = door_name}
 	
 	new_elem = pytha.create_block(width, general_data.thickness, door_height, loc_origin, axes)
 
 	local h_posi_code = ''
-	local v_posi_code = 'top'
+	if v_posi_code == nil then
+		v_posi_code = 'top'
+	end
 	if door_rh == false then	
 		h_posi_code = 'right'
 	else 
 		h_posi_code = 'left'
 	end
 	local handle = create_handle(general_data, specific_data, loc_origin, width, door_height, true, coordinate_system, h_posi_code, v_posi_code)
-	return pytha.create_group({handle, new_elem})
+	local door_group = pytha.create_group({handle, new_elem}, {name = door_name})
+	local rp_pos1 = {loc_origin[1], loc_origin[2], loc_origin[3]} 
+	if door_rh == true then
+		rp_pos1[1] = rp_pos1[1] + width * coordinate_system[1][1]
+		rp_pos1[2] = rp_pos1[2] + width * coordinate_system[1][2]
+	end
+	pytha.create_element_ref_point(door_group, rp_pos1)
+	rp_pos1[3] = rp_pos1[3] + door_height
+	pytha.create_element_ref_point(door_group, rp_pos1)
+	if door_rh == true then
+		door_group:set_element_attributes({action_string = "ROTATE(70,R1R2,R1S30)"})
+	else
+		door_group:set_element_attributes({action_string = "ROTATE(-70,R1R2,R1S30)"})
+	end
+	return door_group
 end
 
 --origin, width and height are for the whole door. The handle then is positioned according to the posi codes
@@ -118,6 +153,7 @@ function create_handle(general_data, specific_data, origin, width, height, vert,
 	
 	local options = {u_axis = perp_dir, v_axis = third_dir, w_axis = main_dir}
 	handle_cyl = pytha.create_cylinder(total_length, diameter / 2, cylinder_origin, options)
+	pytha.delete_element_ref_point(handle_cyl)
 		
 	local block_origin = {	left_rp[1] - 0.5 * block_length * main_dir[1] - 0.5 * block_height * third_dir[1], 
 							left_rp[2] - 0.5 * block_length * main_dir[2] - 0.5 * block_height * third_dir[2], 
@@ -129,7 +165,15 @@ function create_handle(general_data, specific_data, origin, width, height, vert,
 	handle_block2 = pytha.create_block(depth, block_height, block_length, block_origin, options)
 	
 	local grouping_table = {handle_cyl, handle_block1, handle_block2}
-	local handle_group = pytha.create_group(grouping_table)
+	local handle_group = pytha.create_group(grouping_table, {name = pyloc "Handle"})
+	
+	left_rp[1] = left_rp[1] + depth * (perp_dir[1])
+	left_rp[2] = left_rp[2] + depth * (perp_dir[2])
+	right_rp[1] = right_rp[1] + depth * (perp_dir[1])
+	right_rp[2] = right_rp[2] + depth * (perp_dir[2])
+	pytha.create_element_ref_point(handle_group, left_rp)
+	pytha.create_element_ref_point(handle_group, right_rp)
+	
 	return handle_group
 end
 

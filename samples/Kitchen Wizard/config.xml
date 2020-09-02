@@ -14,4 +14,52 @@
     <description>A short description of the function goes here.</description>
     <help-file>help.html</help-file>
   </extension>
+  <extension type="function">
+    <entry-point>straight_cabinet_solo</entry-point>
+    <caption>Straight Cabinet</caption>
+    <description>Straight kitchen cabinet with rails.</description>
+    <help-file>help.html</help-file>
+  </extension>
+  <extension type="function">
+    <entry-point>diagonal_cabinet_solo</entry-point>
+    <caption>Diagonal Cabinet</caption>
+    <description>Diagonbal corner kitchen cabinet.</description>
+    <help-file>help.html</help-file>
+  </extension>
+  <extension type="function">
+    <entry-point>corner_cabinet_solo</entry-point>
+    <caption>Corner Cabinet</caption>
+    <description>Corner kitchen cabinet with rails.</description>
+    <help-file>help.html</help-file>
+  </extension>
+  <extension type="function">
+    <entry-point>high_cabinet_solo</entry-point>
+    <caption>High Cabinet</caption>
+    <description>High kitchen cabinet.</description>
+    <help-file>help.html</help-file>
+  </extension>
+  <extension type="function">
+    <entry-point>wall_cabinet_solo</entry-point>
+    <caption>Wall Cabinet</caption>
+    <description>Wall kitchen cabinet with variable width.</description>
+    <help-file>help.html</help-file>
+  </extension>
+  <extension type="function">
+    <entry-point>cornerwall_cabinet_solo</entry-point>
+    <caption>Corner Wall Cabinet</caption>
+    <description>Corner wall cabinet with two doors for kitchen.</description>
+    <help-file>help.html</help-file>
+  </extension>
+  <extension type="function">
+    <entry-point>top_cabinet_solo</entry-point>
+    <caption>Top Shelf</caption>
+    <description>Top shelf on benchtop for kitchen.</description>
+    <help-file>help.html</help-file>
+  </extension>
+  
+  <extension type="edit">
+    <id>wizard_history</id>
+    <entry-point>edit_wizard</entry-point>
+</extension>
+
 </plugin>

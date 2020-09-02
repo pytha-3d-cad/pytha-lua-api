@@ -1,6 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff srcLang="de-DE" version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0">
   <file original="config-gosper.lua"></file>
-  <file original="game-of-life.lua"></file>
-  <file original="Gosper.lua"></file>
+  <file original="game-of-life.lua">
+    <unit id="37752ba377b4cb2e">
+      <segment>
+        <source>Game of Life</source>
+      </segment>
+    </unit>
+    <unit id="5aac1ac81f59cd7b">
+      <segment>
+        <source>Clear</source>
+      </segment>
+    </unit>
+    <unit id="5ee9756bc27f683d">
+      <segment>
+        <source>Gosper</source>
+      </segment>
+    </unit>
+    <unit id="4ae93cc7e03b803d">
+      <segment>
+        <source>Light Spaceship</source>
+      </segment>
+    </unit>
+    <unit id="06dddaca0cf1cf64">
+      <segment>
+        <source>Switch Engine</source>
+      </segment>
+    </unit>
+    <unit id="72bc49e77dbd3ba7">
+      <segment>
+        <source>Blinker Puffer</source>
+      </segment>
+    </unit>
+    <unit id="7ccaedaa997ed8ef">
+      <segment>
+        <source>Centinal</source>
+      </segment>
+    </unit>
+    <unit id="242875700dd5c447">
+      <segment>
+        <source>X Size</source>
+      </segment>
+    </unit>
+    <unit id="1355015e6e70c6ca">
+      <segment>
+        <source>Y Size</source>
+      </segment>
+    </unit>
+    <unit id="3cc011b9a924b579">
+      <segment>
+        <source>Density</source>
+      </segment>
+    </unit>
+    <unit id="08baad772b229a0a">
+      <segment>
+        <source>Random seeds</source>
+      </segment>
+    </unit>
+    <unit id="4e3f4c4faec3d3a9">
+      <segment>
+        <source>Manual</source>
+      </segment>
+    </unit>
+  </file>
 </xliff>
