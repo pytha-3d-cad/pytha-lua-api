@@ -2,6 +2,9 @@
 
 function eval(element)
 	local attribute = pytha.get_element_attribute(element, "block_special_attribute")
+	if attribute == nil then 
+		return ""
+	end
 	local name = pytha.get_element_attribute(element, "name")
 	local dimensions = pytha.get_element_bounding_box(element)
 	local length = pytha.get_length_unit() 
