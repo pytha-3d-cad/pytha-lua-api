@@ -1,4 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff srcLang="en-US" version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0">
-  <file original="spiral_stairs2.lua"></file>
+  <file original="spiral_stairs2.lua">
+    <unit id="4d8de7435f269ba3">
+      <segment>
+        <source>Pick dimensions</source>
+      </segment>
+    </unit>
+    <unit id="1c2ef74963db523a">
+      <segment>
+        <source>Pick outer top corner</source>
+      </segment>
+    </unit>
+    <unit id="5265587012df708b">
+      <segment>
+        <source>Pick inner top corner</source>
+      </segment>
+    </unit>
+    <unit id="1fe11c58a5f8ed4e">
+      <segment>
+        <source>Pick outer bottom corner</source>
+      </segment>
+    </unit>
+  </file>
 </xliff>
