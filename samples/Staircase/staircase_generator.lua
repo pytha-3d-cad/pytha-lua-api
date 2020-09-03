@@ -114,6 +114,53 @@ function make_dialog(dialog, data)
 -----------------------------------------------------
 
 
+	
+	button_ori:set_on_click_handler(function()
+		-- Pick in graphics
+		button_ori:disable_control()
+		if data.cur_elements ~= nil then
+			pytha.delete_element(data.cur_elements)
+		end
+		data.cur_elements = {}
+	
+		local ret_wert = pyux.select_coordinate(false, pyloc "Pick outer top corner")
+		if ret_wert ~= nil then
+			data.outer_corner = ret_wert
+			pyux.highlight_coordinate(ret_wert)
+		end
+		ret_wert = pyux.select_coordinate(false, pyloc "Pick inner top corner")
+		if ret_wert ~= nil then
+			data.inner_corner = ret_wert
+			pyux.highlight_coordinate(ret_wert)
+			
+			data.direction = {ret_wert[1] - data.outer_corner[1], ret_wert[2] - data.outer_corner[2], ret_wert[3] - data.outer_corner[3]}
+			local dir_length = PYTHAGORAS(data.direction[1], data.direction[2], data.direction[3])
+			data.direction[1] = data.direction[1] / dir_length
+			data.direction[2] = data.direction[2] / dir_length
+			data.direction[3] = data.direction[3] / dir_length
+			data.width = dir_length
+		else 
+		end
+		ret_wert = pyux.select_coordinate(false, pyloc "Pick outer bottom corner")
+		if ret_wert ~= nil then
+			data.third_point = ret_wert
+			pyux.highlight_coordinate(ret_wert)
+			data.total_height = data.outer_corner[3] - data.third_point[3]
+			calc_center(data) 
+			data.diameter = 2 * PYTHAGORAS(data.outer_corner[1] - data.origin[1], data.outer_corner[2] - data.origin[2])
+		else 
+		end
+		
+		total_height:set_control_text(pyui.format_length(data.total_height))
+		diameter:set_control_text(pyui.format_length(data.diameter))
+		width:set_control_text(pyui.format_length(data.width))
+		pyux.clear_highlights()
+		button_ori:enable_control()
+		recreate_geometry(data, true)
+		total_angle:set_control_text(pyui.format_length(data.total_angle))	--is calculated during geometry input, therefore refreshing afterwards
+	end)
+	
+
 	button_ori:set_on_click_handler(function()
 		-- Pick in graphics
 		button_ori:disable_control()

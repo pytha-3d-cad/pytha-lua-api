@@ -4,13 +4,13 @@
     <guid>7704fda1-2698-48c5-91fa-ab7aa1093a54</guid>
     <version>1.0</version>
     <pytha-version>25.0</pytha-version>
-    <name>Staircase Generator</name>
+    <name>Staircase</name>
     <description>The description of your plugin goes here.</description>
     <licensing>Information about the licensing terms goes here.</licensing>
   </header>
   <extension type="function">
     <entry-point>main</entry-point>
-    <caption>Staircase Generator</caption>
+    <caption>Staircase</caption>
     <description>A short description of the function goes here.</description>
     <help-file>help.html</help-file>
   </extension>

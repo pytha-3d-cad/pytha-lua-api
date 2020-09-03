@@ -38,6 +38,7 @@ function wizard_dialog(dialog, data)
 	local button_ori = dialog:create_button(2, pyloc "Pick origin")
 	local button_dir = dialog:create_button(3, pyloc "Pick direction")
 	local button_ori_left = dialog:create_check_box(4, pyloc "Orient leftwards")
+	button_ori_left:set_control_checked(data.orient_leftwards)
 	
 	local label_benchtop = dialog:create_label(1, pyloc "Benchtop height")
 	local bt_height = dialog:create_text_box(2, pyui.format_length(data.benchtop_height))
@@ -315,13 +316,19 @@ function wizard_dialog(dialog, data)
 		
 		--first treat the top rows. 
 		if data.cabinet_list[data.current_cabinet].row == 0x3 then 
+			local bottom_defined = nil
 			if left_element ~= nil then
 				data.cabinet_list[left_element].top_element = left_top_element
-				data.cabinet_list[left_top_element].bottom_element = left_element
-				
-			else
+				if left_top_element ~= nil then
+					data.cabinet_list[left_top_element].bottom_element = left_element
+					bottom_defined = 1
+				end
+			end
+			if right_element ~= nil then
 				data.cabinet_list[right_element].top_element = right_top_element
-				data.cabinet_list[right_top_element].bottom_element = right_element
+				if right_top_element ~= nil and bottom_defined == nil then
+					data.cabinet_list[right_top_element].bottom_element = right_element
+				end
 			end 
 			if left_top_element ~= nil then
 				data.cabinet_list[left_top_element].right_top_element = right_top_element
@@ -402,10 +409,13 @@ function wizard_dialog(dialog, data)
 			else 
 				data.current_cabinet = 1	--fallback never to be reached
 			end 
-		elseif left_element ~= nil then
+		else
+			if left_element ~= nil then
 			data.cabinet_list[left_element].right_element = right_element
-		elseif right_element ~= nil then
+			end
+			if right_element ~= nil then
 			data.cabinet_list[right_element].left_element = left_element
+			end
 		end 
 		
 		

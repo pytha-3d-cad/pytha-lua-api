@@ -4,14 +4,14 @@
     <guid>26d93043-143e-4f9e-805d-406114b190b9</guid>
     <version>1.0</version>
     <pytha-version>25.0</pytha-version>
-    <name>Cube-Sample</name>
+    <name>Cube Sample</name>
     <description>The description of your plugin goes here.</description>
     <licensing>Information about the licensing terms goes here.</licensing>
   </header>
   
   <extension type="function">
     <entry-point>main</entry-point>
-    <caption>Cube-Sample</caption>
+    <caption>Cube Sample</caption>
     <description>A short description of the function goes here.</description>
     <help-file>help.html</help-file>
   </extension>

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://xmlns.pytha.com/plugin_config/1.0">
   <header>
-    <guid>ee4b7dd9-328b-40d2-b56b-eab9e1a1915c</guid>
+    <guid>3583e21b-9944-4a8d-b7cb-c46c651102b1</guid>
     <version>1.0</version>
     <pytha-version>25.0</pytha-version>
-    <name>Straight cabinet</name>
+    <name>Polygon Sample</name>
     <description>The description of your plugin goes here.</description>
     <licensing>Information about the licensing terms goes here.</licensing>
   </header>
   <extension type="function">
     <entry-point>main</entry-point>
-    <caption>Straight cabinet</caption>
+    <caption>Polygon Sample</caption>
     <description>A short description of the function goes here.</description>
     <help-file>help.html</help-file>
   </extension>

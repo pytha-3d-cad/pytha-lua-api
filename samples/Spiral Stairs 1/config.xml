@@ -4,13 +4,13 @@
     <guid>9b803764-e47e-4973-997e-58353d1fe01b</guid>
     <version>1.0</version>
     <pytha-version>25.0</pytha-version>
-    <name>Spiral Staircase</name>
+    <name>Spiral Stairs 1</name>
     <description>The description of your plugin goes here.</description>
     <licensing>Information about the licensing terms goes here.</licensing>
   </header>
   <extension type="function">
     <entry-point>main</entry-point>
-    <caption>Spiral Staircase</caption>
+    <caption>Spiral Stairs 1</caption>
     <description>A short description of the function goes here.</description>
     <help-file>help.html</help-file>
   </extension>

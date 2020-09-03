@@ -4,13 +4,13 @@
     <guid>615ab6de-c4d9-4901-805a-c5edc2ff305c</guid>
     <version>1.0</version>
     <pytha-version>25.0</pytha-version>
-    <name>Geometry Collection</name>
+    <name>Geometry Sample</name>
     <description>The description of your plugin goes here.</description>
     <licensing>Information about the licensing terms goes here.</licensing>
   </header>
   <extension type="function">
     <entry-point>main</entry-point>
-    <caption>Geometry Collection</caption>
+    <caption>Geometry Sample</caption>
     <description>A short description of the function goes here.</description>
     <help-file>help.html</help-file>
   </extension>

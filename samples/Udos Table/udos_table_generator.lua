@@ -1,7 +1,7 @@
 
 function main()
 	local data = {width=800,
-                  length=600,
+                  length=1200,
                   height=760,
 				  thickness=28,
                   leg_distance=100,
