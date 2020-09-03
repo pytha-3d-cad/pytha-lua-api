@@ -8,10 +8,31 @@
     <description>The description of your plugin goes here.</description>
     <licensing>Information about the licensing terms goes here.</licensing>
   </header>
+  
   <extension type="function">
     <entry-point>main</entry-point>
     <caption>Cube-Sample</caption>
     <description>A short description of the function goes here.</description>
     <help-file>help.html</help-file>
   </extension>
+  
+  <extension type="edit">
+    <id>block_history_demo</id>
+    <entry-point>edit_block</entry-point>
+  </extension>
+  
+  <extension type="attribute">
+    <id>block_special_attribute</id>
+<!--    <entry-point>eval</entry-point> -->
+    <caption>A Cube Attribute</caption>
+    <description>This can be a description</description>
+</extension>
+  
+  <extension type="attribute">
+    <id>block_special_eval_attribute</id>
+    <entry-point>eval</entry-point> 
+    <caption>A Cube Evaluated Attribute</caption>
+    <description>This can be a description</description>
+</extension>
+  
 </plugin>
