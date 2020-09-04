@@ -233,7 +233,7 @@ function recreate_cornerwall(general_data, specific_data)
 			door_group2 = pytha.create_group(new_elem, door_name)
 		end
 	end
-	local total_door_group = pytha.create_group({door_group1, door_group2}, {name = door_name})
+	local total_door_group = pytha.create_group({door_group1, door_group2}, door_name)
 	pytha.create_element_ref_point(total_door_group, rp_pos1)
 	rp_pos1[3] = rp_pos1[3] + door_height
 	pytha.create_element_ref_point(total_door_group, rp_pos1)
