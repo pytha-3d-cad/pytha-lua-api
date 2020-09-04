@@ -45,8 +45,8 @@ function main()
 		origin = {0,0,0},
 		direction = {1,0,0},
 		pedestal_length = 2.5,
-		outer_corner = nil,
-		inner_corner = nil,
+		outer_corner = {0,0,0},
+		inner_corner = {1120,0,0},
 		third_point = nil,
 		fourth_point = nil,
 		picked_length = false,
@@ -74,8 +74,8 @@ function make_dialog(dialog, data)
 	controls.btn_l_shaped = dialog:create_linked_radio_button(2, "L-shaped")
 	controls.l_shape_left = dialog:create_check_box(3, "Turn left")
 	controls.l_shape_left:set_control_checked(data.l_shape_left)
---	controls.check_pedestal = dialog:create_check_box(4, "With pedestal")
---	controls.check_pedestal:set_control_checked(data.pedestal)
+	controls.check_pedestal = dialog:create_check_box(4, "With pedestal")
+	controls.check_pedestal:set_control_checked(data.pedestal)
 	dialog:end_group_box()
 	
 	dialog:create_group_box({1,4}, "Dimensions")
@@ -257,6 +257,12 @@ function make_dialog(dialog, data)
 	
 	controls.l_shape_left:set_on_click_handler(function(state)
 		data.l_shape_left = state
+		
+		local aux_p = {data.outer_corner[1], data.outer_corner[2], data.outer_corner[3]}
+		data.outer_corner = {data.inner_corner[1], data.inner_corner[2], data.inner_corner[3]}
+		data.inner_corner = {aux_p[1], aux_p[2], aux_p[3]}
+		data.direction = {-data.direction[1], -data.direction[2], -data.direction[3]}
+					
 		recreate_all(data, controls)
 	end)
 	
@@ -266,10 +272,10 @@ function make_dialog(dialog, data)
 		recreate_all(data, controls)
 	end)
 	
---	controls.check_pedestal:set_on_click_handler(function(state)
---		data.pedestal = state
---		recreate_all(data, controls)
---	end)
+	controls.check_pedestal:set_on_click_handler(function(state)
+		data.pedestal = state
+		recreate_all(data, controls)
+	end)
 	
 	controls.total_height:set_on_change_handler(function(text)
 		data.total_height = math.max(pyui.parse_length(text), 500)
@@ -860,7 +866,7 @@ function pedestal_angled_stairs(data, left_handed)
 	data.outer_arm_length_out = data.opening_length - data.stringer_thickness - data.width	--this corresponds to the section after the pedestal
 	data.outer_arm_length_out = math.floor(data.outer_arm_length_out / data.step_length) * data.step_length
 	pedestal_number = data.steps - math.floor(data.outer_arm_length_out / data.step_length) - 1
-
+	local pedestal_over_out = data.opening_length - data.stringer_thickness - data.width - data.outer_arm_length_out
 	
 	if data.picked_length == true and data.second_length ~= nil then 
 		data.length_on_pedestal = math.max(data.pedestal_length * data.step_length, data.radius * math.pi / 2 + data.opening_length - data.stringer_thickness - data.width - data.outer_arm_length_out)
@@ -877,15 +883,14 @@ function pedestal_angled_stairs(data, left_handed)
 		data.outer_arm_length_in = data.gehlaenge - data.outer_arm_length_out - data.length_on_pedestal
 		
 	end
+	local pedestal_over_in = data.opening_length - data.stringer_thickness - data.width - data.outer_arm_length_out - pedestal_over_out
 	
-	local p_aussenwange = {}
-	table.insert(p_aussenwange, {0, -data.stringer_thickness, (- data.stringer_thickness / data.step_length + 1) * data.step_height + data.stringer_top_over})
 	for i = 1, pedestal_number - 1,1 do
 		local z = i * data.step_height - data.step_thickness
-		local aussen = {{data.stringer_thickness + data.width + data.outer_arm_length_in - (i - 1) * data.step_length, data.stringer_thickness, z}, 
-						{data.stringer_thickness + data.width + data.outer_arm_length_in - (i - 1) * data.step_length, data.stringer_thickness + data.width, z},
-						{data.stringer_thickness + data.width + data.outer_arm_length_in - (i) * data.step_length, data.stringer_thickness + data.width, z},
-						{data.stringer_thickness + data.width + data.outer_arm_length_in - (i) * data.step_length, data.stringer_thickness, z}}
+		local aussen = {{data.width + pedestal_over_in + (pedestal_number - i) * data.step_length, data.stringer_thickness, z}, 
+						{data.width + pedestal_over_in + (pedestal_number - i) * data.step_length, data.stringer_thickness + data.width, z},
+						{data.width + pedestal_over_in + (pedestal_number - i - 1) * data.step_length, data.stringer_thickness + data.width, z},
+						{data.width + pedestal_over_in + (pedestal_number - i - 1) * data.step_length, data.stringer_thickness, z}}
 		local fla_handle = pytha.create_polygon(aussen)
 		local profile = pytha.create_profile(fla_handle, data.step_thickness, {type = "straight"})[1]
 		pytha.delete_element(fla_handle)
@@ -893,7 +898,27 @@ function pedestal_angled_stairs(data, left_handed)
 	end	
 	
 	local p_pedestal = {}
-	table.insert(p_pedestal, {0, -data.stringer_thickness, (- data.stringer_thickness / data.step_length + 1) * data.step_height + data.stringer_top_over})
+	local z_ped = pedestal_number * data.step_height - data.step_thickness
+	table.insert(p_pedestal, {0, data.stringer_thickness, z_ped})
+	table.insert(p_pedestal, {data.width + pedestal_over_in, data.stringer_thickness, z_ped}) 
+	if pedestal_over_in > 0 then
+		table.insert(p_pedestal, {data.width + pedestal_over_in, data.stringer_thickness + data.width, z_ped})
+	end
+	if pedestal_over_in > 0  and pedestal_over_out > 0 or pedestal_over_in == 0  and pedestal_over_out == 0 then
+		table.insert(p_pedestal, {data.width, data.stringer_thickness + data.width, z_ped})
+		end
+	if pedestal_over_out > 0 then
+		table.insert(p_pedestal, {data.width, data.stringer_thickness + data.width + pedestal_over_out, z_ped})
+	end
+	table.insert(p_pedestal, {0, data.stringer_thickness + data.width + pedestal_over_out, z_ped})
+	local ped_handle = pytha.create_polygon(p_pedestal)
+	local pedestal = pytha.create_profile(ped_handle, data.step_thickness, {type = "straight"})[1]
+	pytha.delete_element(ped_handle)
+	table.insert(data.cur_elements, pedestal)
+	
+	
+	
+	
 	for i = pedestal_number + 1, data.steps - 1, 1 do
 		local z = i * data.step_height - data.step_thickness
 		local aussen = {{0,data.opening_length + (i - data.steps) * data.step_length, z}, 
@@ -906,7 +931,12 @@ function pedestal_angled_stairs(data, left_handed)
 		table.insert(data.cur_elements, profile)
 	end	
 	
-	table.insert(p_aussenwange, {0, (data.steps - 1) * data.step_length + data.stringer_thickness, (data.steps + data.stringer_thickness / data.step_length) * data.step_height + data.stringer_top_over})
+	
+	--outer stringer in
+	local p_aussenwange = {}
+	table.insert(p_aussenwange, {data.width + pedestal_over_in + (pedestal_number - 1) * data.step_length, data.stringer_thickness, (- data.stringer_thickness / data.step_length + 1) * data.step_height + data.stringer_top_over})
+	table.insert(p_aussenwange, {data.width + pedestal_over_in, data.stringer_thickness, (pedestal_number + data.stringer_thickness / data.step_length) * data.step_height + data.stringer_top_over})
+	table.insert(p_aussenwange, {0, data.stringer_thickness, (pedestal_number + data.stringer_thickness / data.step_length) * data.step_height + data.stringer_top_over})
 	
 	fla_table = {}
 	for i, k in pairs(p_aussenwange) do
@@ -915,22 +945,78 @@ function pedestal_angled_stairs(data, left_handed)
 	for i = #p_aussenwange,1,-1 do
 		table.insert(fla_table, {p_aussenwange[i][1], p_aussenwange[i][2], p_aussenwange[i][3] - data.step_height - data.stringer_top_over - data.stringer_bottom_over - data.step_thickness})
 	end
---	if data.stringer_thickness > 0 then
---		local fla_handle = pytha.create_polygon(fla_table)
---		local profile = pytha.create_profile(fla_handle, data.stringer_thickness, {type = "straight"})[1]
---		pytha.delete_element(fla_handle)
---		profile = pytha.cut_element(profile, {0,0,0}, {0,0,1}, {type = "keep_front"})[1]
---		table.insert(data.cur_elements, profile)
---		profile = pytha.copy_element(profile, {data.width + data.stringer_thickness, 0, 0})[1]
---		table.insert(data.cur_elements, profile)
---	end	
+	if data.stringer_thickness > 0 then
+		local fla_handle = pytha.create_polygon(fla_table)
+		local profile = pytha.create_profile(fla_handle, data.stringer_thickness, {type = "straight"})[1]
+		pytha.delete_element(fla_handle)
+		profile = pytha.cut_element(profile, {0,0,0}, {0,0,1}, {type = "keep_front"})[1]
+		table.insert(data.cur_elements, profile)
+	end	
+	--inner stringer in
+	local p_aussenwange = {}
+	table.insert(p_aussenwange, {data.width + pedestal_over_in + (pedestal_number - 1) * data.step_length, data.stringer_thickness + data.width + data.stringer_thickness, (- data.stringer_thickness / data.step_length + 1) * data.step_height + data.stringer_top_over})
+	table.insert(p_aussenwange, {data.width + pedestal_over_in, data.stringer_thickness + data.width + data.stringer_thickness, (pedestal_number + data.stringer_thickness / data.step_length) * data.step_height + data.stringer_top_over})
+	
+	fla_table = {}
+	for i, k in pairs(p_aussenwange) do
+		table.insert(fla_table, p_aussenwange[i])
+	end
+	for i = #p_aussenwange,1,-1 do
+		table.insert(fla_table, {p_aussenwange[i][1], p_aussenwange[i][2], p_aussenwange[i][3] - data.step_height - data.stringer_top_over - data.stringer_bottom_over - data.step_thickness})
+	end
+	if data.stringer_thickness > 0 then
+		local fla_handle = pytha.create_polygon(fla_table)
+		local profile = pytha.create_profile(fla_handle, data.stringer_thickness, {type = "straight"})[1]
+		pytha.delete_element(fla_handle)
+		profile = pytha.cut_element(profile, {0,0,0}, {0,0,1}, {type = "keep_front"})[1]
+		table.insert(data.cur_elements, profile)
+	end	
+	
+	--outer stringer out
+	p_aussenwange = {}
+	table.insert(p_aussenwange, {0, 0, (pedestal_number + data.stringer_thickness / data.step_length) * data.step_height + data.stringer_top_over})
+	table.insert(p_aussenwange, {0, data.opening_length + (pedestal_number - data.steps) * data.step_length, (pedestal_number + data.stringer_thickness / data.step_length) * data.step_height + data.stringer_top_over})
+	table.insert(p_aussenwange, {0, data.opening_length + data.stringer_thickness, (data.steps + data.stringer_thickness / data.step_length) * data.step_height + data.stringer_top_over})
+	
+	fla_table = {}
+	for i, k in pairs(p_aussenwange) do
+		table.insert(fla_table, p_aussenwange[i])
+	end
+	for i = #p_aussenwange,1,-1 do
+		table.insert(fla_table, {p_aussenwange[i][1], p_aussenwange[i][2], p_aussenwange[i][3] - data.step_height - data.stringer_top_over - data.stringer_bottom_over - data.step_thickness})
+	end
+	if data.stringer_thickness > 0 then
+		local fla_handle = pytha.create_polygon(fla_table)
+		local profile = pytha.create_profile(fla_handle, data.stringer_thickness, {type = "straight"})[1]
+		pytha.delete_element(fla_handle)
+		table.insert(data.cur_elements, profile)
+	end	
+	
+	--inner stringer out
+	
+	p_aussenwange = {}
+	table.insert(p_aussenwange, {data.width + data.stringer_thickness, math.max(data.opening_length + (pedestal_number - data.steps) * data.step_length, data.width + data.stringer_thickness), (math.max((pedestal_number - data.steps / data.step_length), (data.width + data.stringer_thickness - data.opening_length) / data.step_length)) * data.step_height + data.stringer_top_over})
+	table.insert(p_aussenwange, {data.width + data.stringer_thickness, data.opening_length + data.stringer_thickness, (data.steps + data.stringer_thickness / data.step_length) * data.step_height + data.stringer_top_over})
+	
+	fla_table = {}
+	for i, k in pairs(p_aussenwange) do
+		table.insert(fla_table, p_aussenwange[i])
+	end
+	for i = #p_aussenwange,1,-1 do
+		table.insert(fla_table, {p_aussenwange[i][1], p_aussenwange[i][2], p_aussenwange[i][3] - data.step_height - data.stringer_top_over - data.stringer_bottom_over - data.step_thickness})
+	end
+	if data.stringer_thickness > 0 then
+		local fla_handle = pytha.create_polygon(fla_table)
+		local profile = pytha.create_profile(fla_handle, data.stringer_thickness, {type = "straight"})[1]
+		pytha.delete_element(fla_handle)
+		table.insert(data.cur_elements, profile)
+	end	
+	
 
 	pytha.move_element(data.cur_elements, {data.stringer_thickness, -data.opening_length, 0})
 	
 	
 	
---	pytha.move_element(data.cur_elements, {-data.opening_length, -data.outer_arm_length_in - data.stringer_thickness - data.width, 0})
---	pytha.rotate_element(data.cur_elements, {0,0,0}, "z", 90)
 	if left_handed == true then
 		local dir = "x"
 		pytha.mirror_element(data.cur_elements, {data.width / 2 + data.stringer_thickness / 2,0,0}, dir) --data.width / 2 + data.stringer_thickness
