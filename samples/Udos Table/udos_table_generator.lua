@@ -34,32 +34,32 @@ function table_generator_ui(dialog, data)
 	dialog:equalize_column_widths({3,4})
 
 	width:set_on_change_handler(function(text)
-        data.width = pyui.parse_length(text)
+        data.width = math.max(pyui.parse_length(text), 0)
         recreate_geometry(data)
     end)
 
 	height:set_on_change_handler(function(text)
-        data.height = pyui.parse_length(text)
+        data.height = math.max(pyui.parse_length(text), 0)
         recreate_geometry(data)
     end)
 
 	thickness:set_on_change_handler(function(text)
-        data.thickness = pyui.parse_length(text)
+        data.thickness = math.max(pyui.parse_length(text), 0)
         recreate_geometry(data)
     end)
 
 	length:set_on_change_handler(function(text)
-        data.length = pyui.parse_length(text)
+        data.length = math.max(pyui.parse_length(text), 0)
         recreate_geometry(data)
     end)
 
 	leg_distance:set_on_change_handler(function(text)
-        data.leg_distance = pyui.parse_length(text)
+        data.leg_distance = math.max(pyui.parse_length(text), 0)
         recreate_geometry(data)
     end)
 
 	leg_diameter:set_on_change_handler(function(text)
-        data.leg_diameter = pyui.parse_length(text)
+        data.leg_diameter = math.max(pyui.parse_length(text), 0)
         recreate_geometry(data)
     end)
 

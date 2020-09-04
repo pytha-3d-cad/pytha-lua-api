@@ -55,7 +55,7 @@ function cube_dialog(dialog, data)
 	end
 	
 	 size:set_on_change_handler(function(text)
-        data.size = pyui.parse_length(text)
+        data.size = math.max(pyui.parse_length(text), 0)
         recreate_geometry(data)
     end)
 	

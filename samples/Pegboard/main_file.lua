@@ -87,7 +87,7 @@ function pegboard_dialog(dialog, data)
 	end)
 	
 	width:set_on_change_handler(function(text)
-        data.width = pyui.parse_length(text)
+        data.width = pyui.parse_length(text) or data.width
         if data.width == nil then
             data.width = 0
         end
@@ -97,7 +97,7 @@ function pegboard_dialog(dialog, data)
     end)
 	
 	height:set_on_change_handler(function(text)
-        data.height = pyui.parse_length(text)
+        data.height = pyui.parse_length(text) or data.height
         if data.height == nil then
             data.height = 0
         end
@@ -107,7 +107,7 @@ function pegboard_dialog(dialog, data)
     end)
 	
 	thickness:set_on_change_handler(function(text)
-        data.thickness = pyui.parse_length(text)
+        data.thickness = pyui.parse_length(text) or data.thickness
         if data.thickness == nil then
             data.thickness = 0
         end
@@ -125,7 +125,7 @@ function pegboard_dialog(dialog, data)
     end)
 		
 	diameter:set_on_change_handler(function(text)
-        data.diameter = pyui.parse_length(text)
+        data.diameter = math.max(pyui.parse_length(text), 0) 
         if data.diameter == nil then
             data.diameter = 1
         end
@@ -135,7 +135,7 @@ function pegboard_dialog(dialog, data)
     end)
 	
 	margin:set_on_change_handler(function(text)
-        data.margin = pyui.parse_length(text)
+        data.margin = pyui.parse_length(text) or data.margin
         if data.margin == nil then
             data.margin = 0
         end
@@ -143,7 +143,7 @@ function pegboard_dialog(dialog, data)
     end)
 
 	x_spacing:set_on_change_handler(function(text)
-        data.x_spacing = pyui.parse_length(text)
+        data.x_spacing = pyui.parse_length(text) or data.y_spacing
         if data.x_spacing == nil then
             data.x_spacing = data.diameter
         end
@@ -151,7 +151,7 @@ function pegboard_dialog(dialog, data)
    	end)
 		
 	y_spacing:set_on_change_handler(function(text)
-        data.y_spacing = pyui.parse_length(text)
+        data.y_spacing = pyui.parse_length(text) or data.y_spacing
         if data.y_spacing == nil then
             data.y_spacing = data.diameter
         end

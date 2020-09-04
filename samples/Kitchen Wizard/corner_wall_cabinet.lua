@@ -49,43 +49,43 @@ function cornerwall_dialog(dialog, general_data)
 	dialog:equalize_column_widths({1,2,4})
 	
 	bt_height:set_on_change_handler(function(text)
-		general_data.benchtop_height = pyui.parse_length(text)
+		general_data.benchtop_height = math.max(pyui.parse_length(text), 0)
 		recreate_cornerwall_solo(general_data, specific_data)
 	end)
 	
 	wall_to_base:set_on_change_handler(function(text)
-		general_data.wall_to_base_spacing = pyui.parse_length(text)
+		general_data.wall_to_base_spacing = math.max(pyui.parse_length(text), 0)
 		recreate_wall_cabinet_solo(general_data, specific_data)
 	end)
 	
 	width:set_on_change_handler(function(text)
-		specific_data.corner_width_top = pyui.parse_length(text)
+		specific_data.corner_width_top = math.max(pyui.parse_length(text), 0)
 		recreate_cornerwall_solo(general_data, specific_data)
 	end)
 	
 	width2:set_on_change_handler(function(text)
-		specific_data.width2_top = pyui.parse_length(text)
+		specific_data.width2_top = math.max(pyui.parse_length(text), 0)
 		recreate_cornerwall_solo(general_data, specific_data)
 	end)
 	
 	height:set_on_change_handler(function(text)
-		specific_data.height = pyui.parse_length(text)
+		specific_data.height = math.max(pyui.parse_length(text), 0)
 		recreate_cornerwall_solo(general_data, specific_data)
 	end)
 	
 	depth:set_on_change_handler(function(text)
-		general_data.depth_wall = pyui.parse_length(text)
+		general_data.depth_wall = math.max(pyui.parse_length(text), 0)
 		recreate_cornerwall_solo(general_data, specific_data)
 	end)
 	
 	thickness:set_on_change_handler(function(text)
-		general_data.thickness = pyui.parse_length(text)
+		general_data.thickness = math.max(pyui.parse_length(text), 0)
 		recreate_cornerwall_solo(general_data, specific_data)
 	end)
 	
 	
 	shelf_count:set_on_change_handler(function(text)
-		specific_data.shelf_count = pyui.parse_length(text)
+		specific_data.shelf_count = math.max(pyui.parse_length(text), 0)
 		recreate_cornerwall_solo(general_data, specific_data)
 	end)
 	

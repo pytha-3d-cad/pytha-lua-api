@@ -51,12 +51,12 @@ function test_dialog(dialog, data)
 	dialog:equalize_column_widths({3,4})
 	
 	diameter:set_on_change_handler(function(text)
-		data.diameter = pyui.parse_length(text)
+		data.diameter = math.max(pyui.parse_length(text), 0)
 		recreate_geometry(data)
 	end)
 	
 	total_height:set_on_change_handler(function(text)
-		data.total_height = pyui.parse_length(text)
+		data.total_height = math.max(pyui.parse_length(text), 500)
 		recreate_geometry(data)
 	end)
 	
@@ -66,12 +66,12 @@ function test_dialog(dialog, data)
 	end)
 	
 	step_thickness:set_on_change_handler(function(text)
-		data.step_thickness = pyui.parse_length(text)
+		data.step_thickness = math.max(pyui.parse_length(text), 0)
 		recreate_geometry(data)
 	end)
 	
 	total_angle:set_on_change_handler(function(text)
-		data.total_angle = pyui.parse_length(text)
+		data.total_angle = pyui.parse_length(text) or data.total_angle
 		recreate_geometry(data)
 	end)
 	

@@ -132,16 +132,16 @@ function wizard_dialog(dialog, data)
 	end)
 	
 	bt_height:set_on_change_handler(function(text)
-		data.benchtop_height = pyui.parse_length(text)
+		data.benchtop_height = math.max(pyui.parse_length(text), 0)
 		recreate_all(data, true)
 	end)
 	bt_thick:set_on_change_handler(function(text)
-		data.benchtop_thickness = pyui.parse_length(text)
+		data.benchtop_thickness = math.max(pyui.parse_length(text), 0)
 		recreate_all(data, true)
 	end)
 	general_height_top:set_on_change_handler(function(text)
 		local old_general_height_top = data.general_height_top
-		data.general_height_top = pyui.parse_length(text)
+		data.general_height_top = math.max(pyui.parse_length(text), 0)
 		for i,spec_data in pairs(data.cabinet_list) do
 			if spec_data.height_top == old_general_height_top then
 				spec_data.height_top = data.general_height_top
@@ -151,48 +151,48 @@ function wizard_dialog(dialog, data)
 	end)
 	
 	wall_to_base_spacing:set_on_change_handler(function(text)
-		data.wall_to_base_spacing = pyui.parse_length(text)
+		data.wall_to_base_spacing = math.max(pyui.parse_length(text), 0)
 		recreate_all(data, true)
 	end)
 	
 	depth:set_on_change_handler(function(text)
-		data.depth = pyui.parse_length(text)
+		data.depth = math.max(pyui.parse_length(text), 0)
 		recreate_all(data, true)
 	end)
 	
 	depth_wall:set_on_change_handler(function(text)
-		data.depth_wall = pyui.parse_length(text)
+		data.depth_wall = math.max(pyui.parse_length(text), 0)
 		recreate_all(data, true)
 	end)
 	
 	handle_length:set_on_change_handler(function(text)
-		data.handle_length = pyui.parse_length(text)
+		data.handle_length = math.max(pyui.parse_length(text), 0)
 		recreate_all(data, true)
 	end)
 	
 	thickness:set_on_change_handler(function(text)
-		data.thickness = pyui.parse_length(text)
+		data.thickness = math.max(pyui.parse_length(text), 0)
 		recreate_all(data, true)
 	end)
 	
 	controls.width:set_on_change_handler(function(text)
 		if data.cabinet_list[data.current_cabinet].this_type == "corner" or data.cabinet_list[data.current_cabinet].this_type == "diagonal" then 
-			data.cabinet_list[data.current_cabinet].corner_width = pyui.parse_length(text)
+			data.cabinet_list[data.current_cabinet].corner_width = math.max(pyui.parse_length(text), 0)
 		elseif data.cabinet_list[data.current_cabinet].this_type == "cornerwall" then 
-			data.cabinet_list[data.current_cabinet].corner_width_top = pyui.parse_length(text)
+			data.cabinet_list[data.current_cabinet].corner_width_top = math.max(pyui.parse_length(text), 0)
 		else 
-			data.cabinet_list[data.current_cabinet].width = pyui.parse_length(text)
+			data.cabinet_list[data.current_cabinet].width = math.max(pyui.parse_length(text), 0)
 		end
 		recreate_all(data, true)
 	end)
 	
 	controls.width2:set_on_change_handler(function(text)
 		if data.cabinet_list[data.current_cabinet].this_type == "corner" or data.cabinet_list[data.current_cabinet].this_type == "diagonal" then 
-			data.cabinet_list[data.current_cabinet].width2 = pyui.parse_length(text)
+			data.cabinet_list[data.current_cabinet].width2 = math.max(pyui.parse_length(text), 0)
 		elseif data.cabinet_list[data.current_cabinet].this_type == "cornerwall" then 
-			data.cabinet_list[data.current_cabinet].width2_top = pyui.parse_length(text)
+			data.cabinet_list[data.current_cabinet].width2_top = math.max(pyui.parse_length(text), 0)
 		else 
-			data.cabinet_list[data.current_cabinet].width2 = pyui.parse_length(text)
+			data.cabinet_list[data.current_cabinet].width2 = math.max(pyui.parse_length(text), 0)
 		end
 		recreate_all(data, true)
 	end)
@@ -200,26 +200,26 @@ function wizard_dialog(dialog, data)
 	controls.height:set_on_change_handler(function(text)
 		if data.cabinet_list[data.current_cabinet].this_type == "cornerwall" or data.cabinet_list[data.current_cabinet].this_type == "wall" or 
 			data.cabinet_list[data.current_cabinet].this_type == "high" or data.cabinet_list[data.current_cabinet].this_type == "top" then 
-		data.cabinet_list[data.current_cabinet].height_top = pyui.parse_length(text)
+		data.cabinet_list[data.current_cabinet].height_top = math.max(pyui.parse_length(text), 0)
 		else 
-		data.cabinet_list[data.current_cabinet].height = pyui.parse_length(text)
+		data.cabinet_list[data.current_cabinet].height = math.max(pyui.parse_length(text), 0)
 		end
 		recreate_all(data, true)
 	end)
 	
 	
 	controls.drawer_height:set_on_change_handler(function(text)
-		data.cabinet_list[data.current_cabinet].drawer_height = pyui.parse_length(text)
+		data.cabinet_list[data.current_cabinet].drawer_height = math.max(pyui.parse_length(text), 0)
 		recreate_all(data, true)
 	end)
 	
 	controls.shelf_count:set_on_change_handler(function(text)
-		data.cabinet_list[data.current_cabinet].shelf_count = pyui.parse_number(text)
+		data.cabinet_list[data.current_cabinet].shelf_count = math.max(pyui.parse_number(text), 0)
 		recreate_all(data, true)
 	end)
 	
 	controls.door_width:set_on_change_handler(function(text)
-		data.cabinet_list[data.current_cabinet].door_width = pyui.parse_length(text)
+		data.cabinet_list[data.current_cabinet].door_width = math.max(pyui.parse_length(text), 0)
 		recreate_all(data, true)
 	end)
 	

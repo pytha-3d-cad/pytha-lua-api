@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://xmlns.pytha.com/plugin_config/1.0">
   <header>
-    <guid>7704fda1-2698-48c5-91fa-ab7aa1093a54</guid>
+    <guid>f86d4bfc-729b-43cb-8886-6e32692ff97b</guid>
     <version>1.0</version>
     <pytha-version>25.0</pytha-version>
-    <name>Staircase</name>
+    <name>Staircase_old</name>
     <description>The description of your plugin goes here.</description>
     <licensing>Information about the licensing terms goes here.</licensing>
   </header>
   <extension type="function">
     <entry-point>main</entry-point>
-    <caption>Staircase</caption>
+    <caption>Staircase_old</caption>
     <description>A short description of the function goes here.</description>
     <help-file>help.html</help-file>
   </extension>
-  
-  <extension type="edit">
-    <id>stairs_history</id>
-    <entry-point>edit_stairs</entry-point>
-  </extension>
-  
 </plugin>

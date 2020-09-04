@@ -51,44 +51,34 @@ function high_cabinet_solo_dialog(dialog, general_data)
 --	dialog:equalize_column_widths({1,2,4})
 	
 	bt_height:set_on_change_handler(function(text)
-		general_data.benchtop_height = pyui.parse_length(text)
+		general_data.benchtop_height = math.max(pyui.parse_length(text), 0)
 		recreate_high_cabinet_solo(general_data, specific_data)
 	end)
 	bt_thick:set_on_change_handler(function(text)
-		specific_data.benchtop_thickness = pyui.parse_length(text)
+		specific_data.benchtop_thickness = math.max(pyui.parse_length(text), 0)
 		recreate_high_cabinet_solo(general_data, specific_data)
 	end)
 	
 	width:set_on_change_handler(function(text)
-		specific_data.width = pyui.parse_length(text)
+		specific_data.width = math.max(pyui.parse_length(text), 0)
 		recreate_high_cabinet_solo(general_data, specific_data)
 	end)
 	
 	height:set_on_change_handler(function(text)
-		specific_data.height_top = pyui.parse_length(text)
+		specific_data.height_top = math.max(pyui.parse_length(text), 0)
 		recreate_high_cabinet_solo(general_data, specific_data)
 	end)
 	
 	depth:set_on_change_handler(function(text)
-		general_data.depth = pyui.parse_length(text)
+		general_data.depth = math.max(pyui.parse_length(text), 0)
 		recreate_high_cabinet_solo(general_data, specific_data)
 	end)
 	
 	
 	thickness:set_on_change_handler(function(text)
-		general_data.thickness = pyui.parse_length(text)
+		general_data.thickness = math.max(pyui.parse_length(text), 0)
 		recreate_high_cabinet_solo(general_data, specific_data)
 	end)
-	
---	drawer_height:set_on_change_handler(function(text)
---		specific_data.drawer_height = pyui.parse_length(text)
---		recreate_high_cabinet_solo(general_data, specific_data)
---	end)
-	
---	shelf_count:set_on_change_handler(function(text)
---		specific_data.shelf_count = pyui.parse_length(text)
---		recreate_high_cabinet_solo(general_data, specific_data)
---	end)
 	
 	general_data.door_side:set_on_click_handler(function(state)
 		specific_data.door_rh = state

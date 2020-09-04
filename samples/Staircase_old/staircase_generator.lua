@@ -1,30 +1,18 @@
 --Example for a simple spiral staircase
 
-function edit_stairs(element)
-	loaded_data = pytha.get_element_history(element, "stairs_history")
-	if loaded_data == nil then
-		pyui.alert(pyloc "No data found")
-		return 
-	end
-	recreate_geometry(loaded_data)
-	pyui.run_modal_dialog(make_dialog, loaded_data)
-	pyio.save_values("default_dimensions", loaded_data)
-end
-
 function main()
 	local data = {
 		cur_elements = {},
 		shape = 1,					--0: straight, 1: L right, 2: L left
-		pedestal = false,
+		pedestal = 0,
 		total_height = 2640,		--height of the stairs
 		steps = 18,					--number of steps
 		step_thickness = 60,		--board thickness ot the steps
 		rail_height = 900,			--height of the rail, measured to the center of the rail handle
-		total_width = 1120,					
-		width = 1000,	
+		width = 1100,					
 		inner_diameter = 600,			--diameter of the stairs to the center of the handrail. There is an additional offset (see outer_radius)
 		sheet_thickness = 10,			--excess of the steps at the central pole and at the vertical rail bars
-		l_shape_left = false,				--rotation direction
+		clockwise = false,				--rotation direction
 		calculation_type = 0,		-- 0 for step number 
 		slope = 17 / 29,
 		step_height = 170,
@@ -37,19 +25,12 @@ function main()
 		stringer_thickness = 60, 
 		stringer_top_over = 50, 
 		stringer_bottom_over = 80, 
-		inner_radius = 0,
+		inner_radius = 150,
 		outer_radius = 0,
 		segs_per_step = 12,
 		opening_length = 3000,
-		second_length = nil,
 		origin = {0,0,0},
 		direction = {1,0,0},
-		pedestal_length = 2.5,
-		outer_corner = nil,
-		inner_corner = nil,
-		third_point = nil,
-		fourth_point = nil,
-		picked_length = false,
 
 	}
 --	local loaded_data = pyio.load_values("default_dimensions")
@@ -67,32 +48,31 @@ function make_dialog(dialog, data)
 
 	dialog:set_window_title("Staircase Generator")
 	
-	controls.btn_straight = dialog:create_label({1,2}, "Define geometry of staircase")
-	local button_outer_points = dialog:create_button({3,4}, "Via outer points")
+	controls.btn_straight = dialog:create_label({1,2}, "Origin")
+	local button_ori = dialog:create_button(3, "Pick origin")
+	local button_dir = dialog:create_button(4, "Pick direction")
 	controls.fold_box_shape = dialog:create_group_box({1,4}, "Shape")
 	controls.btn_straight = dialog:create_radio_button(1, "Straight")
-	controls.btn_l_shaped = dialog:create_linked_radio_button(2, "L-shaped")
-	controls.l_shape_left = dialog:create_check_box(3, "Turn left")
-	controls.l_shape_left:set_control_checked(data.l_shape_left)
+	controls.btn_right = dialog:create_linked_radio_button(2, "L-shaped right")
+	controls.btn_left = dialog:create_linked_radio_button(3, "L-shaped left")
 --	controls.check_pedestal = dialog:create_check_box(4, "With pedestal")
---	controls.check_pedestal:set_control_checked(data.pedestal)
 	dialog:end_group_box()
+--	fold_box_shape:set_control_checked(true)
 	
-	dialog:create_group_box({1,4}, "Dimensions")
+	controls.fold_box_input_type = dialog:create_group_box({1,4}, "Dimensions")
 	
 	dialog:create_label(1, "Floor Height")
 	controls.total_height = dialog:create_text_box(2, pyui.format_length(data.total_height))
 	local label1 = dialog:create_label(3, "Width")
-	controls.width = dialog:create_text_box(4, pyui.format_length(data.width))
+	local width = dialog:create_text_box(4, pyui.format_length(data.width))
 	dialog:create_label(1, "Ceiling width")
 	controls.ceil_opening = dialog:create_text_box(2, pyui.format_length(data.opening_length))
 	
 	local label4 = dialog:create_label(3, "Step number")
 	controls.step_number = dialog:create_text_spin(4, pyui.format_length(data.steps))
-	controls.picked_length = dialog:create_check_box({1,2}, "Length via picked points")
-	controls.picked_length:set_control_checked(data.picked_length)
-	controls.step_height_label = dialog:create_label(3, "Step height")
-	controls.step_height = dialog:create_text_display(4, pyui.format_length(data.step_height))
+	
+	controls.step_height_label = dialog:create_label(1, "Step height")
+	controls.step_height = dialog:create_text_display(2, pyui.format_length(data.step_height))
 	controls.step_length_label = dialog:create_label(3, "Step depth")
 	controls.step_length = dialog:create_text_display(4, pyui.format_length(data.step_length))
 	dialog:end_group_box()
@@ -121,35 +101,32 @@ function make_dialog(dialog, data)
 	
 	local align1 = dialog:create_align({1,4}) 
 	
+	
+	
+	
+--	local clockwise = dialog:create_check_box({3,4}, "Clockwise")
 
 	local align1 = dialog:create_align({1,4}) -- So that OK and Cancel will be in the same row
 	local ok = dialog:create_ok_button(3)
 	local cancel = dialog:create_cancel_button(4)
 	
 	dialog:equalize_column_widths({2,4})
-	controls.fold_box_input_type:set_control_checked(true)
-	controls.fold_box_input_type:set_control_checked(false)
 -----------------------------------------------------
 
 
 	
-	button_outer_points:set_on_click_handler(function()
+	button_ori:set_on_click_handler(function()
 		-- Pick in graphics
-		button_outer_points:disable_control()
-		if data.main_group ~= nil then
-			pytha.delete_element(pytha.get_group_members(data.main_group))
+		button_ori:disable_control()
+		if data.cur_elements ~= nil then
+			pytha.delete_element(data.cur_elements)
 		end
 		data.cur_elements = {}
-		data.main_group = nil
 	
 		local ret_wert = pyux.select_coordinate(false, pyloc "Pick outer top corner")
 		if ret_wert ~= nil then
 			data.outer_corner = ret_wert
 			pyux.highlight_coordinate(ret_wert)
-		else 
-			button_outer_points:enable_control()
-			pyux.clear_highlights()
-			return
 		end
 		ret_wert = pyux.select_coordinate(false, pyloc "Pick inner top corner")
 		if ret_wert ~= nil then
@@ -161,224 +138,159 @@ function make_dialog(dialog, data)
 			data.direction[1] = data.direction[1] / dir_length
 			data.direction[2] = data.direction[2] / dir_length
 			data.direction[3] = data.direction[3] / dir_length
-			data.total_width = dir_length
+			data.width = dir_length
 		else 
-			button_outer_points:enable_control()
-			pyux.clear_highlights()
-			return
 		end
-		local text = pyloc "Pick pedestal corner"
-		if data.shape == 0 then 
-			text = pyloc "Pick bottom corner"
-		end
-		ret_wert = pyux.select_coordinate(false, text)
-		local sign = 1
+		ret_wert = pyux.select_coordinate(false, pyloc "Pick outer bottom corner")
 		if ret_wert ~= nil then
 			data.third_point = ret_wert
 			pyux.highlight_coordinate(ret_wert)
-			local vector = {ret_wert[1] - data.outer_corner[1], ret_wert[2] - data.outer_corner[2]}
-			local perp_dir = {-data.direction[2], data.direction[1]}
-			data.opening_length = vector[1] * perp_dir[1] + vector[2] * perp_dir[2]
-			if data.shape == 0 then 
-				data.total_height = data.outer_corner[3] - data.third_point[3]
-			end
-			
-			sign = 1
-			if data.opening_length > 0 then 
-				sign = -1 
-				if data.shape == 0 then 
-					local aux_p = {data.outer_corner[1], data.outer_corner[2], data.outer_corner[3]}
-					data.outer_corner = {data.inner_corner[1], data.inner_corner[2], data.inner_corner[3]}
-					data.inner_corner = {aux_p[1], aux_p[2], aux_p[3]}
-					data.direction = {-data.direction[1], -data.direction[2], -data.direction[3]}
-				end
-			end
-			data.opening_length = math.abs(data.opening_length)
-			
-			
+			data.total_height = data.outer_corner[3] - data.third_point[3]
+			calc_center(data) 
+			data.diameter = 2 * PYTHAGORAS(data.outer_corner[1] - data.origin[1], data.outer_corner[2] - data.origin[2])
 		else 
-			button_outer_points:enable_control()
-			pyux.clear_highlights()
-			return
 		end
-		if data.shape ~= 0 then 
-			ret_wert = pyux.select_coordinate(false, pyloc "Pick outer bottom corner")
-			if ret_wert ~= nil then
-				data.fourth_point = ret_wert
-				pyux.highlight_coordinate(ret_wert)
-				
-				data.second_length = (ret_wert[1] - data.outer_corner[1]) * data.direction[1] + (ret_wert[2] - data.outer_corner[2]) * data.direction[2]
-				
-					
-				if data.second_length < 0 then 
-					local aux_p = {data.outer_corner[1], data.outer_corner[2], data.outer_corner[3]}
-					data.outer_corner = {data.inner_corner[1], data.inner_corner[2], data.inner_corner[3]}
-					data.inner_corner = {aux_p[1], aux_p[2], aux_p[3]}
-					data.direction = {-data.direction[1], -data.direction[2], -data.direction[3]}
-				end
-				if sign * data.second_length < 0 then
-					data.l_shape_left = true
-				else 
-					data.l_shape_left = false
-				end
-				data.second_length = math.abs(data.second_length)
-				
-				data.total_height = data.outer_corner[3] - data.fourth_point[3]
-
-			else 
-				data.second_length = nil
-				button_outer_points:enable_control()
-				pyux.clear_highlights()
-				return
-			end
-		end
-		data.steps = math.floor(data.total_height / data.step_height + 0.5)
-		data.step_height = data.total_height / data.steps
 		
-		
+		total_height:set_control_text(pyui.format_length(data.total_height))
+		diameter:set_control_text(pyui.format_length(data.diameter))
+		width:set_control_text(pyui.format_length(data.width))
 		pyux.clear_highlights()
-		button_outer_points:enable_control()
-		recreate_all(data, controls)
-		controls.total_height:set_control_text(pyui.format_length(data.total_height))
-		controls.ceil_opening:set_control_text(pyui.format_length(data.opening_length))
-		controls.width:set_control_text(pyui.format_length(data.width))
-		controls.l_shape_left:set_control_checked(data.l_shape_left)
+		button_ori:enable_control()
+		recreate_geometry(data, true)
+		total_angle:set_control_text(pyui.format_length(data.total_angle))	--is calculated during geometry input, therefore refreshing afterwards
+	end)
+	
+
+	button_ori:set_on_click_handler(function()
+		-- Pick in graphics
+		button_ori:disable_control()
+		local ret_wert = pyux.select_coordinate()
+		if ret_wert ~= nil then
+			data.origin = ret_wert
+		end
+		button_ori:enable_control()
+		recreate_geometry(data)
+	end)
+	
+	button_dir:set_on_click_handler(function()
+		-- Pick in graphics
+		button_dir:disable_control()
+		local ret_wert = pyux.select_coordinate()
+		if ret_wert ~= nil then
+			data.direction = {ret_wert[1] - data.origin[1], ret_wert[2] - data.origin[2], ret_wert[3] - data.origin[3]}
+			local dir_length = PYTHAGORAS(data.direction[1], data.direction[2], data.direction[3])
+			data.direction[1] = data.direction[1] / dir_length
+			data.direction[2] = data.direction[2] / dir_length
+			data.direction[3] = data.direction[3] / dir_length
+		end
+		button_dir:enable_control()
+		recreate_geometry(data)
 	end)
 
 
-	controls.btn_straight:set_on_click_handler(function()
+
+
+
+	controls.btn_straight:set_on_click_handler(function(text)
 		data.shape = 0
-		recreate_all(data, controls)
+		update_ui(data, controls)
+		recreate_geometry(data)
 	end)
-	controls.btn_l_shaped:set_on_click_handler(function()
+	controls.btn_right:set_on_click_handler(function(text)
 		data.shape = 1
-		recreate_all(data, controls)
+		update_ui(data, controls)
+		recreate_geometry(data)
+	end)
+	controls.btn_left:set_on_click_handler(function(text)
+		data.shape = 2
+		update_ui(data, controls)
+		recreate_geometry(data)
 	end)
 	
-	controls.l_shape_left:set_on_click_handler(function(state)
-		data.l_shape_left = state
-		recreate_all(data, controls)
-	end)
 	
-	
-	controls.picked_length:set_on_click_handler(function(state)
-		data.picked_length = state
-		recreate_all(data, controls)
-	end)
-	
---	controls.check_pedestal:set_on_click_handler(function(state)
---		data.pedestal = state
---		recreate_all(data, controls)
---	end)
 	
 	controls.total_height:set_on_change_handler(function(text)
 		data.total_height = math.max(pyui.parse_length(text), 500)
 		data.steps = math.floor(data.total_height / data.step_height + 0.5)
 		data.step_height = data.total_height / data.steps
-		recreate_all(data, controls)
+		data.step_length = 630 - 2 * data.step_height
+		data.gehlaenge = data.step_length * (data.steps - 1)
+		update_ui(data, controls)
+		recreate_geometry(data)
 	end)
 	
 	controls.step_number:set_on_change_handler(function(text)
 		data.steps = math.max(math.floor(pyui.parse_length(text)), 1)
 		data.step_height = data.total_height / data.steps
-		recreate_all(data, controls)
+		data.step_length = 630 - 2 * data.step_height
+		data.gehlaenge = data.step_length * (data.steps - 1)
+		update_ui(data, controls)
+		recreate_geometry(data)
 	end)
 	
 	controls.ceil_opening:set_on_change_handler(function(text)
-		data.opening_length = math.max(pyui.parse_length(text), 0)
-		recreate_all(data, controls)
+		data.opening_length = pyui.parse_length(text)
+		update_ui(data, controls)
+		recreate_geometry(data)
 	end)
 	
 	step_thickness:set_on_change_handler(function(text)
-		data.step_thickness = math.max(pyui.parse_length(text), 0)
-		recreate_all(data, controls)
+		data.step_thickness = pyui.parse_length(text)
+		update_ui(data, controls)
+		recreate_geometry(data)
 	end)
 	
 	stringer_thickness:set_on_change_handler(function(text)
-		data.stringer_thickness = math.max(pyui.parse_length(text), 0)
-		recreate_all(data, controls)
+		data.stringer_thickness = pyui.parse_length(text)
+		update_ui(data, controls)
+		recreate_geometry(data)
 	end)
 	
 	stringer_top_over:set_on_change_handler(function(text)
-		data.stringer_top_over = math.max(pyui.parse_length(text), 0)
-		recreate_all(data, controls)
+		data.stringer_top_over = pyui.parse_length(text)
+		update_ui(data, controls)
+		recreate_geometry(data)
 	end)
 	
 	stringer_bottom_over:set_on_change_handler(function(text)
-		data.stringer_bottom_over = math.max(pyui.parse_length(text), 0)
-		recreate_all(data, controls)
+		data.stringer_bottom_over = pyui.parse_length(text)
+		update_ui(data, controls)
+		recreate_geometry(data)
 	end)
 	
 	inner_radius:set_on_change_handler(function(text)
-		data.inner_radius = math.max(pyui.parse_length(text), 0)
-		recreate_all(data, controls)
+		data.inner_radius = pyui.parse_length(text)
+		update_ui(data, controls)
+		recreate_geometry(data)
 	end)
 	
-	controls.width:set_on_change_handler(function(text)
-		data.width = math.max(pyui.parse_length(text), 0)
-		recreate_all(data, controls)
+	width:set_on_change_handler(function(text)
+		data.width = pyui.parse_length(text)
+		update_ui(data, controls)
+		recreate_geometry(data)
 	end)
-	recreate_all(data, controls)
 	
-end
-function calculate_gehlaenge(data)
-	data.radius = data.width / 2
-	
-	if data.shape == 0 then
-		if data.picked_length == true then 
-			data.step_length = data.opening_length / (data.steps - 1)
-			data.gehlaenge = data.opening_length
-		else
-			data.step_length = 630 - 2 * data.step_height
-			data.gehlaenge = data.step_length * (data.steps - 1)
-		end
-	else
-		--pedestal calculates the number of steps from the height and fits in the pedestal size depending on the number of steps
-		if data.pedestal == false then 
-			if data.picked_length == true and data.second_length ~= nil then 
-				data.outer_arm_length_out = data.opening_length - data.stringer_thickness
-				
-				data.outer_arm_length_in = data.second_length - data.stringer_thickness
-				data.inner_arm_length_out = data.outer_arm_length_out - data.width
-				data.inner_arm_length_in = data.outer_arm_length_in - data.width
-				data.gehlaenge = data.inner_arm_length_out + data.inner_arm_length_in  + data.radius * math.pi / 2
-				data.step_length = data.gehlaenge / (data.steps - 1)
-			else 
-				data.step_length = 630 - 2 * data.step_height
-				data.gehlaenge = data.step_length * (data.steps - 1)
-				data.outer_arm_length_out = math.min(data.opening_length - data.stringer_thickness, data.gehlaenge)
-				data.inner_arm_length_out = data.outer_arm_length_out - data.width
-				data.inner_arm_length_in = data.gehlaenge - data.radius * math.pi / 2 - data.inner_arm_length_out
-				data.outer_arm_length_in = data.inner_arm_length_in + data.width
-			end
-		end
-	end
-end
-
-
-function recreate_all(data, controls)
-
-	recreate_geometry(data)
 	update_ui(data, controls)
-
+	recreate_geometry(data)
+	
 end
+
 function update_ui(data, controls)
 	
 
 	if data.shape == 0 then 
 		controls.btn_straight:set_control_checked(true)
 --		controls.check_pedestal:disable_control()
-	else 
-		controls.btn_l_shaped:set_control_checked(true)
+	elseif data.shape == 1 then 
+		controls.btn_right:set_control_checked(true)
+--		controls.check_pedestal:enable_control()
+	elseif data.shape == 2 then 
+		controls.btn_left:set_control_checked(true)
+--		controls.check_pedestal:enable_control()
 	end
-	if data.second_length ~= nil or data.shape == 0 then
-		controls.picked_length:enable_control()
-	else 
-		controls.picked_length:disable_control()
-	end
+	
 	controls.step_height:set_control_text(pyui.format_length(data.step_height))
 	controls.step_length:set_control_text(pyui.format_length(data.step_length))
-	controls.step_number:set_control_text(pyui.format_length(data.steps))
 
 end
 
@@ -390,32 +302,33 @@ function recreate_geometry(data)
 		pytha.delete_element(pytha.get_group_members(data.main_group))
 	end
 	data.cur_elements = {}
-	data.main_group = nil
-	if data.outer_corner ~= nil then 
-		data.origin = {data.outer_corner[1], data.outer_corner[2], data.outer_corner[3]}
-	end
-	data.width = data.total_width - 2 * data.stringer_thickness
-	calculate_gehlaenge(data)
+
+	
 	if data.shape == 0 then
 		straight_stairs(data)
-	else  
+	elseif  data.shape == 1 then
 		if data.pedestal == true then 
-			pedestal_angled_stairs(data, data.l_shape_left)
+			pedestal_angled_stairs(data, false)
 		else
-			angled_stairs(data, data.l_shape_left)
+			angled_stairs(data, false)
+		end
+	elseif  data.shape == 2 then
+		if data.pedestal == true then 
+			pedestal_angled_stairs(data, true)
+		else
+			angled_stairs(data, true)
 		end
 	end
 	
 	data.main_group = pytha.create_group(data.cur_elements)
-	pytha.set_element_history(data.main_group, data, "stairs_history")
 
-	local placement_angle = calculate_angle(data.direction[1], data.direction[2])
-	if data.l_shape_left == true then 
-		pytha.rotate_element(data.main_group, {0,0,0}, 'z', 180 + placement_angle)
+	local placement_angle = ATAN(data.direction[2], data.direction[1])
+	if data.shape == 2 then 
+		pytha.rotate_element(data.cur_elements, {0,0,0}, 'z', 180 + placement_angle)
 	else
-		pytha.rotate_element(data.main_group, {0,0,0}, 'z', placement_angle)
+		pytha.rotate_element(data.cur_elements, {0,0,0}, 'z', placement_angle)
 	end
-	pytha.move_element(data.main_group, {data.origin[1], data.origin[2], data.origin[3] - data.total_height})
+	pytha.move_element(data.cur_elements, {data.origin[1], data.origin[2], 0})
 end
 
 function straight_stairs(data)
@@ -429,7 +342,7 @@ function straight_stairs(data)
 		pytha.delete_element(fla_handle)
 		table.insert(data.cur_elements, profile)
 	end	
-	
+	local slope = 
 	table.insert(p_aussenwange, {0, (data.steps - 1) * data.step_length + data.stringer_thickness, (data.steps + data.stringer_thickness / data.step_length) * data.step_height + data.stringer_top_over})
 	
 	fla_table = {}
@@ -439,15 +352,14 @@ function straight_stairs(data)
 	for i = #p_aussenwange,1,-1 do
 		table.insert(fla_table, {p_aussenwange[i][1], p_aussenwange[i][2], p_aussenwange[i][3] - data.step_height - data.stringer_top_over - data.stringer_bottom_over - data.step_thickness})
 	end
-	if data.stringer_thickness > 0 then
-		local fla_handle = pytha.create_polygon(fla_table)
-		local profile = pytha.create_profile(fla_handle, data.stringer_thickness, {type = "straight"})[1]
-		pytha.delete_element(fla_handle)
-		profile = pytha.cut_element(profile, {0,0,0}, {0,0,1}, {type = "keep_front"})[1]
-		table.insert(data.cur_elements, profile)
-		profile = pytha.copy_element(profile, {data.width + data.stringer_thickness, 0, 0})[1]
-		table.insert(data.cur_elements, profile)
-	end	
+	
+	local fla_handle = pytha.create_polygon(fla_table)
+	local profile = pytha.create_profile(fla_handle, data.stringer_thickness, {type = "straight"})[1]
+	pytha.delete_element(fla_handle)
+	profile = pytha.cut_element(profile, {0,0,0}, {0,0,1}, {type = "keep_front"})[1]
+	table.insert(data.cur_elements, profile)
+	profile = pytha.copy_element(profile, {data.width + data.stringer_thickness, 0, 0})[1]
+	table.insert(data.cur_elements, profile)	
 
 	pytha.move_element(data.cur_elements, {data.stringer_thickness, -(data.steps - 1) * data.step_length, 0})
 
@@ -455,7 +367,11 @@ function straight_stairs(data)
 end
 
 function angled_stairs(data, left_handed)
-
+	data.radius = data.width / 2
+	data.outer_arm_length_out = math.min(data.opening_length - data.stringer_thickness, data.gehlaenge)
+	data.inner_arm_length_out = data.outer_arm_length_out - data.width
+	data.inner_arm_length_in = data.gehlaenge - data.radius * math.pi / 2 - data.inner_arm_length_out
+	data.outer_arm_length_in = data.inner_arm_length_in + data.width
 	local mid_step = (data.inner_arm_length_in + data.radius * math.pi / 4) / data.step_length
 	local erste_verzogene_stufe = math.max(math.ceil((data.inner_arm_length_in - 3.5 * data.step_length) / data.step_length) + 1, 1)
 	local letzte_verzogene_stufe = math.min(math.floor((data.inner_arm_length_in + data.radius * math.pi / 2 + 3.5 * data.step_length) / data.step_length) + 1, data.steps + 1)
@@ -845,96 +761,15 @@ function get_innenwangen_punkte(data, i)
 	local ret_P = {}
 	if data.step_length * i <=  data.inner_arm_length_in then
 			ret_P = {data.radius, data.step_length * i}
-	elseif data.step_length * i <=  data.inner_arm_length_in + data.radius * math.pi / 2 then
-		ret_P = {data.width - data.radius * math.cos((data.step_length * i - data.inner_arm_length_in) / data.radius), data.inner_arm_length_in + data.radius * math.sin((data.step_length * i - data.inner_arm_length_in) / data.radius)}
-	else
-		ret_P = {data.width + data.step_length * i - data.inner_arm_length_in - data.radius * math.pi / 2, data.inner_arm_length_in + data.radius}
-	end
+		elseif data.step_length * i <=  data.inner_arm_length_in + data.radius * math.pi / 2 then
+			ret_P = {data.width - data.radius * math.cos((data.step_length * i - data.inner_arm_length_in) / data.radius), data.inner_arm_length_in + data.radius * math.sin((data.step_length * i - data.inner_arm_length_in) / data.radius)}
+		else
+			ret_P = {data.width + data.step_length * i - data.inner_arm_length_in - data.radius * math.pi / 2, data.inner_arm_length_in + data.radius}
+		end
 	return ret_P 
 end
 
 function pedestal_angled_stairs(data, left_handed)
-	local pedestal_number = 0
-	data.step_length = 630 - 2 * data.step_height
-	data.gehlaenge = data.step_length * (data.steps - 1 + (data.pedestal_length - 1))	--the pedestal is already included in the normal steps as one step height, thus also already as one step length
-	data.outer_arm_length_out = data.opening_length - data.stringer_thickness - data.width	--this corresponds to the section after the pedestal
-	data.outer_arm_length_out = math.floor(data.outer_arm_length_out / data.step_length) * data.step_length
-	pedestal_number = data.steps - math.floor(data.outer_arm_length_out / data.step_length) - 1
-
-	
-	if data.picked_length == true and data.second_length ~= nil then 
-		data.length_on_pedestal = math.max(data.pedestal_length * data.step_length, data.radius * math.pi / 2 + data.opening_length - data.stringer_thickness - data.width - data.outer_arm_length_out)
-		--this is absolute minimum length with correct step height
-		if data.second_length - data.stringer_thickness - data.width + data.length_on_pedestal + data.outer_arm_length_out < data.gehlaenge then
-			data.gehlaenge = data.second_length + data.opening_length - 2 * data.width + data.radius * math.pi / 2
-			data.step_length = data.gehlaenge / (data.steps - 1 + (data.pedestal_length - 1))
-		end
-		data.outer_arm_length_in = data.second_length - data.stringer_thickness - data.width
-		
-	else
-		
-		data.length_on_pedestal = math.max(data.pedestal_length * data.step_length, data.radius * math.pi / 2 + data.opening_length - data.stringer_thickness - data.width - data.outer_arm_length_out)
-		data.outer_arm_length_in = data.gehlaenge - data.outer_arm_length_out - data.length_on_pedestal
-		
-	end
-	
-	local p_aussenwange = {}
-	table.insert(p_aussenwange, {0, -data.stringer_thickness, (- data.stringer_thickness / data.step_length + 1) * data.step_height + data.stringer_top_over})
-	for i = 1, pedestal_number - 1,1 do
-		local z = i * data.step_height - data.step_thickness
-		local aussen = {{data.stringer_thickness + data.width + data.outer_arm_length_in - (i - 1) * data.step_length, data.stringer_thickness, z}, 
-						{data.stringer_thickness + data.width + data.outer_arm_length_in - (i - 1) * data.step_length, data.stringer_thickness + data.width, z},
-						{data.stringer_thickness + data.width + data.outer_arm_length_in - (i) * data.step_length, data.stringer_thickness + data.width, z},
-						{data.stringer_thickness + data.width + data.outer_arm_length_in - (i) * data.step_length, data.stringer_thickness, z}}
-		local fla_handle = pytha.create_polygon(aussen)
-		local profile = pytha.create_profile(fla_handle, data.step_thickness, {type = "straight"})[1]
-		pytha.delete_element(fla_handle)
-		table.insert(data.cur_elements, profile)
-	end	
-	
-	local p_pedestal = {}
-	table.insert(p_pedestal, {0, -data.stringer_thickness, (- data.stringer_thickness / data.step_length + 1) * data.step_height + data.stringer_top_over})
-	for i = pedestal_number + 1, data.steps - 1, 1 do
-		local z = i * data.step_height - data.step_thickness
-		local aussen = {{0,data.opening_length + (i - data.steps) * data.step_length, z}, 
-						{data.width,data.opening_length + (i - data.steps) * data.step_length, z},
-						{data.width, data.opening_length + (i + 1 - data.steps) * data.step_length, z},
-						{0, data.opening_length + (i + 1 - data.steps) * data.step_length, z}}
-		local fla_handle = pytha.create_polygon(aussen)
-		local profile = pytha.create_profile(fla_handle, data.step_thickness, {type = "straight"})[1]
-		pytha.delete_element(fla_handle)
-		table.insert(data.cur_elements, profile)
-	end	
-	
-	table.insert(p_aussenwange, {0, (data.steps - 1) * data.step_length + data.stringer_thickness, (data.steps + data.stringer_thickness / data.step_length) * data.step_height + data.stringer_top_over})
-	
-	fla_table = {}
-	for i, k in pairs(p_aussenwange) do
-		table.insert(fla_table, p_aussenwange[i])
-	end
-	for i = #p_aussenwange,1,-1 do
-		table.insert(fla_table, {p_aussenwange[i][1], p_aussenwange[i][2], p_aussenwange[i][3] - data.step_height - data.stringer_top_over - data.stringer_bottom_over - data.step_thickness})
-	end
---	if data.stringer_thickness > 0 then
---		local fla_handle = pytha.create_polygon(fla_table)
---		local profile = pytha.create_profile(fla_handle, data.stringer_thickness, {type = "straight"})[1]
---		pytha.delete_element(fla_handle)
---		profile = pytha.cut_element(profile, {0,0,0}, {0,0,1}, {type = "keep_front"})[1]
---		table.insert(data.cur_elements, profile)
---		profile = pytha.copy_element(profile, {data.width + data.stringer_thickness, 0, 0})[1]
---		table.insert(data.cur_elements, profile)
---	end	
-
-	pytha.move_element(data.cur_elements, {data.stringer_thickness, -data.opening_length, 0})
-	
-	
-	
---	pytha.move_element(data.cur_elements, {-data.opening_length, -data.outer_arm_length_in - data.stringer_thickness - data.width, 0})
---	pytha.rotate_element(data.cur_elements, {0,0,0}, "z", 90)
-	if left_handed == true then
-		local dir = "x"
-		pytha.mirror_element(data.cur_elements, {data.width / 2 + data.stringer_thickness / 2,0,0}, dir) --data.width / 2 + data.stringer_thickness
-	end
 	
 
 end
@@ -958,33 +793,4 @@ function inters_line_circ(slope, P_line, P_circ, r)
 		return {x_inter_2 + P_circ[1], y_inter_2 + P_circ[2]}
 	end
 
-end
-
-function calculate_angle(dx, dy)
-	local Phi
-	if math.abs(dx) < 1e-8 and math.abs(dy) < 1e-8 then 
-		return 0
-	end
-	if math.abs(dx) < 1e-8 then 
-		if dy > 0 then
-			Phi = 90.0
-		else 
-			Phi = 270.0
-		end
-	else
-		if math.abs(dy) < 1e-8 then 
-			if dx > 0.0 then
-				Phi = 0.0
-			else
-				Phi = 180.0
-			end
-		else
-			Phi = ATAN(dy / dx)
-			if dx < 0 then 
-				Phi = Phi + 180.0
-			end
-			Phi = math.fmod((Phi + 360.0), 360.0)
-		end
-	end
-	return Phi
 end

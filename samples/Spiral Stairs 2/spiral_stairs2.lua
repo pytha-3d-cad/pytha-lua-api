@@ -144,7 +144,7 @@ function test_dialog(dialog, data)
 	
 	
 	sheet_thickness:set_on_change_handler(function(text)
-		data.sheet_thickness = pyui.parse_length(text)
+		data.sheet_thickness = math.max(pyui.parse_length(text), 0)
 		recreate_geometry(data)
 	end)
 	
@@ -155,7 +155,7 @@ function test_dialog(dialog, data)
 	end)
 	
 	total_angle:set_on_change_handler(function(text)
-		data.total_angle = pyui.parse_length(text)
+		data.total_angle = pyui.parse_length(text) or data.total_angle 
 		recreate_geometry(data)
 	end)
 	
@@ -202,7 +202,7 @@ function test_dialog(dialog, data)
 	end)
 	
 	step_thickness:set_on_change_handler(function(text)
-		data.step_thickness = pyui.parse_length(text)
+		data.step_thickness = math.max(pyui.parse_length(text), 0)
 		recreate_geometry(data)
 	end)
 	end_with_step:set_on_click_handler(function(state)

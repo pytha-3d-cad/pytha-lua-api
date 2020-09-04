@@ -24,7 +24,7 @@ function cube_dialog(dialog, data)
 	dialog:equalize_column_widths({1,2});
 	
 	size:set_on_change_handler(function(text)
-        data.size = pyui.parse_length(text)
+        data.size = math.max(pyui.parse_length(text), 0)
         recreate_geometry(data)
     end)
 	
