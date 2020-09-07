@@ -130,7 +130,7 @@ function recreate_wall(general_data, specific_data)
 	table.insert(specific_data.cur_elements, new_elem)
 	--Bottom
 	loc_origin[1] = general_data.thickness
-	new_elem = pytha.create_block(specific_data.width - 2 * general_data.thickness, general_data.depth_wall- groove_dist_back_off, general_data.thickness, loc_origin, {name = pyloc "Bottom"})
+	new_elem = pytha.create_block(specific_data.width - 2 * general_data.thickness, general_data.depth_wall - groove_dist_back_off, general_data.thickness, loc_origin, {name = pyloc "Bottom"})
 	table.insert(specific_data.cur_elements, new_elem)
 	--Top
 	loc_origin[3] = base_height + door_height - general_data.thickness
@@ -173,6 +173,14 @@ function recreate_wall(general_data, specific_data)
 			table.insert(specific_data.cur_elements, door_group)
 		end
 	end
+	
+	--Downlight
+	--we need to flip the face light source uside down, so we simply use the -z direction. 
+	new_elem = pytha.create_rectangle(50, 50, {specific_data.width / 2 + 25, math.max(general_data.depth_wall - 150, general_data.depth_wall / 2) - 25, base_height - 10}, {w_axis = "-z", name = "light_375"})
+	table.insert(specific_data.cur_elements, new_elem)
+	
+	
+	
 	specific_data.right_connection_point = {specific_data.width, general_data.depth_wall,0}
 	specific_data.left_connection_point = {0, general_data.depth_wall,0}
 	specific_data.right_direction = 0

@@ -244,6 +244,12 @@ function recreate_cornerwall(general_data, specific_data)
 	end
 	table.insert(specific_data.cur_elements, total_door_group)
 	
+	--Downlight
+	--we need to flip the face light source uside down, so we simply use the -z direction. 
+	new_elem = pytha.create_rectangle(50, 50, {specific_data.corner_width_top / 2 + 25, math.max(general_data.depth_wall - 150, general_data.depth_wall / 2) - 25, base_height - 10}, {w_axis = "-z", name = "light_375"})
+	table.insert(specific_data.cur_elements, new_elem)
+	new_elem = pytha.create_rectangle(50, 50, {specific_data.corner_width_top + math.max(- 150, - general_data.depth_wall / 2) + 25, general_data.depth_wall - specific_data.width2_top / 2 - 25, base_height - 10}, {w_axis = "-z", name = "light_375"})
+	table.insert(specific_data.cur_elements, new_elem)
 
 	specific_data.right_connection_point = {specific_data.corner_width_top, general_data.depth_wall - specific_data.width2_top, 0}
 	specific_data.left_connection_point = {0, general_data.depth_wall, 0}

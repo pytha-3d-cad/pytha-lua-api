@@ -14,7 +14,7 @@ end
 function main()
 	local data = {
 		cur_elements = {},
-		shape = 1,					--0: straight, 1: L right, 2: L left
+		shape = 1,					--0: straight, 1: L shaped
 		pedestal = false,
 		total_height = 2640,		--height of the stairs
 		steps = 18,					--number of steps
@@ -215,6 +215,7 @@ function make_dialog(dialog, data)
 					data.outer_corner = {data.inner_corner[1], data.inner_corner[2], data.inner_corner[3]}
 					data.inner_corner = {aux_p[1], aux_p[2], aux_p[3]}
 					data.direction = {-data.direction[1], -data.direction[2], -data.direction[3]}
+					data.second_length = data.second_length - data.total_width
 				end
 				if sign * data.second_length < 0 then
 					data.l_shape_left = true

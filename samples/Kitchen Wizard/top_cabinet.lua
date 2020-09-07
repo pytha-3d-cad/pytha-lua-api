@@ -110,7 +110,7 @@ function recreate_top(general_data, specific_data)
 	--if the kitchen is L-shaped. The angle is inherited from the previous cabinet
 	local coordinate_system = {{1, 0, 0}, {0, 1, 0}, {0,0,1}}
 	
-	local door_height1 = specific_data.height_top - base_height - general_data.thickness
+	local door_height1 = specific_data.height_top - base_height
 
 
 	loc_origin[1] = 0
@@ -124,10 +124,10 @@ function recreate_top(general_data, specific_data)
 	loc_origin[1] = specific_data.width - general_data.thickness
 	new_elem = pytha.create_block(general_data.thickness, general_data.depth_wall, specific_data.height_top - base_height, loc_origin, {name = pyloc "End RH"})
 	table.insert(specific_data.cur_elements, new_elem)
-	--Bottom
 	loc_origin[1] = general_data.thickness
-	new_elem = pytha.create_block(specific_data.width - 2 * general_data.thickness, general_data.depth_wall - groove_dist_back_off, general_data.thickness, loc_origin, {name = pyloc "Bottom"})
-	table.insert(specific_data.cur_elements, new_elem)
+	--Bottom
+--	new_elem = pytha.create_block(specific_data.width - 2 * general_data.thickness, general_data.depth_wall - groove_dist_back_off, general_data.thickness, loc_origin, {name = pyloc "Bottom"})
+--	table.insert(specific_data.cur_elements, new_elem)
 	--Top
 	loc_origin[3] = base_height + specific_data.height_top - general_data.thickness - base_height
 	new_elem = pytha.create_block(specific_data.width - 2 * general_data.thickness, general_data.depth_wall - groove_dist_back_off, general_data.thickness, loc_origin, {name = pyloc "Top"})
