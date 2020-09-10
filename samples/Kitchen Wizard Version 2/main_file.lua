@@ -105,7 +105,7 @@ function create_geometry_for_element(general_data, element, finalize, direction,
 end
 
 local function recalc_placement_angle(data)
-	local placement_angle = ATAN(data.direction[2], data.direction[1])
+	local placement_angle = calculate_angle(data.direction[1], data.direction[2])
 	local ini_struct = data.cabinet_list[1]
 	if data.orient_leftwards == true then 
 		placement_angle = placement_angle + 180
@@ -241,6 +241,7 @@ function iterate_top(data, current_cabinet, origin, placement_angle, finalize)
 		high_cab = 1
 	end
 	if current_top_cabinet ~= nil then
+	
 		iterate_right(data, current_top_cabinet, top_origin, placement_angle, finalize, nil, nil, true, high_cab)
 		
 		current_top_cabinet = data.cabinet_list[current_top_cabinet].left_top_element
@@ -261,7 +262,6 @@ function iterate_right(data, current_cabinet, origin, placement_angle, finalize,
 		if exists == nil then 
 			subgroup = create_geometry_for_element(data, current_cabinet, finalize, "right", bool_group_benchtop, bool_group_kickboards)
 		end			
-		
 		if top_row == false then
 			iterate_top(data, current_cabinet, origin, placement_angle, finalize)
 		end
@@ -299,24 +299,27 @@ function iterate_left(data, current_cabinet, origin, placement_angle, finalize, 
 		local cur_struct = data.cabinet_list[current_cabinet]
 		local subgroup = nil
 		subgroup = create_geometry_for_element(data, current_cabinet, finalize, "left", bool_group_benchtop, bool_group_kickboards)
-		
+		placement_angle = placement_angle - cur_struct.right_direction
+		local rotated_new_coos = rotate_coos_by_angle({cur_struct.left_connection_point[1] - cur_struct.right_connection_point[1], 
+														cur_struct.left_connection_point[2] - cur_struct.right_connection_point[2],
+														cur_struct.left_connection_point[3] - cur_struct.right_connection_point[3]}, placement_angle)
 		if top_row == false then
-			iterate_top(data, current_cabinet, origin, placement_angle, finalize)
+			local loc_origin = {origin[1], origin[2], origin[3]}
+			loc_origin[1] = loc_origin[1] + rotated_new_coos[1] 
+			loc_origin[2] = loc_origin[2] + rotated_new_coos[2]
+			loc_origin[3] = loc_origin[3] + rotated_new_coos[3]
+			iterate_top(data, current_cabinet, loc_origin, placement_angle, finalize)
 		end
 		
-		placement_angle = placement_angle - cur_struct.right_direction
 		--here rotate and placement_angle
-		
 		origin[1] = origin[1] - cur_struct.right_connection_point[1]
 		origin[2] = origin[2] - cur_struct.right_connection_point[2]
 		origin[3] = origin[3] - cur_struct.right_connection_point[3]
+		
 		if subgroup ~= nil then
 			pytha.rotate_element({subgroup, cur_struct.elem_handle_for_top}, cur_struct.right_connection_point, 'z', placement_angle)
 			pytha.move_element({subgroup, cur_struct.elem_handle_for_top}, origin)
 		end
-		local rotated_new_coos = rotate_coos_by_angle({cur_struct.left_connection_point[1] - cur_struct.right_connection_point[1], 
-														cur_struct.left_connection_point[2] - cur_struct.right_connection_point[2],
-														cur_struct.left_connection_point[3] - cur_struct.right_connection_point[3]}, placement_angle)
 		origin[1] = origin[1] +  rotated_new_coos[1] + cur_struct.right_connection_point[1]
 		origin[2] = origin[2] +  rotated_new_coos[2] + cur_struct.right_connection_point[2]
 		origin[3] = origin[3] +  rotated_new_coos[3] + cur_struct.right_connection_point[3]
@@ -328,4 +331,34 @@ function iterate_left(data, current_cabinet, origin, placement_angle, finalize, 
 			current_cabinet = data.cabinet_list[current_cabinet].left_top_element
 		end
 	end
+end
+
+
+function calculate_angle(dx, dy)
+	local Phi
+	if math.abs(dx) < 1e-8 and math.abs(dy) < 1e-8 then 
+		return 0
+	end
+	if math.abs(dx) < 1e-8 then 
+		if dy > 0 then
+			Phi = 90.0
+		else 
+			Phi = 270.0
+		end
+	else
+		if math.abs(dy) < 1e-6 then 
+			if dx > 0.0 then
+				Phi = 0.0
+			else
+				Phi = 180.0
+			end
+		else
+			Phi = ATAN(dy / dx)
+			if dx < 0 then 
+				Phi = Phi + 180.0
+			end
+			Phi = math.fmod((Phi + 360.0), 360.0)
+		end
+	end
+	return Phi
 end

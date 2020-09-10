@@ -587,11 +587,36 @@
         <source>Benchtop</source>
       </segment>
     </unit>
+    <unit id="18e642e05ebf176b">
+      <segment>
+        <source>Blind End</source>
+      </segment>
+    </unit>
   </file>
   <file original="front_organizatios.lua">
     <unit id="4def8e46b5a93535">
       <segment>
         <source>Adjustable shelf</source>
+      </segment>
+    </unit>
+    <unit id="6135c216bfd670bf">
+      <segment>
+        <source>Open shelf</source>
+      </segment>
+    </unit>
+    <unit id="568de428f60471bc">
+      <segment>
+        <source>1/2 doors</source>
+      </segment>
+    </unit>
+    <unit id="00129fbe66d9f40c">
+      <segment>
+        <source>1/2 doors + 1 drawer</source>
+      </segment>
+    </unit>
+    <unit id="0e16f18372f904db">
+      <segment>
+        <source>1/2 doors + 1/2 drawers</source>
       </segment>
     </unit>
   </file>
@@ -684,6 +709,11 @@
     <unit id="026e3cf4defa0da6">
       <segment>
         <source>Max door width</source>
+      </segment>
+    </unit>
+    <unit id="1de85576286ebce3">
+      <segment>
+        <source>High cabinet</source>
       </segment>
     </unit>
   </file>
@@ -972,6 +1002,28 @@
     <unit id="026e3cf4defa0da6">
       <segment>
         <source>Max door width</source>
+      </segment>
+    </unit>
+    <unit id="414a15d4f4a4c529">
+      <segment>
+        <source>Wall cabinet</source>
+      </segment>
+    </unit>
+  </file>
+  <file original="z_extractor_hood.lua">
+    <unit id="5634e1436004bf83">
+      <segment>
+        <source>Fume intake</source>
+      </segment>
+    </unit>
+    <unit id="39df6b4cf1be25f3">
+      <segment>
+        <source>Fume chimney</source>
+      </segment>
+    </unit>
+    <unit id="1d70ff5b3da26d1e">
+      <segment>
+        <source>Extractor hood 600mm</source>
       </segment>
     </unit>
   </file>

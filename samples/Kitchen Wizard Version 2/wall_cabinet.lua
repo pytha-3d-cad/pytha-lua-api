@@ -208,7 +208,7 @@ if cabinet_typelist == nil then
 end
 cabinet_typelist.wall = 				
 {									
-	name = "Wall cabinet",
+	name = pyloc "Wall cabinet",
 	row = 0x2,
 	default_data = {width = 600,},
 	geometry_function = recreate_wall,

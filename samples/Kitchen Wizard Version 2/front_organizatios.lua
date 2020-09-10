@@ -23,7 +23,7 @@ local function create_straight_open_front(general_data, specific_data, width, he
 	end
 end
 organization_style_list.straight_no_front = {
-	name = "Open shelf",
+	name = pyloc "Open shelf",
 	geometry_function = create_straight_open_front,
 	ui_update_function = ui_update_straight_open_front,
 }
@@ -80,7 +80,7 @@ local function create_straight_intelli_doors(general_data, specific_data, width,
 end
 
 organization_style_list.straight_intelli_doors = {
-	name = "1/2 doors",
+	name = pyloc "1/2 doors",
 	geometry_function = create_straight_intelli_doors,
 	ui_update_function = ui_update_straight_intelli_doors,
 }
@@ -150,7 +150,7 @@ local function create_straight_intelli_doors_drawer(general_data, specific_data,
 end
 
 organization_style_list.straight_intelli_doors_and_drawer = {
-	name = "1/2 doors + 1 drawer",
+	name = pyloc "1/2 doors + 1 drawer",
 	geometry_function = create_straight_intelli_doors_drawer,
 	ui_update_function = ui_straight_update_intelli_doors_drawer,
 }
@@ -235,7 +235,7 @@ local function create_straight_intelli_doors_drawers(general_data, specific_data
 end
 
 organization_style_list.straight_intelli_doors_and_intelli_drawers = {
-	name = "1/2 doors + 1/2 drawers",
+	name = pyloc "1/2 doors + 1/2 drawers",
 	geometry_function = create_straight_intelli_doors_drawers,
 	ui_update_function = ui_update_straight_intelli_doors_drawers,
 }

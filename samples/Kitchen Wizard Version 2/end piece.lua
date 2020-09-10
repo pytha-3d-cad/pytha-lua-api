@@ -44,7 +44,7 @@ if cabinet_typelist == nil then
 end
 cabinet_typelist.blind_end = 				
 {									
-	name = "Blind End",
+	name = pyloc "Blind End",
 	row = 0x1,
 	default_data = {},
 	geometry_function = recreate_blind,

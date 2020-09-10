@@ -606,11 +606,6 @@ function delete_element(data)
 		return
 	end
 	
-	if specific_data.main_group ~= nil then
-		pytha.delete_element(specific_data.main_group)
-		specific_data.main_group = nil
-	end
-	
 	local left_element = specific_data.left_element
 	local right_element = specific_data.right_element
 	local left_top_element = specific_data.left_top_element
@@ -650,6 +645,10 @@ function delete_element(data)
 			if bottom_element ~= nil then
 				data.cabinet_list[right_top_element].bottom_element = bottom_element
 				data.cabinet_list[bottom_element].top_element = right_top_element
+			end
+		else 
+			if bottom_element ~= nil then
+				data.cabinet_list[bottom_element].top_element = nil
 			end
 		end 
 		if left_top_element ~= nil then

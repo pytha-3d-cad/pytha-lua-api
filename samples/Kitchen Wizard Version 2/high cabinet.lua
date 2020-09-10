@@ -230,7 +230,7 @@ if cabinet_typelist == nil then
 end
 cabinet_typelist.high = 				
 {									
-	name = "High cabinet",
+	name = pyloc "High cabinet",
 	row = 0x3,
 	default_data = {width = 600,},
 	geometry_function = recreate_high,
