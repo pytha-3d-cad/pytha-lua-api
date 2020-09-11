@@ -1,5 +1,5 @@
 --Straight cabinet with a variable number of shelves
-local function straight_cabinet_solo()
+function straight_cabinet_solo()
 	local general_data = _G["general_default_data"]
 	local spec_index = initialize_cabinet_values(general_data, "straight")
 	local loaded_data = pyio.load_values("straight_dimensions")
@@ -183,6 +183,7 @@ local function placement_straight(general_data, specific_data)
 end
 
 local function ui_update_straight(general_data, soft_update)
+
 	if soft_update == true then return end
 
 	controls.label_width:enable_control()
@@ -211,7 +212,7 @@ cabinet_typelist.straight = 					--used to reference the cabinet in the list
 	ui_update_function = ui_update_straight, 	--function to set values and update UI
 	organization_styles = {"straight_intelli_doors_and_drawer", 	--Front partition styles that are allowed for this cabinet type				
 							"straight_intelli_doors", 
-							"straight_intelli_doors_and_drawer", 
 							"straight_intelli_doors_and_intelli_drawers",
+							"straight_intelli_drawers",
 							"straight_no_front", },		
 }

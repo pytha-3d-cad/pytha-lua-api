@@ -115,6 +115,7 @@ local function recalc_placement_angle(data)
 	end
 	return placement_angle
 end
+
 function recreate_geometry(data, finalize)
 
 	if data.main_group ~= nil then

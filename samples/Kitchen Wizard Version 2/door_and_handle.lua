@@ -210,5 +210,4 @@ function create_handle(general_data, specific_data, origin, width, height, vert,
 	return handle_group
 end
 
-
-
+ 

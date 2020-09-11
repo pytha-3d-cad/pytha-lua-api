@@ -14,13 +14,13 @@
     <description>A short description of the function goes here.</description>
     <help-file>help.html</help-file>
   </extension>
- <!--   <extension type="function">
+ <!--  <extension type="function">
     <entry-point>straight_cabinet_solo</entry-point>
     <caption>Straight Cabinet</caption>
     <description>Straight kitchen cabinet with rails.</description>
     <help-file>help.html</help-file>
   </extension>
-  <extension type="function">
+   <extension type="function">
     <entry-point>diagonal_cabinet_solo</entry-point>
     <caption>Diagonal Cabinet</caption>
     <description>Diagonbal corner kitchen cabinet.</description>

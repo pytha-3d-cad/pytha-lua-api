@@ -12,6 +12,7 @@ cabinet_sorting_for_combobox[0x1] = {
 }
 cabinet_sorting_for_combobox[0x2] = {
 		"wall",
+		"hood",
 		"cornerwall",
 		"top",
 }

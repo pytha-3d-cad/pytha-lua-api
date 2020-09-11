@@ -133,7 +133,7 @@ function wizard_dialog(dialog, data)
 		local old_general_height_base = data.general_height_base
 		data.general_height_base = math.max(pyui.parse_length(text) or data.general_height_base, 0)
 		for i,spec_data in pairs(data.cabinet_list) do
-			if spec_data.row == 0x1 and spec_data.height == old_general_height_base then
+			if spec_data.row ~= 0x2 and spec_data.height == old_general_height_base then
 				spec_data.height = data.general_height_base
 			end
 		end

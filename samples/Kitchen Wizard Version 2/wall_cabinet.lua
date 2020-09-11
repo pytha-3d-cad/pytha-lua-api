@@ -214,7 +214,7 @@ cabinet_typelist.wall =
 	geometry_function = recreate_wall,
 	placement_function = placement_wall, 
 	ui_update_function = ui_update_wall,
-	organization_styles = {"straight_intelli_doors", 
+	organization_styles = {"straight_intelli_doors",  
 							"straight_no_front",},
 }
 
