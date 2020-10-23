@@ -1,7 +1,6 @@
 --Example for a simple spiral staircase
 
-function main()
-	local data = {
+default_data = {
 		cur_elements = {},
 		total_height = 2640,		--height of the stairs
 		steps = 12,					--number of steps
@@ -15,15 +14,38 @@ function main()
 		clockwise = false,				--rotation direction
 		handrail_type = 0,			--cross section of handrail: line, round, square
 	}
+
+--this function allows adding new variables to the default data and to still edit old stairs without that element being nil
+function merge_data(merge_from, merge_to)
+	for i,k in pairs(merge_from) do
+		merge_to[i] = k
+	end
+end
+
+function edit_stairs(element)
+	local data = _G["default_data"]
+	local loaded_data = pytha.get_element_history(element, "spiral_stairs_history")
+	if loaded_data == nil then
+		pyui.alert(pyloc "No data found")
+		return 
+	end
+	merge_data(loaded_data, data)
+	recreate_geometry(data)
+	pyui.run_modal_dialog(stairs_dialog, data)
+	recreate_geometry(data)
+end
+
+function main()
+	local data = _G["default_data"]
 	local loaded_data = pyio.load_values("default_dimensions")
 	if loaded_data ~= nil then data = loaded_data end
 	recreate_geometry(data)
 	
-	pyui.run_modal_dialog(test_dialog, data)
+	pyui.run_modal_dialog(stairs_dialog, data)
 	pyio.save_values("default_dimensions", data)
 end
 
-function test_dialog(dialog, data)
+function stairs_dialog(dialog, data)
 	dialog:set_window_title("Spiral Staircase")
 	
 	local label2 = dialog:create_label(1, "Total Height")
@@ -204,6 +226,7 @@ function recreate_geometry(data)
 		local dir = "y"
 		pytha.mirror_element(data.cur_elements, {0,0,0}, dir)
 	end
-	pytha.create_group(data.cur_elements)
+	local group = pytha.create_group(data.cur_elements)
+	pytha.set_element_history(group, data, "spiral_stairs_history")
 end
 

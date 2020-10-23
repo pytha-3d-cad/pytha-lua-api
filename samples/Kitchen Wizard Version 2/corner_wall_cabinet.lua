@@ -1,113 +1,4 @@
 --Corner wall cabinet, both left and right sided door
-function cornerwall_cabinet_solo()
-	local general_data = _G["general_default_data"]
-	local spec_index = initialize_cabinet_values(general_data)
-	local loaded_data = pyio.load_values("cornerwall_dimensions")
-	if loaded_data ~= nil then 
-		merge_data(loaded_data, general_data)
-	end
-	local specific_data = general_data.cabinet_list[#general_data.cabinet_list]
-	specific_data.this_type = "cornerwall"
-	specific_data.individual_call = true
-	general_data.own_direction = 0
-	recreate_cornerwall(general_data, general_data.cabinet_list[#general_data.cabinet_list])
-	
-	pyui.run_modal_dialog(cornerwall_dialog, general_data)
-	
-	pyio.save_values("cornerwall_dimensions", general_data)
-end
-
-
-local function cornerwall_dialog(dialog, general_data)
-	local specific_data = general_data.cabinet_list[#general_data.cabinet_list]
-	
-	dialog:set_window_title("Corner Wall Cabinet")
-	
-	local label_benchtop = dialog:create_label(1, pyloc "Benchtop height")
-	local bt_height = dialog:create_text_box(2, pyui.format_length(general_data.benchtop_height))
-	local label2 = dialog:create_label(1, pyloc "Spacing to top")
-	local wall_to_base = dialog:create_text_box(2, pyui.format_length(general_data.wall_to_base_spacing))
-	local label1 = dialog:create_label(1, pyloc "Left Width")
-	local width = dialog:create_text_box(2, pyui.format_length(specific_data.width))
-	local label7 = dialog:create_label(1, pyloc "Right Width")
-	local width2 = dialog:create_text_box(2, pyui.format_length(specific_data.width2))
-	local label2 = dialog:create_label(1, "Height")
-	local height = dialog:create_text_box(2, pyui.format_length(specific_data.height_top))
-	local label3 = dialog:create_label(1, "Depth")
-	local depth = dialog:create_text_box(2, pyui.format_length(general_data.depth_wall))
-	local label4 = dialog:create_label(1, "Board thickness")
-	local thickness = dialog:create_text_box(2, pyui.format_length(general_data.thickness))
-	local label6 = dialog:create_label(1, "Number of shelves")
-	local shelf_count = dialog:create_text_box(2, pyui.format_length(specific_data.shelf_count))
-	
-	local check = dialog:create_check_box({1, 2}, "Door on right side")
-	check:set_control_checked(specific_data.door_rh)
-
-	local align1 = dialog:create_align({1,2}) -- So that OK and Cancel will be in the same row
-	local ok = dialog:create_ok_button(1)
-	local cancel = dialog:create_cancel_button(2)
-	dialog:equalize_column_widths({1,2,4})
-	
-	bt_height:set_on_change_handler(function(text)
-		general_data.benchtop_height = math.max(pyui.parse_length(text), 0)
-		recreate_cornerwall_solo(general_data, specific_data)
-	end)
-	
-	wall_to_base:set_on_change_handler(function(text)
-		general_data.wall_to_base_spacing = math.max(pyui.parse_length(text), 0)
-		recreate_wall_cabinet_solo(general_data, specific_data)
-	end)
-	
-	width:set_on_change_handler(function(text)
-		specific_data.width = math.max(pyui.parse_length(text), 0)
-		recreate_cornerwall_solo(general_data, specific_data)
-	end)
-	
-	width2:set_on_change_handler(function(text)
-		specific_data.width2 = math.max(pyui.parse_length(text), 0)
-		recreate_cornerwall_solo(general_data, specific_data)
-	end)
-	
-	height:set_on_change_handler(function(text)
-		specific_data.height_top = math.max(pyui.parse_length(text), 0)
-		recreate_cornerwall_solo(general_data, specific_data)
-	end)
-	
-	depth:set_on_change_handler(function(text)
-		general_data.depth_wall = math.max(pyui.parse_length(text), 0)
-		recreate_cornerwall_solo(general_data, specific_data)
-	end)
-	
-	thickness:set_on_change_handler(function(text)
-		general_data.thickness = math.max(pyui.parse_length(text), 0)
-		recreate_cornerwall_solo(general_data, specific_data)
-	end)
-	
-	
-	shelf_count:set_on_change_handler(function(text)
-		specific_data.shelf_count = math.max(pyui.parse_length(text), 0)
-		recreate_cornerwall_solo(general_data, specific_data)
-	end)
-	
-	check:set_on_click_handler(function(state)
-		specific_data.door_rh = state
-		recreate_cornerwall_solo(general_data, specific_data)
-	end)
-end
-
-local function recreate_cornerwall_solo(general_data, specific_data)
-	update_cornerwall_ui(general_data, specific_data)
-	
-	if specific_data.main_group ~= nil then
-		pytha.delete_element(specific_data.main_group)
-	end
-	recreate_cornerwall(general_data, specific_data)
-end
-
-function update_cornerwall_ui(general_data, specific_data)
-	--currently empty
-	
-end
 
 local function recreate_cornerwall(general_data, specific_data)
 	local cur_elements = {}
@@ -270,25 +161,23 @@ end
 
 local function ui_update_cornerwall(general_data, soft_update)
 	local specific_data = general_data.cabinet_list[general_data.current_cabinet]
-	controls.door_side:enable_control()
+	controls.door_side:show_control()
 	
 	if soft_update == true then return end
 
-	controls.label_width:enable_control()
-	controls.width:enable_control()
-	controls.label_width2:enable_control()
-	controls.width2:enable_control()
-	controls.height_top_label:enable_control()
-	controls.height_top:enable_control()
-	controls.label6:enable_control()
-	controls.shelf_count:enable_control()
-	controls.door_width:enable_control()
-	controls.label_door_width:enable_control()
+	controls.label_width:show_control()
+	controls.width:show_control()
+	controls.label_width2:show_control()
+	controls.width2:show_control()
+	controls.height_top_label:show_control()
+	controls.height_top:show_control()
+	controls.label6:show_control()
+	controls.shelf_count:show_control()
+	controls.door_width:show_control()
+	controls.label_door_width:show_control()
 	
-	controls.door_side:set_control_text(pyloc "Door RH")
 	controls.label_width:set_control_text(pyloc "Left width")
 	controls.label_width2:set_control_text(pyloc "Right width")		
-	controls.label_door_width:set_control_text(pyloc "Max door width")	
 	
 end
 

@@ -55,8 +55,8 @@ local function ui_update_hood(general_data, soft_update)
 
 	if soft_update == true then return end
 
-	controls.height_top_label:enable_control()
-	controls.height_top:enable_control()
+	controls.height_top_label:show_control()
+	controls.height_top:show_control()
 		
 end
 

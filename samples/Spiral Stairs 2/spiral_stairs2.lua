@@ -1,7 +1,6 @@
 --Example for a simple spiral staircase
 
-function main()
-	local data = {
+default_data = {
 		cur_elements = {},
 		total_height = 4000,		--height of the stairs
 		steps = 20,					--number of steps
@@ -15,18 +14,53 @@ function main()
 		outer_corner = nil,
 		inner_corner = nil,
 		third_point = nil,
-		origin = {-5000,0,0},
-		end_with_step = false
-	}
---	local loaded_data = pyio.load_values("default_dimensions")
-	if loaded_data ~= nil then data = loaded_data end
+		origin = {0,0,0},
+		end_with_step = false,
+		glass_thickness = 20,				--no control in the UI so far
+		stair_gap = 5,						--no control in the UI so far
+		handrail_length = 60,				--no control in the UI so far
+		handrail_height = 40,				--no control in the UI so far
+		inner_stringer_bottom_over = 200,	--no control in the UI so far
+		step_base_thickness = 20,			--no control in the UI so far
+		glass_bottom_over = 100,			--no control in the UI so far
+		gap_glass_handrail = 50				--no control in the UI so far
+}
+
+--this function allows adding new variables to the default data and to still edit old stairs without that element being nil
+function merge_data(merge_from, merge_to)
+	for i,k in pairs(merge_from) do
+		merge_to[i] = k
+	end
+end
+
+function edit_stairs(element)
+	local data = _G["default_data"]
+	local loaded_data = pytha.get_element_history(element, "stairs_history")
+	if loaded_data == nil then
+		pyui.alert(pyloc "No data found")
+		return 
+	end
+	merge_data(loaded_data, data)
+	recreate_geometry(data)
+	pyui.run_modal_dialog(stairs_dialog, data)
+	recreate_geometry(data)
+end
+
+
+
+function main()
+	local data = _G["default_data"]
+	local loaded_data = pyio.load_values("default_dimensions")
+	if loaded_data ~= nil then 
+		merge_data(loaded_data, data)
+	end
 	recreate_geometry(data)
 	
-	pyui.run_modal_dialog(test_dialog, data)
+	pyui.run_modal_dialog(stairs_dialog, data)
 	pyio.save_values("default_dimensions", data)
 end
 
-function test_dialog(dialog, data)
+function stairs_dialog(dialog, data)
 	dialog:set_window_title("Spiral Staircase")
 	
 	local label2 = dialog:create_label({1,3}, "Pick 3 points to calculate the staircase dimensions!")
@@ -42,23 +76,30 @@ function test_dialog(dialog, data)
 	local width = dialog:create_text_box(4, pyui.format_length(data.width))
 	local label5 = dialog:create_label(3, "Angle")
 	local total_angle = dialog:create_text_display(4, pyui.format_length(data.total_angle))
+	dialog:create_label(1, "Bottom excess of glass")
+	local glass_bottom_over = dialog:create_text_box(2, pyui.format_length(data.glass_bottom_over))
+	dialog:create_label(3, "Gap glass to handrail")
+	local gap_glass_handrail = dialog:create_text_box(4, pyui.format_length(data.gap_glass_handrail))
 	
 	dialog:create_label(1, "Step thickness")
 	local step_thickness = dialog:create_text_box(2, pyui.format_length(data.step_thickness))
 	
-	local end_with_step = dialog:create_check_box({1,2}, "Step on final height")
-	end_with_step:set_control_checked(data.end_with_step)
+	dialog:create_label(1, "Bottom excess of stringer")
+	local gap_glass_handrail = dialog:create_text_box(2, pyui.format_length(data.inner_stringer_bottom_over))
+	
 	
 	dialog:create_label(3, "String thickness")
 	local sheet_thickness = dialog:create_text_box(4, pyui.format_length(data.sheet_thickness))
 	
+	local end_with_step = dialog:create_check_box({3,4}, "Step on final height")
+	end_with_step:set_control_checked(data.end_with_step)
 	
 	
 --	local clockwise = dialog:create_check_box({3,4}, "Clockwise")
 
 	local btn_frame = dialog:create_button({1,2}, "Material Frame")
 	if data.material_glas == nil then 
-		btn_glass = dialog:create_button({3,4}, "Material Glass")
+		btn_glass = dialog:create_button({1,2}, "Material Glass")
 	end
 	local btn_steps = dialog:create_button({3,4}, "Material Steps")
 	if data.material_steps then
@@ -144,13 +185,13 @@ function test_dialog(dialog, data)
 	
 	
 	sheet_thickness:set_on_change_handler(function(text)
-		data.sheet_thickness = math.max(pyui.parse_length(text), 0)
+		data.sheet_thickness = math.max(pyui.parse_length(text) or data.sheet_thickness, 0)
 		recreate_geometry(data)
 	end)
 	
 	
 	diameter:set_on_change_handler(function(text)
-		data.diameter = math.max(pyui.parse_length(text), 1500)
+		data.diameter = math.max(pyui.parse_length(text) or data.diameter, 1500)
 		recreate_geometry(data)
 	end)
 	
@@ -160,7 +201,17 @@ function test_dialog(dialog, data)
 	end)
 	
 	width:set_on_change_handler(function(text)
-		data.width = math.max(pyui.parse_length(text), 100)
+		data.width = pyui.parse_length(text) or data.width
+		recreate_geometry(data)
+	end)
+	
+	gap_glass_handrail:set_on_change_handler(function(text)
+		data.gap_glass_handrail = pyui.parse_length(text) or data.gap_glass_handrail
+		recreate_geometry(data)
+	end)
+	
+	glass_bottom_over:set_on_change_handler(function(text)
+		data.glass_bottom_over = pyui.parse_length(text) or data.width
 		recreate_geometry(data)
 	end)
 	
@@ -197,12 +248,12 @@ function test_dialog(dialog, data)
 	
 	
 	total_height:set_on_change_handler(function(text)
-		data.total_height = math.max(pyui.parse_length(text), 500)
+		data.total_height = math.max(pyui.parse_length(text) or data.total_height, 500)
 		recreate_geometry(data)
 	end)
 	
 	step_thickness:set_on_change_handler(function(text)
-		data.step_thickness = math.max(pyui.parse_length(text), 0)
+		data.step_thickness = math.max(pyui.parse_length(text) or data.step_thickness, 0)
 		recreate_geometry(data)
 	end)
 	end_with_step:set_on_click_handler(function(state)
@@ -326,21 +377,17 @@ function recreate_geometry(data)
 		step_angle = data.total_angle / data.steps
 	end
 
-
-
-
-	local pole_section_height = step_height - data.step_thickness	--height of the central pole pieces
 	if data.cur_elements ~= nil then
 		pytha.delete_element(data.cur_elements)
 	end
 	data.cur_elements = {}
 
 
-	local step = create_step(outer_radius - 65, inner_radius + data.sheet_thickness/2 + 5, data.step_thickness, step_angle, pole_section_height)
+	local step = create_step(outer_radius - data.glass_thickness / 2 - data.stair_gap, inner_radius + data.sheet_thickness/2 + data.stair_gap, data.step_thickness, step_angle, step_height - data.step_thickness)
 	if data.material_steps ~= nil then pytha.set_element_material(step, data.material_steps) end
 	table.insert(data.cur_elements, step)
 	
-	local step_base = create_step_base(outer_radius - 30, inner_radius + data.sheet_thickness/2, data.step_thickness, step_angle, pole_section_height - data.step_thickness)
+	local step_base = create_step_base(outer_radius - data.glass_thickness / 2, inner_radius + data.sheet_thickness/2, data.step_base_thickness, step_angle, step_height - data.step_thickness - data.step_base_thickness)
 	if data.material_frame ~= nil then pytha.set_element_material(step_base, data.material_frame) end
 	table.insert(data.cur_elements, step_base)
 	
@@ -360,25 +407,24 @@ function recreate_geometry(data)
 --now we create the sweep line for the handrail
 	local points = {}	--list of all point coordinates for the hand rail 
 	local points2 = {}	--list of all point coordinates for the glass railing
-	local points3 = {}	--list of all point coordinates for the glass railing
 	local inner_points = {}	--list of all point coordinates for the hand rail 
 	local segs = data.steps * 12	--total number of segments of the polyline, 12 per step, 6 inbetween each vertical bar
 	local height_increment = step_height / 12
 	local phi_off = 0 --0.5 * data.total_angle / data.steps	--The line starts at the front of the first step, not in the center
 
---for the excess of the handrail we simply create 2 additional segments at the beginning and at the end of the polyline. This corressponds to 1/6 of the angle of a step
+
 	for i=0,segs,1 do		
-		local x = (outer_radius - 30) * COS(data.total_angle * i / segs - phi_off)
-		local y = (outer_radius - 30) * SIN(data.total_angle * i / segs - phi_off)
-		local z = data.rail_height + step_height + i * height_increment
+		local x = (outer_radius) * COS(data.total_angle * i / segs - phi_off)
+		local y = (outer_radius) * SIN(data.total_angle * i / segs - phi_off)
+		local z = data.rail_height - data.handrail_height / 2 + step_height + i * height_increment
 		table.insert(points, {x, y, z})
-		z = 50 + i * height_increment	--this is the negative position of the outer steel construction
-		table.insert(points2, {x, y, z})
+--		z = 50 + i * height_increment	--this is the negative position of the outer steel construction
+--		table.insert(points2, {x, y, z})
 	end
 	local rail_edges = pytha.create_polyline("open", points)	--create the polyline
-	local rail_edges2 = pytha.create_polyline("open", points2)	--create the polyline
+--	local rail_edges2 = pytha.create_polyline("open", points2)	--create the polyline
 
-	local sweep_cross_section = {type = "rectangle", length = 60, width = 40} --data for the cross section of the handrail
+	local sweep_cross_section = {type = "rectangle", length = data.handrail_length, width = data.handrail_height} --data for the cross section of the handrail
 	local sweep_options = {keep_vertical = 1}
 
 	local rail = pytha.create_sweep(rail_edges, sweep_cross_section, sweep_options)[1]		--create the sweep
@@ -386,35 +432,29 @@ function recreate_geometry(data)
 	pytha.delete_element(rail_edges)	--delete the line
 	table.insert(data.cur_elements, rail)
 	
-	sweep_cross_section = {type = "rectangle", length = 60, width = 400} --data for the cross section of the handrail
-	sweep_options = {keep_vertical = 1}
+--	sweep_cross_section = {type = "rectangle", length = 60, width = 400} --data for the cross section of the handrail
+--	sweep_options = {keep_vertical = 1}
 
 --	local rail2 = pytha.create_sweep(rail_edges2, sweep_cross_section, sweep_options)[1]		--create the sweep
 --	if data.material_frame ~= nil then pytha.set_element_material(rail2, data.material_frame) end
-	pytha.delete_element(rail_edges2)	--delete the line
+--	pytha.delete_element(rail_edges2)	--delete the line
 --	local front_parts = pytha.cut_element(rail2, {0,0,0}, "z", {type = "keep_front"})
 --			for k,v in pairs(front_parts) do table.insert(data.cur_elements, v) end
 --	pytha.delete_element(rail2)
 
+	local inner_stringer_real_over = data.inner_stringer_bottom_over + data.step_base_thickness + data.step_thickness
+	local inner_stringer_total_height = data.rail_height + inner_stringer_real_over  + step_height
 
 	for i=0,segs,1 do		
 		local x = inner_radius * COS(data.total_angle * i / segs - phi_off)
 		local y = inner_radius * SIN(data.total_angle * i / segs - phi_off)
-		local z = data.rail_height / 2 - 200 + step_height + i * height_increment	--this is the negative position of the outer steel construction
+		local z = data.rail_height / 2 - inner_stringer_real_over / 2 + step_height / 2 + i * height_increment	--this is the negative position of the outer steel construction
 		table.insert(inner_points, {x, y, z})
 
 	end
+	inner_rail_edges = pytha.create_polyline("open", inner_points)	--create the polyline
 
-	for i=1,segs-1,1 do		
-		
-		x = (outer_radius - 30) * COS(data.total_angle * i / segs - phi_off)
-		y = (outer_radius - 30) * SIN(data.total_angle * i / segs - phi_off)
-		z = (data.rail_height + step_height - 20 -100) / 2 + i * height_increment	--this is the negative position of the outer steel construction
-		table.insert(points3, {x, y, z})
-	end
-	local inner_rail_edges = pytha.create_polyline("open", inner_points)	--create the polyline
-
-	sweep_cross_section = {type = "rectangle", length = data.sheet_thickness, width = data.rail_height + 400 + step_height} --data for the inner cross section
+	sweep_cross_section = {type = "rectangle", length = data.sheet_thickness, width = inner_stringer_total_height} --data for the inner cross section
 	sweep_options = {keep_vertical = 1}
 
 	rail = pytha.create_sweep(inner_rail_edges, sweep_cross_section, sweep_options)[1]		--create the sweep
@@ -425,16 +465,30 @@ function recreate_geometry(data)
 			for k,v in pairs(front_parts) do table.insert(data.cur_elements, v) end
 	pytha.delete_element(rail)
 
+	local outer_stringer_real_over = data.glass_bottom_over + data.step_base_thickness + data.step_thickness
+	local outer_stringer_total_height = data.rail_height + outer_stringer_real_over - data.handrail_height  + step_height - data.gap_glass_handrail
+
+	local points3 = {}
+	for i = 1, segs - 1, 1 do		
+		
+		x = (outer_radius) * COS(data.total_angle * i / segs - phi_off)
+		y = (outer_radius) * SIN(data.total_angle * i / segs - phi_off)
+		z = data.rail_height / 2 - data.handrail_height / 2 - outer_stringer_real_over / 2 + step_height / 2 - data.gap_glass_handrail / 2 + i * height_increment	--this is the negative position of the outer steel construction
+		table.insert(points3, {x, y, z})
+	end
+	local inner_rail
 
 	rail_edges = pytha.create_polyline("open", points3)	--create the polyline
 
-	sweep_cross_section = {type = "rectangle", length = 10, width = data.rail_height + step_height - 20 + 100} 
+	sweep_cross_section = {type = "rectangle", length = data.glass_thickness, width = outer_stringer_total_height} 
 	sweep_options = {keep_vertical = 1}
 	rail = pytha.create_sweep(rail_edges, sweep_cross_section, sweep_options)[1]		--create the sweep
 	if data.material_glas ~= nil then pytha.set_element_material(rail, data.material_glas) end
 	pytha.delete_element(rail_edges)	--delete the line
-	table.insert(data.cur_elements, rail)
 	
+	front_parts = pytha.cut_element(rail, {0,0,0}, "z", {type = "keep_front"})
+			for k,v in pairs(front_parts) do table.insert(data.cur_elements, v) end
+	pytha.delete_element(rail)
 
 	if clockwise == true then
 		local dir = "y"
@@ -443,6 +497,7 @@ function recreate_geometry(data)
 	local group = pytha.create_group(data.cur_elements, {name = "Spiral staircase"})
 	group:rotate_element({0,0,0}, 'z', -data.total_angle)
 	group:move_element(data.origin)
+	pytha.set_element_history(group, data, "stairs_history")
 end
 
 function calc_center(data)

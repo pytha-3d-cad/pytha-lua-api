@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff srcLang="en-US" version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0">
-  <file original="main_file.lua"></file>
+  <file original="main_file.lua">
+    <unit id="21f4091b90960be0">
+      <segment>
+        <source>No data found</source>
+      </segment>
+    </unit>
+  </file>
 </xliff>

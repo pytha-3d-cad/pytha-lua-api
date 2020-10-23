@@ -32,8 +32,6 @@ local function placement_blind(general_data, specific_data)
 end
 
 function ui_update_blind(general_data, soft_update)
-	
-	controls.door_side:disable_control()
 
 end	
 	

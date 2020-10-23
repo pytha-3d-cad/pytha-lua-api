@@ -46,13 +46,17 @@ function wizard_dialog(dialog, data)
 	controls.height = dialog:create_text_box(2, pyui.format_length(data.cabinet_list[data.current_cabinet].height))
 	controls.height_top_label = dialog:create_label(1, pyloc "OA Height")
 	controls.height_top = dialog:create_text_box(2, pyui.format_length(data.cabinet_list[data.current_cabinet].height_top))
+	controls.appliance_model_label = dialog:create_label(1, pyloc "Sink model")
+	controls.appliance_model = dialog:create_drop_list(2)
 	controls.label6 = dialog:create_label(3, pyloc "Number of shelves")
-	controls.shelf_count = dialog:create_text_spin(4, pyui.format_length(data.cabinet_list[data.current_cabinet].shelf_count), {0,10})
+	controls.shelf_count = dialog:create_text_spin(4, pyui.format_length(data.cabinet_list[data.current_cabinet].shelf_count), {0,10})	
 	controls.label_door_width = dialog:create_label(3, pyloc "Door width")
 	controls.door_width = dialog:create_text_box(4, pyui.format_length(data.cabinet_list[data.current_cabinet].door_width))
-	controls.label5 = dialog:create_label(3, pyloc "Drawer height")
-	controls.drawer_height = dialog:create_text_box(4, pyui.format_length(data.cabinet_list[data.current_cabinet].drawer_height))
+	controls.drawer_height_list_label = dialog:create_label(3, pyloc "Drawer height")
+	controls.drawer_height_list = dialog:create_combo_box(4)
 	controls.door_side = dialog:create_check_box({3, 4}, pyloc "Door right side")
+	controls.sink_orientation_label = dialog:create_label(3, pyloc "Sink orientation")
+	controls.sink_orientation = dialog:create_drop_list(4)
 	
 	dialog:create_align({1,4})
 	dialog:create_label({1,4}, pyloc "Navigate in cabinets")
@@ -185,12 +189,6 @@ function wizard_dialog(dialog, data)
 		recreate_all(data, true)
 	end)
 	
-	
-	controls.drawer_height:set_on_change_handler(function(text)
-		data.cabinet_list[data.current_cabinet].drawer_height = math.max(pyui.parse_length(text) or data.cabinet_list[data.current_cabinet].drawer_height, 0)
-		recreate_all(data, true)
-	end)
-	
 	controls.shelf_count:set_on_change_handler(function(text)
 		data.cabinet_list[data.current_cabinet].shelf_count = math.max(pyui.parse_number(text) or data.cabinet_list[data.current_cabinet].shelf_count, 0)
 		recreate_all(data, true)
@@ -218,6 +216,24 @@ function wizard_dialog(dialog, data)
 		data.cabinet_list[data.current_cabinet].front_style = front_style
 		recreate_all(data, false)
 	end)
+	
+	controls.drawer_height_list:set_on_change_handler(function(text, new_index)
+
+		data.cabinet_list[data.current_cabinet].drawer_height_list = text 
+		recreate_all(data, true)
+	end)
+	
+	controls.sink_orientation:set_on_change_handler(function(text, new_index)
+		data.cabinet_list[data.current_cabinet].sink_position = (new_index - 1) % 3 + 1
+		data.cabinet_list[data.current_cabinet].sink_flipped = math.floor((new_index - 1) / 3)
+		recreate_all(data, true)
+	end)
+	
+	controls.appliance_model:set_on_change_handler(function(text, new_index)
+		data.cabinet_list[data.current_cabinet].sink_file = get_appliance_from_current_selection(data, data.cabinet_list[data.current_cabinet], new_index)
+		recreate_all(data, true)
+	end)
+	
 	
 	button_select:set_on_click_handler(function()
 		if data.current_cabinet == 1 and #data.cabinet_list == 1 then
@@ -375,10 +391,16 @@ function update_ui(data, soft_update)
 		return
 	end
 	
+--set default texts
+	controls.label_door_width:set_control_text(pyloc "Max door width")
+	controls.label6:set_control_text(pyloc "Number of shelves")
+	controls.door_side:set_control_text(pyloc "Door RH")
+	controls.label_width:set_control_text(pyloc "Width")
+	controls.subtypecombo_label:set_control_text(pyloc "Organization")
 	
 --disable all controls and then just enable necessary ones
 	for i, contr in pairs(controls) do
-		contr:disable_control()
+		contr:hide_control()
 	end
 	
 	spec_type_info.ui_update_function(data, soft_update)
@@ -401,23 +423,23 @@ function update_ui(data, soft_update)
 		controls.insert_top:set_control_text(pyloc "Insert top")
 	end 
 	if specific_data.row ~= 0x2 then
-		controls.button_up:enable_control()
+		controls.button_up:show_control()
 	end
 	
 	if specific_data.row & 0x1 ~= 0 and specific_data.top_element == nil then
-		controls.insert_top:enable_control()
+		controls.insert_top:show_control()
 	end
 	if specific_data.row == 0x3 then
-		controls.insert_top_left:enable_control()
-		controls.button_down:enable_control()
+		controls.insert_top_left:show_control()
+		controls.button_down:show_control()
 	end
 	if specific_data.row & 0x1 == 0 then 
-		controls.button_down:enable_control()
+		controls.button_down:show_control()
 	end
 	
 --Cabinet type combo 	
-	controls.typecombo:enable_control()
-	controls.typecombo_label:enable_control()
+	controls.typecombo:show_control()
+	controls.typecombo_label:show_control()
 	controls.typecombo:reset_content()
 	local current_number = 0
 	for i, k in pairs(typecombolist[specific_data.row]) do
@@ -430,8 +452,8 @@ function update_ui(data, soft_update)
 	
 -- Front subtype combo 	
 	if #spec_type_info.organization_styles > 0 then 
-		controls.subtypecombo:enable_control()
-		controls.subtypecombo_label:enable_control()
+		controls.subtypecombo:show_control()
+		controls.subtypecombo_label:show_control()
 		
 		controls.subtypecombo:reset_content()
 		local current_front = 0
@@ -447,7 +469,7 @@ function update_ui(data, soft_update)
 	
 	
 	if not (data.current_cabinet == 1 and specific_data.left_element == nil and specific_data.right_element == nil) then
-		controls.button_delete:enable_control()
+		controls.button_delete:show_control()
 	end
 	--here dialog values are set
 	controls.width:set_control_text(pyui.format_length(specific_data.width))
@@ -455,7 +477,6 @@ function update_ui(data, soft_update)
 	
 	controls.height:set_control_text(pyui.format_length(specific_data.height))
 	controls.height_top:set_control_text(pyui.format_length(specific_data.height_top))
-	controls.drawer_height:set_control_text(pyui.format_length(specific_data.drawer_height))
 	controls.shelf_count:set_control_text(pyui.format_number(specific_data.shelf_count))
 	controls.door_width:set_control_text(pyui.format_length(specific_data.door_width))
 	controls.door_side:set_control_checked(specific_data.door_rh)

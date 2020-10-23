@@ -1,11 +1,22 @@
 --Example of a Kitchen wizard generator
 
-function edit_wizard(element)
+function edit_wizard(element, selected_element)
 	local general_data = pytha.get_element_history(element, "wizard_history")
 	if general_data == nil then
 		pyui.alert(pyloc "No data found")
 		return 
 	end
+	
+	if selected_element ~= nil then
+		for i,spec_data in pairs(general_data.cabinet_list) do 
+			local all_parts = pytha.get_group_descendants(spec_data.main_group)
+			for j, part in pairs(all_parts) do
+				if selected_element == part then
+					general_data.current_cabinet = i
+				end
+			end
+		end			
+	end	
 	init_typecombolist()
 	pyui.run_modal_dialog(wizard_dialog, general_data)
 	recreate_geometry(general_data, true)
@@ -15,6 +26,9 @@ function main()
 	local general_data = _G["general_default_data"]
 --	local loaded_data = pyio.load_values("default_dimensions")
 --	if loaded_data ~= nil then general_data = loaded_data end
+	local loaded_folders = pyio.load_values("default_folders")
+	if loaded_folders ~= nil then general_data.default_folders = loaded_folders end
+	
 	init_typecombolist()
 	general_data.current_cabinet = initialize_cabinet_values(general_data, typecombolist[0x1][1])
 	
@@ -23,7 +37,8 @@ function main()
 	pyui.run_modal_dialog(wizard_dialog, general_data)
 	recreate_geometry(general_data, true)
 	
---	pyio.save_values("default_dimensions", general_data)
+	pyio.save_values("default_dimensions", general_data)
+	pyio.save_values("default_folders", general_data.default_folders)
 end
 
 --here we could use metatables to distinguish the geometry functions. The same is true for the user interface. 
@@ -125,6 +140,7 @@ function recreate_geometry(data, finalize)
 	data.cur_elements = {}
 	data.kickboards = {}
 	data.benchtop = {}
+	data.benchtop_templates = {}
 	local current_cabinet = 1
 	
 	local bool_group_benchtop = {}
@@ -212,6 +228,10 @@ function recreate_geometry(data, finalize)
 	end
 	pytha.set_element_name(data.benchtop, pyloc "Benchtop")
 	pytha.set_element_group(data.benchtop, nil)
+	
+	pytha.boole_part_template(data.benchtop, data.benchtop_templates, "outside")	
+	pytha.delete_element(data.benchtop_templates)
+	
 	data.benchtop_group = pytha.create_group(data.benchtop, {name = pyloc "Benchtop"})
 	pytha.set_element_pen(data.benchtop_group, 0)
 	table.insert(data.cur_elements, data.benchtop_group)

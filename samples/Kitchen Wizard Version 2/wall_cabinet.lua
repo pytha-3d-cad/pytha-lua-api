@@ -1,110 +1,4 @@
 --wall cabinet with two doors
-function wall_cabinet_solo()
-	local general_data = _G["general_default_data"]
-	local spec_index = initialize_cabinet_values(general_data)
-	local loaded_data = pyio.load_values("wall_dimensions")
-	if loaded_data ~= nil then 
-		merge_data(loaded_data, general_data)
-	end
-	local specific_data = general_data.cabinet_list[#general_data.cabinet_list]
-	specific_data.this_type = "wall"
-	specific_data.width = 600
-	specific_data.row = 0x2
-	specific_data.individual_call = true
-	
-	general_data.own_direction = 0
-	recreate_wall(general_data, general_data.cabinet_list[#general_data.cabinet_list])
-	
-	pyui.run_modal_dialog(wall_cabinet_solo_dialog, general_data)
-	
-	pyio.save_values("wall_dimensions", general_data)
-end
-
-local function wall_cabinet_solo_dialog(dialog, general_data)
-	local specific_data = general_data.cabinet_list[#general_data.cabinet_list]
-	
-	dialog:set_window_title("Wall Cabinet")
-	
-	local label_benchtop = dialog:create_label(1, pyloc "Benchtop height")
-	local bt_height = dialog:create_text_box(2, pyui.format_length(general_data.benchtop_height))
-	local label2 = dialog:create_label(1, pyloc "Spacing to top")
-	local wall_to_base = dialog:create_text_box(2, pyui.format_length(general_data.wall_to_base_spacing))
-	local label1 = dialog:create_label(1, pyloc "Width")
-	local width = dialog:create_text_box(2, pyui.format_length(specific_data.width))
-	local label5 = dialog:create_label(1, pyloc "Top Height")
-	local height = dialog:create_text_box(2, pyui.format_length(specific_data.height_top))
-	local label3 = dialog:create_label(1, pyloc "Depth")
-	local depth = dialog:create_text_box(2, pyui.format_length(general_data.depth_wall))
-	local label4 = dialog:create_label(1, pyloc "Board thickness")
-	local thickness = dialog:create_text_box(2, pyui.format_length(general_data.thickness))
-	
-	general_data.door_side = dialog:create_check_box({1, 2}, pyloc "Door right side")
-	general_data.door_side:set_control_checked(specific_data.door_rh)
-
-	local align1 = dialog:create_align({1,2})
-	local ok = dialog:create_ok_button(1)
-	local cancel = dialog:create_cancel_button(2)
---	dialog:equalize_column_widths({1,2,4})
-	
-	bt_height:set_on_change_handler(function(text)
-		general_data.benchtop_height = math.max(pyui.parse_length(text), 0)
-		recreate_wall_cabinet_solo(general_data, specific_data)
-	end)
-	width:set_on_change_handler(function(text)
-		specific_data.width = math.max(pyui.parse_length(text), 0)
-		recreate_wall_cabinet_solo(general_data, specific_data)
-	end)
-	
-	height:set_on_change_handler(function(text)
-		specific_data.height_top = math.max(pyui.parse_length(text), 0)
-		recreate_wall_cabinet_solo(general_data, specific_data)
-	end)
-	
-	wall_to_base:set_on_change_handler(function(text)
-		general_data.wall_to_base_spacing = math.max(pyui.parse_length(text), 0)
-		recreate_wall_cabinet_solo(general_data, specific_data)
-	end)
-	
-	depth:set_on_change_handler(function(text)
-		general_data.depth_wall = math.max(pyui.parse_length(text), 0)
-		recreate_wall_cabinet_solo(general_data, specific_data)
-	end)
-	
-	
-	thickness:set_on_change_handler(function(text)
-		general_data.thickness = math.max(pyui.parse_length(text), 0)
-		recreate_wall_cabinet_solo(general_data, specific_data)
-	end)
-	
-	general_data.door_side:set_on_click_handler(function(state)
-		specific_data.door_rh = state
-		recreate_wall_cabinet_solo(general_data, specific_data)
-	end)
-	
-	update_wall_cabinet_solo_ui(general_data, specific_data)
-end
-
-local function recreate_wall_cabinet_solo(general_data, specific_data)
-	update_wall_cabinet_solo_ui(general_data, specific_data)
-	if specific_data.main_group ~= nil then
-		pytha.delete_element(specific_data.main_group)
-	end
-	recreate_wall(general_data, specific_data)
-end
-
-local function update_wall_cabinet_solo_ui(general_data, specific_data)
-	if specific_data.width - 2 * general_data.gap > 0 then
-		if specific_data.width  > specific_data.door_width then
-			general_data.door_side:disable_control()
-		else
-			general_data.door_side:enable_control()
-		end
-	else 
-		general_data.door_side:disable_control()
-	end
-end
-
-
 
 local function recreate_wall(general_data, specific_data)
 	local cur_elements = {}
@@ -176,29 +70,24 @@ end
 local function ui_update_wall(general_data, soft_update)
 	local specific_data = general_data.cabinet_list[general_data.current_cabinet]
 	if specific_data.width - 2 * general_data.gap > 0 then
-		if specific_data.width  > specific_data.door_width then
-			controls.door_side:disable_control()
-		else
-			controls.door_side:enable_control()
+		if specific_data.width  <= specific_data.door_width then
+			controls.door_side:show_control()
 		end
 	else 
-		controls.door_side:enable_control()
+		controls.door_side:show_control()
 	end
 	
 	if soft_update == true then return end
 
-	controls.label_width:enable_control()
-	controls.width:enable_control()
-	controls.height_top_label:enable_control()
-	controls.height_top:enable_control()
-	controls.label6:enable_control()
-	controls.shelf_count:enable_control()
-	controls.door_width:enable_control()
-	controls.label_door_width:enable_control()
+	controls.label_width:show_control()
+	controls.width:show_control()
+	controls.height_top_label:show_control()
+	controls.height_top:show_control()
+	controls.label6:show_control()
+	controls.shelf_count:show_control()
+	controls.door_width:show_control()
+	controls.label_door_width:show_control()
 	
-	controls.door_side:set_control_text(pyloc "Door RH")
-	controls.label_width:set_control_text(pyloc "Width")
-	controls.label_door_width:set_control_text(pyloc "Max door width")		
 end
 
 

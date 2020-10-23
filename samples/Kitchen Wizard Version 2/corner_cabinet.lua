@@ -1,118 +1,4 @@
 --Corner cabinet, both left and right sided door
-function corner_cabinet_solo()
-	local general_data = _G["general_default_data"]
-	local spec_index = initialize_cabinet_values(general_data)
-	local loaded_data = pyio.load_values("corner_dimensions")
-	if loaded_data ~= nil then 
-		merge_data(loaded_data, general_data)
-	end
-	local specific_data = general_data.cabinet_list[#general_data.cabinet_list]
-	specific_data.this_type = "corner"
-	specific_data.individual_call = true
-	general_data.own_direction = 0
-	recreate_corner(general_data, general_data.cabinet_list[#general_data.cabinet_list])
-	
-	pyui.run_modal_dialog(corner_dialog, general_data)
-	
-	pyio.save_values("corner_dimensions", general_data)
-end
-
-
-local function corner_dialog(dialog, general_data)
-	local specific_data = general_data.cabinet_list[#general_data.cabinet_list]
-	
-	dialog:set_window_title("Corner Cabinet")
-	
-	local label_benchtop = dialog:create_label(1, "Benchtop height")
-	local bt_height = dialog:create_text_box(2, pyui.format_length(general_data.benchtop_height))
-	local label_bt_thick = dialog:create_label(1, "Benchtop thickness")
-	local bt_thick = dialog:create_text_box(2, pyui.format_length(general_data.benchtop_thickness))
-	local label1 = dialog:create_label(1, "Width")
-	local width = dialog:create_text_box(2, pyui.format_length(specific_data.width))
-	local label2 = dialog:create_label(1, "Height")
-	local height = dialog:create_text_box(2, pyui.format_length(specific_data.height))
-	local label3 = dialog:create_label(1, "Depth")
-	local depth = dialog:create_text_box(2, pyui.format_length(general_data.depth))
-	local label6 = dialog:create_label(1, "Door width")
-	local door_width = dialog:create_text_box(2, pyui.format_length(specific_data.door_width))
-	local label4 = dialog:create_label(1, "Board thickness")
-	local thickness = dialog:create_text_box(2, pyui.format_length(general_data.thickness))
-	local label5 = dialog:create_label(1, "Drawer height")
-	local drawer_height = dialog:create_text_box(2, pyui.format_length(specific_data.drawer_height))
-	local label6 = dialog:create_label(1, "Number of shelves")
-	local shelf_count = dialog:create_text_box(2, pyui.format_length(specific_data.shelf_count))
-	
-	local check = dialog:create_check_box({1, 2}, "Door on right side")
-	check:set_control_checked(specific_data.door_rh)
-
-	local align1 = dialog:create_align({1,2}) -- So that OK and Cancel will be in the same row
-	local ok = dialog:create_ok_button(1)
-	local cancel = dialog:create_cancel_button(2)
-	dialog:equalize_column_widths({1,2,4})
-	
-	bt_height:set_on_change_handler(function(text)
-		general_data.benchtop_height = math.max(pyui.parse_length(text), 0)
-		recreate_corner_solo(general_data, specific_data)
-	end)
-	bt_thick:set_on_change_handler(function(text)
-		general_data.benchtop_thickness = math.max(pyui.parse_length(text), 0)
-		recreate_corner_solo(general_data, specific_data)
-	end)
-	
-	width:set_on_change_handler(function(text)
-		specific_data.width = math.max(pyui.parse_length(text), 0)
-		recreate_corner_solo(general_data, specific_data)
-	end)
-	
-	height:set_on_change_handler(function(text)
-		specific_data.height = math.max(pyui.parse_length(text), 0)
-		recreate_corner_solo(general_data, specific_data)
-	end)
-	
-	depth:set_on_change_handler(function(text)
-		general_data.depth = math.max(pyui.parse_length(text), 0)
-		recreate_corner_solo(general_data, specific_data)
-	end)
-	
-	door_width:set_on_change_handler(function(text)
-		specific_data.door_width = math.max(pyui.parse_length(text), 0)
-		recreate_corner_solo(general_data, specific_data)
-	end)
-	
-	thickness:set_on_change_handler(function(text)
-		general_data.thickness = math.max(pyui.parse_length(text), 0)
-		recreate_corner_solo(general_data, specific_data)
-	end)
-	
-	drawer_height:set_on_change_handler(function(text)
-		specific_data.drawer_height = math.max(pyui.parse_length(text), 0)
-		recreate_corner_solo(general_data, specific_data)
-	end)
-	
-	shelf_count:set_on_change_handler(function(text)
-		specific_data.shelf_count = math.max(pyui.parse_length(text), 0)
-		recreate_corner_solo(general_data, specific_data)
-	end)
-	
-	check:set_on_click_handler(function(state)
-		specific_data.door_rh = state
-		recreate_corner_solo(general_data, specific_data)
-	end)
-end
-
-local function recreate_corner_solo(general_data, specific_data)
-	update_corner_ui(general_data, specific_data)
-	
-	if specific_data.main_group ~= nil then
-		pytha.delete_element(specific_data.main_group)
-	end
-	recreate_corner(general_data, specific_data)
-end
-
-local function update_corner_ui(general_data, specific_data)
-	--currently empty
-	
-end
 
 local function get_l_piece_length(general_data, specific_data)
 	local l_piece_length = math.max(specific_data.width2 - general_data.depth, specific_data.width - specific_data.door_width - general_data.depth)
@@ -123,11 +9,12 @@ end
 
 local function recreate_corner(general_data, specific_data)
 	local cur_elements = {}
+	local drawer_height = get_drawer_heights(general_data, specific_data)
 	local base_height = general_data.benchtop_height - specific_data.height - general_data.benchtop_thickness
 	--if the kitchen is L-shaped. The angle is inherited from the previous cabinet
 	local coordinate_system = {{1, 0, 0}, {0, 1, 0}, {0,0,1}}
-	local door_height = specific_data.height - general_data.top_gap - specific_data.drawer_height
-	if specific_data.drawer_height > 0 then
+	local door_height = specific_data.height - general_data.top_gap - drawer_height
+	if drawer_height > 0 then
 		door_height = door_height - general_data.gap
 	end
 	--the L-piece is symmetrical, therefore the length is determined as the maximum of width2 - depth and width1 - door width
@@ -256,9 +143,9 @@ local function recreate_corner(general_data, specific_data)
 		table.insert(cur_elements, door_group)
 		
 		--Drawer
-		if specific_data.drawer_height > 0 then
-			loc_origin[3] = base_height + specific_data.height - general_data.top_gap - specific_data.drawer_height
-			new_elem = create_drawer(general_data, specific_data, specific_data.door_width - 2 * general_data.gap, specific_data.drawer_height, loc_origin, coordinate_system, 'center', 'center')
+		if drawer_height > 0 then
+			loc_origin[3] = base_height + specific_data.height - general_data.top_gap - drawer_height
+			new_elem = create_drawer(general_data, specific_data, specific_data.door_width - 2 * general_data.gap, drawer_height, loc_origin, coordinate_system, 'center', 'center')
 			table.insert(cur_elements, new_elem)
 		end
 	end
@@ -312,25 +199,26 @@ end
 
 local function ui_update_corner(general_data, soft_update)
 	local specific_data = general_data.cabinet_list[general_data.current_cabinet]
-	controls.door_side:enable_control()
+	controls.door_side:show_control()
 	if soft_update == true then return end
 
-	controls.label_width:enable_control()
-	controls.width:enable_control()
-	controls.label_width2:enable_control()
-	controls.width2:enable_control()
-	controls.height_label:enable_control()
-	controls.height:enable_control()
-	controls.label5:enable_control()
-	controls.drawer_height:enable_control()
-	controls.label6:enable_control()
-	controls.shelf_count:enable_control()
-	controls.door_width:enable_control()
-	controls.label_door_width:enable_control()
+	controls.label_width:show_control()
+	controls.width:show_control()
+	controls.label_width2:show_control()
+	controls.width2:show_control()
+	controls.height_label:show_control()
+	controls.height:show_control()
+	controls.drawer_height_list_label:show_control()
+	controls.drawer_height_list:show_control()
+	controls.label6:show_control()
+	controls.shelf_count:show_control()
+	controls.door_width:show_control()
+	controls.label_door_width:show_control()
 	
+	controls.door_side:set_control_text(pyloc "Door right side")
 	controls.label_door_width:set_control_text(pyloc "Door width")
-	controls.label_width:set_control_text(pyloc "Width")	
 	controls.label_width2:set_control_text(pyloc "Connecting width")		
+	controls.drawer_height_list_label:set_control_text(pyloc "Drawer height")	
 	
 end
 

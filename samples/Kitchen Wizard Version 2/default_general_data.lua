@@ -7,6 +7,7 @@ cabinet_sorting_for_combobox[0x1] = {
 		"straight",
 		"corner",
 		"diagonal",
+		"sink", 
 		"high", 
 		"end", 
 }
@@ -21,6 +22,7 @@ cabinet_sorting_for_combobox[0x3] = {
 		"straight",
 		"corner",
 		"diagonal",
+		"sink", 
 		"end", 
 }
 
@@ -89,7 +91,9 @@ general_default_data = {
 		cabinet_list = {},
 		current_cabinet = nil,
 		benchtop = {},
-		kickboards = {}
+		kickboards = {},
+		benchtop_templates = {},
+		default_folders = {sink_folder = nil, handle_folder = nil,}
 }
 --default values for individual cabinets
 function initialize_cabinet_values(data, cab_type)
@@ -101,7 +105,6 @@ function initialize_cabinet_values(data, cab_type)
 				height_top = data.general_height_top,	
 				shelf_count = 2,
 				door_width = 600,
-				drawer_height = 125,
 				door_rh = false,
 				right_element = nil,
 				left_element = nil, 
@@ -120,7 +123,10 @@ function initialize_cabinet_values(data, cab_type)
 				kickboard_handle_left = nil,
 				kickboard_handle_right = nil,
 				front_style = nil,
-				individual_call = nil})
+				drawer_height_list = "",
+				individual_call = nil,
+				sink_file = data.default_folders.sink_folder,
+				})	
 	 if cab_type ~= nil then 
 		assign_cabinet_type(data, #data.cabinet_list, cab_type)
 	end

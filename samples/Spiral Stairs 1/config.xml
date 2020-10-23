@@ -14,4 +14,9 @@
     <description>A short description of the function goes here.</description>
     <help-file>help.html</help-file>
   </extension>
+  <extension type="edit">
+    <id>spiral_stairs_history</id>
+    <entry-point>edit_stairs</entry-point>
+    <help-file>help.html</help-file>
+  </extension>
 </plugin>

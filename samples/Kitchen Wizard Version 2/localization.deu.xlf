@@ -85,44 +85,44 @@
         <target>Sockelleiste</target>
       </segment>
     </unit>
-    <unit id="72c131018f474020">
-      <segment state="translated">
-        <source>Corner cabinet</source>
-        <target>Eckschrank</target>
-      </segment>
-    </unit>
     <unit id="75720c9219489bba">
       <segment state="translated">
         <source>Benchtop</source>
         <target>Arbeitsplatte</target>
       </segment>
     </unit>
+    <unit id="4bba9c6dbb8c7767">
+      <segment state="translated">
+        <source>Door right side</source>
+        <target>Tür RH</target>
+      </segment>
+    </unit>
+    <unit id="0b34dcc2dd6063d7">
+      <segment state="translated">
+        <source>Door width</source>
+        <target>Türbreite</target>
+      </segment>
+    </unit>
+    <unit id="3699b45682257457">
+      <segment state="translated">
+        <source>Connecting width</source>
+        <target>Breite Verbindungsstück</target>
+      </segment>
+    </unit>
+    <unit id="785ecb317bfb3682">
+      <segment state="translated">
+        <source>Drawer height</source>
+        <target>Schubladenhöhe</target>
+      </segment>
+    </unit>
+    <unit id="72c131018f474020">
+      <segment state="translated">
+        <source>Corner cabinet</source>
+        <target>Eckschrank</target>
+      </segment>
+    </unit>
   </file>
   <file original="corner_wall_cabinet.lua">
-    <unit id="1b46b77e0b7dbbe5">
-      <segment state="translated">
-        <source>Benchtop height</source>
-        <target>Arbeitshöhe</target>
-      </segment>
-    </unit>
-    <unit id="5321b785e2d4d05c">
-      <segment state="translated">
-        <source>Spacing to top</source>
-        <target>Fliesenspiegel</target>
-      </segment>
-    </unit>
-    <unit id="3559744848e9e388">
-      <segment state="translated">
-        <source>Left Width</source>
-        <target>Breite links</target>
-      </segment>
-    </unit>
-    <unit id="2732607cdb9d34a0">
-      <segment state="translated">
-        <source>Right Width</source>
-        <target>Breite rechts</target>
-      </segment>
-    </unit>
     <unit id="0df2e93544949e73">
       <segment state="translated">
         <source>End LH</source>
@@ -177,6 +177,18 @@
         <target>Tür LH</target>
       </segment>
     </unit>
+    <unit id="2c546d86a6d218d6">
+      <segment state="translated">
+        <source>Left width</source>
+        <target>Breite links</target>
+      </segment>
+    </unit>
+    <unit id="5b2979be7de63eb6">
+      <segment state="translated">
+        <source>Right width</source>
+        <target>Breite rechts</target>
+      </segment>
+    </unit>
     <unit id="42f2e0504747156d">
       <segment state="translated">
         <source>Corner wall cabinet</source>
@@ -186,72 +198,6 @@
   </file>
   <file original="default_general_data.lua"/>
   <file original="diagonal cabinet.lua">
-    <unit id="262408a8a97dd59c">
-      <segment state="translated">
-        <source>Diagonal Cabinet</source>
-        <target>Diagonalschrank</target>
-      </segment>
-    </unit>
-    <unit id="1b46b77e0b7dbbe5">
-      <segment state="translated">
-        <source>Benchtop height</source>
-        <target>Arbeitshöhe</target>
-      </segment>
-    </unit>
-    <unit id="5a4dc65566d44c2e">
-      <segment state="translated">
-        <source>Benchtop thickness</source>
-        <target>Arbeitsplattenstärke</target>
-      </segment>
-    </unit>
-    <unit id="3559744848e9e388">
-      <segment state="translated">
-        <source>Left Width</source>
-        <target>Breite links</target>
-      </segment>
-    </unit>
-    <unit id="2732607cdb9d34a0">
-      <segment state="translated">
-        <source>Right Width</source>
-        <target>Breite rechts</target>
-      </segment>
-    </unit>
-    <unit id="55080f47c80745ec">
-      <segment state="translated">
-        <source>Height</source>
-        <target>Höhe</target>
-      </segment>
-    </unit>
-    <unit id="6f3609ef9692f359">
-      <segment state="translated">
-        <source>Depth</source>
-        <target>Tiefe</target>
-      </segment>
-    </unit>
-    <unit id="735460bb49573218">
-      <segment state="translated">
-        <source>Board thickness</source>
-        <target>Plattenstärke</target>
-      </segment>
-    </unit>
-    <unit id="785ecb317bfb3682">
-      <segment state="translated">
-        <source>Drawer height</source>
-        <target>Schubladenhöhe</target>
-      </segment>
-    </unit>
-    <unit id="7b4cc0fea5716da1">
-      <segment state="translated">
-        <source>Number of shelves</source>
-        <target>Anzahl Fachböden</target>
-      </segment>
-    </unit>
-    <unit id="4bba9c6dbb8c7767">
-      <segment state="translated">
-        <source>Door right side</source>
-        <target>Tür RH</target>
-      </segment>
-    </unit>
     <unit id="0df2e93544949e73">
       <segment state="translated">
         <source>End LH</source>
@@ -312,16 +258,311 @@
         <target>Sockelleiste</target>
       </segment>
     </unit>
+    <unit id="75720c9219489bba">
+      <segment state="translated">
+        <source>Benchtop</source>
+        <target>Arbeitsplatte</target>
+      </segment>
+    </unit>
+    <unit id="2c546d86a6d218d6">
+      <segment state="translated">
+        <source>Left width</source>
+        <target>Breite links</target>
+      </segment>
+    </unit>
+    <unit id="5b2979be7de63eb6">
+      <segment state="translated">
+        <source>Right width</source>
+        <target>Breite rechts</target>
+      </segment>
+    </unit>
+    <unit id="785ecb317bfb3682">
+      <segment state="translated">
+        <source>Drawer height</source>
+        <target>Schubladenhöhe</target>
+      </segment>
+    </unit>
     <unit id="3c20ac61eba2df49">
       <segment state="translated">
         <source>Diagonal cabinet</source>
         <target>Diagonalschrank</target>
       </segment>
     </unit>
-    <unit id="75720c9219489bba">
+  </file>
+  <file original="dialog.lua">
+    <unit id="1b0966d68781b4be">
       <segment state="translated">
-        <source>Benchtop</source>
-        <target>Arbeitsplatte</target>
+        <source>Kitchen Wizard</source>
+        <target>Küchen Wizard</target>
+      </segment>
+    </unit>
+    <unit id="58faa35712a015e0">
+      <segment state="translated">
+        <source>General settings</source>
+        <target>Generelle Einstellungen</target>
+      </segment>
+    </unit>
+    <unit id="7a5d05abd3e7b238">
+      <segment state="translated">
+        <source>Pick origin and direction</source>
+        <target>Picke Ursprung und Richtung</target>
+      </segment>
+    </unit>
+    <unit id="2f1a22e99ecea09f">
+      <segment state="translated">
+        <source>Orient leftwards</source>
+        <target>Orientierung links</target>
+      </segment>
+    </unit>
+    <unit id="1b46b77e0b7dbbe5">
+      <segment state="translated">
+        <source>Benchtop height</source>
+        <target>Arbeitshöhe</target>
+      </segment>
+    </unit>
+    <unit id="5a4dc65566d44c2e">
+      <segment state="translated">
+        <source>Benchtop thickness</source>
+        <target>Arbeitsplattenstärke</target>
+      </segment>
+    </unit>
+    <unit id="0ebf8a28117ea082">
+      <segment state="translated">
+        <source>Base cabinet height</source>
+        <target>Unterschrank Höhe</target>
+      </segment>
+    </unit>
+    <unit id="258c95c445ce1d7c">
+      <segment state="translated">
+        <source>Wall cabinet height</source>
+        <target>Wandschrank Höhe</target>
+      </segment>
+    </unit>
+    <unit id="4448bc806795bd66">
+      <segment state="translated">
+        <source>Benchtop wall spacing</source>
+        <target>Fliesenspiegel</target>
+      </segment>
+    </unit>
+    <unit id="6f3609ef9692f359">
+      <segment state="translated">
+        <source>Depth</source>
+        <target>Tiefe</target>
+      </segment>
+    </unit>
+    <unit id="2423b4ad93f6a0dc">
+      <segment state="translated">
+        <source>Depth Wall</source>
+        <target>Tiefe Wandschränke</target>
+      </segment>
+    </unit>
+    <unit id="637c36fdda431790">
+      <segment state="translated">
+        <source>Handle length</source>
+        <target>Grifflänge</target>
+      </segment>
+    </unit>
+    <unit id="735460bb49573218">
+      <segment state="translated">
+        <source>Board thickness</source>
+        <target>Plattenstärke</target>
+      </segment>
+    </unit>
+    <unit id="029121b90e1a0b3a">
+      <segment state="translated">
+        <source>This cabinet</source>
+        <target>Dieser Schrank</target>
+      </segment>
+    </unit>
+    <unit id="0a6ba767ee963b53">
+      <segment state="translated">
+        <source>Type</source>
+        <target>Typ</target>
+      </segment>
+    </unit>
+    <unit id="0cbdde1783d03dd2">
+      <segment state="translated">
+        <source>Organization</source>
+        <target>Organisation</target>
+      </segment>
+    </unit>
+    <unit id="592a68fc7bfe32a5">
+      <segment state="translated">
+        <source>Width</source>
+        <target>Breite</target>
+      </segment>
+    </unit>
+    <unit id="5b2979be7de63eb6">
+      <segment state="translated">
+        <source>Right width</source>
+        <target>Breite rechts</target>
+      </segment>
+    </unit>
+    <unit id="55080f47c80745ec">
+      <segment state="translated">
+        <source>Height</source>
+        <target>Höhe</target>
+      </segment>
+    </unit>
+    <unit id="7b00e7877c8ce336">
+      <segment state="translated">
+        <source>OA Height</source>
+        <target>Höhe Oberkante</target>
+      </segment>
+    </unit>
+    <unit id="4b6e88e2c631f669">
+      <segment state="translated">
+        <source>Sink model</source>
+        <target>Spülenmodell</target>
+      </segment>
+    </unit>
+    <unit id="7b4cc0fea5716da1">
+      <segment state="translated">
+        <source>Number of shelves</source>
+        <target>Anzahl Fachböden</target>
+      </segment>
+    </unit>
+    <unit id="0b34dcc2dd6063d7">
+      <segment state="translated">
+        <source>Door width</source>
+        <target>Türbreite</target>
+      </segment>
+    </unit>
+    <unit id="785ecb317bfb3682">
+      <segment state="translated">
+        <source>Drawer height</source>
+        <target>Schubladenhöhe</target>
+      </segment>
+    </unit>
+    <unit id="4bba9c6dbb8c7767">
+      <segment state="translated">
+        <source>Door right side</source>
+        <target>Tür RH</target>
+      </segment>
+    </unit>
+    <unit id="615c5909adb01fae">
+      <segment state="translated">
+        <source>Sink orientation</source>
+        <target>Ausrichtung Spüle</target>
+      </segment>
+    </unit>
+    <unit id="40928fcc300714b5">
+      <segment state="translated">
+        <source>Navigate in cabinets</source>
+        <target>In Schränken navigieren</target>
+      </segment>
+    </unit>
+    <unit id="6f2f7f2eaecfa7a7">
+      <segment state="translated">
+        <source>Insert top left</source>
+        <target>Oben links einfügen</target>
+      </segment>
+    </unit>
+    <unit id="4cbf1a740f06a48f">
+      <segment state="translated">
+        <source>Insert on top</source>
+        <target>Oberhalb einfügen</target>
+      </segment>
+    </unit>
+    <unit id="321c8c288268fade">
+      <segment state="translated">
+        <source>Insert on left</source>
+        <target>Links einfügen</target>
+      </segment>
+    </unit>
+    <unit id="42fe33466e0b9971">
+      <segment state="translated">
+        <source>Insert on right</source>
+        <target>Rechts einfügen</target>
+      </segment>
+    </unit>
+    <unit id="6d0d20da9bfa4fd1">
+      <segment state="translated">
+        <source>Select Cabinet</source>
+        <target>Picke Schrank</target>
+      </segment>
+    </unit>
+    <unit id="2176f9e11c4bc81b">
+      <segment state="translated">
+        <source>Delete This</source>
+        <target>Diesen löschen</target>
+      </segment>
+    </unit>
+    <unit id="6f4ce0a2b6431e8f">
+      <segment state="translated">
+        <source>Pick origin</source>
+        <target>Picke Ursprung</target>
+      </segment>
+    </unit>
+    <unit id="37cb188bc675f439">
+      <segment state="translated">
+        <source>Pick direction along wall</source>
+        <target>Picke Richtung entlang Wand</target>
+      </segment>
+    </unit>
+    <unit id="026e3cf4defa0da6">
+      <segment state="translated">
+        <source>Max door width</source>
+        <target>Maximale Türbreite</target>
+      </segment>
+    </unit>
+    <unit id="7b4cc0fea5716da1">
+      <segment state="translated">
+        <source>Number of shelves</source>
+        <target>Anzahl Fachböden</target>
+      </segment>
+    </unit>
+    <unit id="0a4f3724bb22f71f">
+      <segment state="translated">
+        <source>Door RH</source>
+        <target>Tür RH</target>
+      </segment>
+    </unit>
+    <unit id="592a68fc7bfe32a5">
+      <segment state="translated">
+        <source>Width</source>
+        <target>Breite</target>
+      </segment>
+    </unit>
+    <unit id="0cbdde1783d03dd2">
+      <segment state="translated">
+        <source>Organization</source>
+        <target>Organisation</target>
+      </segment>
+    </unit>
+    <unit id="4088aa316c81490f">
+      <segment state="translated">
+        <source>Top </source>
+        <target>Oberboden</target>
+      </segment>
+    </unit>
+    <unit id="4088aa316c81490f">
+      <segment state="translated">
+        <source>Top </source>
+        <target>Oberboden</target>
+      </segment>
+    </unit>
+    <unit id="3f063bb5f32a4f50">
+      <segment state="translated">
+        <source>Insert top right</source>
+        <target>Oben rechts einfügen</target>
+      </segment>
+    </unit>
+    <unit id="6f2f7f2eaecfa7a7">
+      <segment state="translated">
+        <source>Insert top left</source>
+        <target>Oben links einfügen</target>
+      </segment>
+    </unit>
+    <unit id="0000000080000000">
+      <segment>
+        <source/>
+      </segment>
+    </unit>
+    <unit id="76c4fbec2b5771b9">
+      <segment state="translated">
+        <source>Insert top</source>
+        <target>Oberhalb einfügen</target>
       </segment>
     </unit>
   </file>
@@ -371,7 +612,7 @@
     <unit id="187400dfdc31748b">
       <segment state="translated">
         <source>Drawer</source>
-        <target>Schub</target>
+        <target>Schublade</target>
       </segment>
     </unit>
     <unit id="72268f5542f4a7a0">
@@ -394,62 +635,102 @@
     </unit>
   </file>
   <file original="end piece.lua">
-    <unit id="1bb92cecdd7db931">
-      <segment state="translated">
-        <source>End piece</source>
-        <target>Blende</target>
-      </segment>
-    </unit>
     <unit id="75720c9219489bba">
       <segment state="translated">
         <source>Benchtop</source>
         <target>Arbeitsplatte</target>
       </segment>
     </unit>
+    <unit id="18e642e05ebf176b">
+      <segment state="translated">
+        <source>Blind End</source>
+        <target>Blende</target>
+      </segment>
+    </unit>
+  </file>
+  <file original="front_organizatios.lua">
+    <unit id="7442409bafdbb1a6">
+      <segment state="translated">
+        <source>Drawer heights</source>
+        <target>Schubladenhöhen</target>
+      </segment>
+    </unit>
+    <unit id="4def8e46b5a93535">
+      <segment state="translated">
+        <source>Adjustable shelf</source>
+        <target>Bewegl. Fachboden</target>
+      </segment>
+    </unit>
+    <unit id="6135c216bfd670bf">
+      <segment state="translated">
+        <source>Open shelf</source>
+        <target>Offenes Regal</target>
+      </segment>
+    </unit>
+    <unit id="568de428f60471bc">
+      <segment state="translated">
+        <source>1/2 doors</source>
+        <target>1/2 Türen</target>
+      </segment>
+    </unit>
+    <unit id="00129fbe66d9f40c">
+      <segment state="translated">
+        <source>1/2 doors + 1 drawer</source>
+        <target>1/2 Türen + 1 Schublade</target>
+      </segment>
+    </unit>
+    <unit id="0e16f18372f904db">
+      <segment state="translated">
+        <source>1/2 doors + 1/2 drawers</source>
+        <target>1/2 Türen + 1/2 Schubladen</target>
+      </segment>
+    </unit>
+    <unit id="38f426bf47249927">
+      <segment state="translated">
+        <source>Number of drawers</source>
+        <target>Anzahl Schubladen</target>
+      </segment>
+    </unit>
+    <unit id="7442409bafdbb1a6">
+      <segment state="translated">
+        <source>Drawer heights</source>
+        <target>Schubladenhöhen</target>
+      </segment>
+    </unit>
+    <unit id="1acf1386c8f7dc17">
+      <segment state="translated">
+        <source>1/2 drawers</source>
+        <target>1/2 Schubladen</target>
+      </segment>
+    </unit>
+    <unit id="413145ff1f9b69c3">
+      <segment state="translated">
+        <source>1 drawer</source>
+        <target>1 Schublade</target>
+      </segment>
+    </unit>
+  </file>
+  <file original="fume_hood.lua">
+    <unit id="38fb786196fddd8d">
+      <segment state="translated">
+        <source>Air intake</source>
+        <target>Lufteinlass</target>
+      </segment>
+    </unit>
+    <unit id="72c9b31a77e7af49">
+      <segment state="translated">
+        <source>Chimney</source>
+        <target>Kamin</target>
+      </segment>
+    </unit>
+    <unit id="0ed53f077e486358">
+      <segment state="translated">
+        <source>Fume hood</source>
+        <target>Dunstabzugshaube</target>
+      </segment>
+    </unit>
   </file>
   <file original="high cabinet.lua">
-    <unit id="1b46b77e0b7dbbe5">
-      <segment state="translated">
-        <source>Benchtop height</source>
-        <target>Arbeitshöhe</target>
-      </segment>
-    </unit>
-    <unit id="5a4dc65566d44c2e">
-      <segment state="translated">
-        <source>Benchtop thickness</source>
-        <target>Arbeitsplattenstärke</target>
-      </segment>
-    </unit>
-    <unit id="592a68fc7bfe32a5">
-      <segment state="translated">
-        <source>Width</source>
-        <target>Breite</target>
-      </segment>
-    </unit>
-    <unit id="55080f47c80745ec">
-      <segment state="translated">
-        <source>Height</source>
-        <target>Höhe</target>
-      </segment>
-    </unit>
-    <unit id="6f3609ef9692f359">
-      <segment state="translated">
-        <source>Depth</source>
-        <target>Tiefe</target>
-      </segment>
-    </unit>
-    <unit id="735460bb49573218">
-      <segment state="translated">
-        <source>Board thickness</source>
-        <target>Plattenstärke</target>
-      </segment>
-    </unit>
-    <unit id="4bba9c6dbb8c7767">
-      <segment state="translated">
-        <source>Door right side</source>
-        <target>Tür RH</target>
-      </segment>
-    </unit>
     <unit id="0df2e93544949e73">
       <segment state="translated">
         <source>End LH</source>
@@ -512,371 +793,6 @@
         <target>Keine History gefunden</target>
       </segment>
     </unit>
-    <unit id="1b0966d68781b4be">
-      <segment state="translated">
-        <source>Kitchen Wizard</source>
-        <target>Küchen Wizard</target>
-      </segment>
-    </unit>
-    <unit id="58faa35712a015e0">
-      <segment state="translated">
-        <source>General settings</source>
-        <target>Generelle Einstellungen</target>
-      </segment>
-    </unit>
-    <unit id="6f4ce0a2b6431e8f">
-      <segment state="translated">
-        <source>Pick origin</source>
-        <target>Picke Ursprung</target>
-      </segment>
-    </unit>
-    <unit id="6aec66d50c5e7632">
-      <segment state="translated">
-        <source>Pick direction</source>
-        <target>Picke Richtung</target>
-      </segment>
-    </unit>
-    <unit id="2f1a22e99ecea09f">
-      <segment state="translated">
-        <source>Orient leftwards</source>
-        <target>Orientierung links</target>
-      </segment>
-    </unit>
-    <unit id="1b46b77e0b7dbbe5">
-      <segment state="translated">
-        <source>Benchtop height</source>
-        <target>Arbeitshöhe</target>
-      </segment>
-    </unit>
-    <unit id="5a4dc65566d44c2e">
-      <segment state="translated">
-        <source>Benchtop thickness</source>
-        <target>Arbeitsplattenstärke</target>
-      </segment>
-    </unit>
-    <unit id="258c95c445ce1d7c">
-      <segment state="translated">
-        <source>Wall cabinet height</source>
-        <target>Wandschrank Höhe</target>
-      </segment>
-    </unit>
-    <unit id="4448bc806795bd66">
-      <segment state="translated">
-        <source>Benchtop wall spacing</source>
-        <target>Fliesenspiegel</target>
-      </segment>
-    </unit>
-    <unit id="6f3609ef9692f359">
-      <segment state="translated">
-        <source>Depth</source>
-        <target>Tiefe</target>
-      </segment>
-    </unit>
-    <unit id="2423b4ad93f6a0dc">
-      <segment state="translated">
-        <source>Depth Wall</source>
-        <target>Tiefe Wandschränke</target>
-      </segment>
-    </unit>
-    <unit id="637c36fdda431790">
-      <segment state="translated">
-        <source>Handle length</source>
-        <target>Grifflänge</target>
-      </segment>
-    </unit>
-    <unit id="735460bb49573218">
-      <segment state="translated">
-        <source>Board thickness</source>
-        <target>Plattenstärke</target>
-      </segment>
-    </unit>
-    <unit id="029121b90e1a0b3a">
-      <segment state="translated">
-        <source>This cabinet</source>
-        <target>Dieser Schrank</target>
-      </segment>
-    </unit>
-    <unit id="365e320ccc2fc46c">
-      <segment state="translated">
-        <source>Straight</source>
-        <target>Unterschrank</target>
-      </segment>
-    </unit>
-    <unit id="039ba25fa3e04293">
-      <segment state="translated">
-        <source>Corner</source>
-        <target>Eckschrank</target>
-      </segment>
-    </unit>
-    <unit id="11fd40b1c3017f7b">
-      <segment state="translated">
-        <source>Diagonal</source>
-        <target>Diagonalschrank</target>
-      </segment>
-    </unit>
-    <unit id="18e642e05ebf176b">
-      <segment state="translated">
-        <source>Blind End</source>
-        <target>Blende</target>
-      </segment>
-    </unit>
-    <unit id="7b289bf3d98caf11">
-      <segment state="translated">
-        <source>High</source>
-        <target>Hochschrank</target>
-      </segment>
-    </unit>
-    <unit id="01d867d48790a95d">
-      <segment state="translated">
-        <source>Wall</source>
-        <target>Wandschrank</target>
-      </segment>
-    </unit>
-    <unit id="20757521072fe677">
-      <segment state="translated">
-        <source>Wall corner</source>
-        <target>Wand-Eckschrank</target>
-      </segment>
-    </unit>
-    <unit id="18edb80344372714">
-      <segment state="translated">
-        <source>Top cabinet</source>
-        <target>Aufsatzschrank</target>
-      </segment>
-    </unit>
-    <unit id="592a68fc7bfe32a5">
-      <segment state="translated">
-        <source>Width</source>
-        <target>Breite</target>
-      </segment>
-    </unit>
-    <unit id="5b2979be7de63eb6">
-      <segment state="translated">
-        <source>Right width</source>
-        <target>Breite rechts</target>
-      </segment>
-    </unit>
-    <unit id="55080f47c80745ec">
-      <segment state="translated">
-        <source>Height</source>
-        <target>Höhe</target>
-      </segment>
-    </unit>
-    <unit id="785ecb317bfb3682">
-      <segment state="translated">
-        <source>Drawer height</source>
-        <target>Schubladenhöhe</target>
-      </segment>
-    </unit>
-    <unit id="0b34dcc2dd6063d7">
-      <segment state="translated">
-        <source>Door width</source>
-        <target>Türbreite</target>
-      </segment>
-    </unit>
-    <unit id="4bba9c6dbb8c7767">
-      <segment state="translated">
-        <source>Door right side</source>
-        <target>Tür RH</target>
-      </segment>
-    </unit>
-    <unit id="7b4cc0fea5716da1">
-      <segment state="translated">
-        <source>Number of shelves</source>
-        <target>Anzahl Fachböden</target>
-      </segment>
-    </unit>
-    <unit id="40928fcc300714b5">
-      <segment state="translated">
-        <source>Navigate in cabinets</source>
-        <target>In Schränken navigieren</target>
-      </segment>
-    </unit>
-    <unit id="6f2f7f2eaecfa7a7">
-      <segment state="translated">
-        <source>Insert top left</source>
-        <target>Oben links einfügen</target>
-      </segment>
-    </unit>
-    <unit id="4cbf1a740f06a48f">
-      <segment state="translated">
-        <source>Insert on top</source>
-        <target>Oberhalb einfügen</target>
-      </segment>
-    </unit>
-    <unit id="321c8c288268fade">
-      <segment state="translated">
-        <source>Insert on left</source>
-        <target>Links einfügen</target>
-      </segment>
-    </unit>
-    <unit id="42fe33466e0b9971">
-      <segment state="translated">
-        <source>Insert on right</source>
-        <target>Rechts einfügen</target>
-      </segment>
-    </unit>
-    <unit id="6d0d20da9bfa4fd1">
-      <segment state="translated">
-        <source>Select Cabinet</source>
-        <target>Picke Schrank</target>
-      </segment>
-    </unit>
-    <unit id="2176f9e11c4bc81b">
-      <segment state="translated">
-        <source>Delete This</source>
-        <target>Diesen löschen</target>
-      </segment>
-    </unit>
-    <unit id="4088aa316c81490f">
-      <segment state="translated">
-        <source>Top </source>
-        <target>Oberboden</target>
-      </segment>
-    </unit>
-    <unit id="4088aa316c81490f">
-      <segment state="translated">
-        <source>Top </source>
-        <target>Oberboden</target>
-      </segment>
-    </unit>
-    <unit id="3f063bb5f32a4f50">
-      <segment state="translated">
-        <source>Insert top right</source>
-        <target>Oben rechts einfügen</target>
-      </segment>
-    </unit>
-    <unit id="6f2f7f2eaecfa7a7">
-      <segment state="translated">
-        <source>Insert top left</source>
-        <target>Oben links einfügen</target>
-      </segment>
-    </unit>
-    <unit id="0000000080000000">
-      <segment>
-        <source/>
-      </segment>
-    </unit>
-    <unit id="76c4fbec2b5771b9">
-      <segment state="translated">
-        <source>Insert top</source>
-        <target>Oberhalb einfügen</target>
-      </segment>
-    </unit>
-    <unit id="0a4f3724bb22f71f">
-      <segment state="translated">
-        <source>Door RH</source>
-        <target>Tür RH</target>
-      </segment>
-    </unit>
-    <unit id="026e3cf4defa0da6">
-      <segment state="translated">
-        <source>Max door width</source>
-        <target>Maximale Türbreite</target>
-      </segment>
-    </unit>
-    <unit id="592a68fc7bfe32a5">
-      <segment state="translated">
-        <source>Width</source>
-        <target>Breite</target>
-      </segment>
-    </unit>
-    <unit id="4bba9c6dbb8c7767">
-      <segment state="translated">
-        <source>Door right side</source>
-        <target>Tür RH</target>
-      </segment>
-    </unit>
-    <unit id="0b34dcc2dd6063d7">
-      <segment state="translated">
-        <source>Door width</source>
-        <target>Türbreite</target>
-      </segment>
-    </unit>
-    <unit id="592a68fc7bfe32a5">
-      <segment state="translated">
-        <source>Width</source>
-        <target>Breite</target>
-      </segment>
-    </unit>
-    <unit id="0a4f3724bb22f71f">
-      <segment state="translated">
-        <source>Door RH</source>
-        <target>Tür RH</target>
-      </segment>
-    </unit>
-    <unit id="026e3cf4defa0da6">
-      <segment state="translated">
-        <source>Max door width</source>
-        <target>Maximale Türbreite</target>
-      </segment>
-    </unit>
-    <unit id="2c546d86a6d218d6">
-      <segment state="translated">
-        <source>Left width</source>
-        <target>Breite links</target>
-      </segment>
-    </unit>
-    <unit id="0a4f3724bb22f71f">
-      <segment state="translated">
-        <source>Door RH</source>
-        <target>Tür RH</target>
-      </segment>
-    </unit>
-    <unit id="592a68fc7bfe32a5">
-      <segment state="translated">
-        <source>Width</source>
-        <target>Breite</target>
-      </segment>
-    </unit>
-    <unit id="026e3cf4defa0da6">
-      <segment state="translated">
-        <source>Max door width</source>
-        <target>Maximale Türbreite</target>
-      </segment>
-    </unit>
-    <unit id="0a4f3724bb22f71f">
-      <segment state="translated">
-        <source>Door RH</source>
-        <target>Tür RH</target>
-      </segment>
-    </unit>
-    <unit id="592a68fc7bfe32a5">
-      <segment state="translated">
-        <source>Width</source>
-        <target>Breite</target>
-      </segment>
-    </unit>
-    <unit id="026e3cf4defa0da6">
-      <segment state="translated">
-        <source>Max door width</source>
-        <target>Maximale Türbreite</target>
-      </segment>
-    </unit>
-    <unit id="0a4f3724bb22f71f">
-      <segment state="translated">
-        <source>Door RH</source>
-        <target>Tür RH</target>
-      </segment>
-    </unit>
-    <unit id="2c546d86a6d218d6">
-      <segment state="translated">
-        <source>Left width</source>
-        <target>Breite links</target>
-      </segment>
-    </unit>
-    <unit id="026e3cf4defa0da6">
-      <segment state="translated">
-        <source>Max door width</source>
-        <target>Maximale Türbreite</target>
-      </segment>
-    </unit>
-    <unit id="592a68fc7bfe32a5">
-      <segment state="translated">
-        <source>Width</source>
-        <target>Breite</target>
-      </segment>
-    </unit>
     <unit id="75720c9219489bba">
       <segment state="translated">
         <source>Benchtop</source>
@@ -908,65 +824,17 @@
       </segment>
     </unit>
   </file>
-  <file original="straight cabinet.lua">
-    <unit id="4d6d104420311ebc">
+  <file original="sink cabinet.lua">
+    <unit id="2d08177684fc19b3">
       <segment state="translated">
-        <source>Straight Cabinet</source>
-        <target>Unterschrank</target>
+        <source>No sink</source>
+        <target>Keine Spüle</target>
       </segment>
     </unit>
-    <unit id="1b46b77e0b7dbbe5">
+    <unit id="14723137c0684944">
       <segment state="translated">
-        <source>Benchtop height</source>
-        <target>Arbeitshöhe</target>
-      </segment>
-    </unit>
-    <unit id="5a4dc65566d44c2e">
-      <segment state="translated">
-        <source>Benchtop thickness</source>
-        <target>Arbeitsplattenstärke</target>
-      </segment>
-    </unit>
-    <unit id="592a68fc7bfe32a5">
-      <segment state="translated">
-        <source>Width</source>
-        <target>Breite</target>
-      </segment>
-    </unit>
-    <unit id="55080f47c80745ec">
-      <segment state="translated">
-        <source>Height</source>
-        <target>Höhe</target>
-      </segment>
-    </unit>
-    <unit id="6f3609ef9692f359">
-      <segment state="translated">
-        <source>Depth</source>
-        <target>Tiefe</target>
-      </segment>
-    </unit>
-    <unit id="735460bb49573218">
-      <segment state="translated">
-        <source>Board thickness</source>
-        <target>Plattenstärke</target>
-      </segment>
-    </unit>
-    <unit id="785ecb317bfb3682">
-      <segment state="translated">
-        <source>Drawer height</source>
-        <target>Schubladenhöhe</target>
-      </segment>
-    </unit>
-    <unit id="7b4cc0fea5716da1">
-      <segment state="translated">
-        <source>Number of shelves</source>
-        <target>Anzahl Fachböden</target>
-      </segment>
-    </unit>
-    <unit id="4bba9c6dbb8c7767">
-      <segment state="translated">
-        <source>Door right side</source>
-        <target>Tür RH</target>
+        <source>--Browse--</source>
+        <target>--Durchsuchen--</target>
       </segment>
     </unit>
     <unit id="0df2e93544949e73">
@@ -999,10 +867,96 @@
         <target>Traverse hinten</target>
       </segment>
     </unit>
-    <unit id="4def8e46b5a93535">
+    <unit id="1f77ce3de5ca9b2d">
       <segment state="translated">
-        <source>Adjustable shelf</source>
-        <target>Bewegl. Fachboden</target>
+        <source>Kickboard</source>
+        <target>Sockelleiste</target>
+      </segment>
+    </unit>
+    <unit id="75720c9219489bba">
+      <segment state="translated">
+        <source>Benchtop</source>
+        <target>Arbeitsplatte</target>
+      </segment>
+    </unit>
+    <unit id="4eaf02becea3c41d">
+      <segment state="translated">
+        <source>left</source>
+        <target>links</target>
+      </segment>
+    </unit>
+    <unit id="50a4eec80d8f7e52">
+      <segment state="translated">
+        <source>centered</source>
+        <target>mittig</target>
+      </segment>
+    </unit>
+    <unit id="0415522c0243349a">
+      <segment state="translated">
+        <source>right</source>
+        <target>rechts</target>
+      </segment>
+    </unit>
+    <unit id="372f4715225b2d5e">
+      <segment state="translated">
+        <source>flipped, left</source>
+        <target>links gespiegelt</target>
+      </segment>
+    </unit>
+    <unit id="6bf50238e5a82135">
+      <segment state="translated">
+        <source>flipped, centered</source>
+        <target>mittig gespiegelt</target>
+      </segment>
+    </unit>
+    <unit id="5c694a4c78d5390b">
+      <segment state="translated">
+        <source>flipped, right</source>
+        <target>rechts gespiegelt</target>
+      </segment>
+    </unit>
+    <unit id="4b6e88e2c631f669">
+      <segment state="translated">
+        <source>Sink model</source>
+        <target>Spülenmodell</target>
+      </segment>
+    </unit>
+    <unit id="7b7f3feb1da95caf">
+      <segment state="translated">
+        <source>Sink cabinet</source>
+        <target>Spülenschrank</target>
+      </segment>
+    </unit>
+  </file>
+  <file original="straight cabinet.lua">
+    <unit id="0df2e93544949e73">
+      <segment state="translated">
+        <source>End LH</source>
+        <target>Seite Links</target>
+      </segment>
+    </unit>
+    <unit id="7fa9865509cd2e16">
+      <segment state="translated">
+        <source>End RH</source>
+        <target>Seite Rechts</target>
+      </segment>
+    </unit>
+    <unit id="2a8bae4ff97600f9">
+      <segment state="translated">
+        <source>Bottom</source>
+        <target>Boden</target>
+      </segment>
+    </unit>
+    <unit id="29b992735459931d">
+      <segment state="translated">
+        <source>CR Front</source>
+        <target>Trasverse vorne</target>
+      </segment>
+    </unit>
+    <unit id="017096f5010fff74">
+      <segment state="translated">
+        <source>CR Back</source>
+        <target>Traverse hinten</target>
       </segment>
     </unit>
     <unit id="14cee00a9144cc72">
@@ -1017,56 +971,20 @@
         <target>Sockelleiste</target>
       </segment>
     </unit>
-    <unit id="4bcc05cca5d9c031">
-      <segment state="translated">
-        <source>Straight cabinet</source>
-        <target>Unterschrank</target>
-      </segment>
-    </unit>
     <unit id="75720c9219489bba">
       <segment state="translated">
         <source>Benchtop</source>
         <target>Arbeitsplatte</target>
       </segment>
     </unit>
+    <unit id="4bcc05cca5d9c031">
+      <segment state="translated">
+        <source>Straight cabinet</source>
+        <target>Unterschrank</target>
+      </segment>
+    </unit>
   </file>
   <file original="top_cabinet.lua">
-    <unit id="1b46b77e0b7dbbe5">
-      <segment state="translated">
-        <source>Benchtop height</source>
-        <target>Arbeitshöhe</target>
-      </segment>
-    </unit>
-    <unit id="592a68fc7bfe32a5">
-      <segment state="translated">
-        <source>Width</source>
-        <target>Breite</target>
-      </segment>
-    </unit>
-    <unit id="745dd5b7418145d6">
-      <segment state="translated">
-        <source>Top height</source>
-        <target>Höhe Oberkante</target>
-      </segment>
-    </unit>
-    <unit id="6f3609ef9692f359">
-      <segment state="translated">
-        <source>Depth</source>
-        <target>Tiefe</target>
-      </segment>
-    </unit>
-    <unit id="735460bb49573218">
-      <segment state="translated">
-        <source>Board thickness</source>
-        <target>Plattenstärke</target>
-      </segment>
-    </unit>
-    <unit id="7b4cc0fea5716da1">
-      <segment state="translated">
-        <source>Number of shelves</source>
-        <target>Anzahl Fachböden</target>
-      </segment>
-    </unit>
     <unit id="0df2e93544949e73">
       <segment state="translated">
         <source>End LH</source>
@@ -1085,68 +1003,20 @@
         <target>Oberboden</target>
       </segment>
     </unit>
-    <unit id="4def8e46b5a93535">
-      <segment state="translated">
-        <source>Adjustable shelf</source>
-        <target>Bewegl. Fachboden</target>
-      </segment>
-    </unit>
     <unit id="14cee00a9144cc72">
       <segment state="translated">
         <source>Back</source>
         <target>Rückwand</target>
       </segment>
     </unit>
-    <unit id="43d9bd60fdb31c22">
+    <unit id="18edb80344372714">
       <segment state="translated">
-        <source>Top shelf</source>
-        <target>Oberboden</target>
+        <source>Top cabinet</source>
+        <target>Aufsatzschrank</target>
       </segment>
     </unit>
   </file>
   <file original="wall_cabinet.lua">
-    <unit id="1b46b77e0b7dbbe5">
-      <segment state="translated">
-        <source>Benchtop height</source>
-        <target>Arbeitshöhe</target>
-      </segment>
-    </unit>
-    <unit id="5321b785e2d4d05c">
-      <segment state="translated">
-        <source>Spacing to top</source>
-        <target>Fliesenspiegel</target>
-      </segment>
-    </unit>
-    <unit id="592a68fc7bfe32a5">
-      <segment state="translated">
-        <source>Width</source>
-        <target>Breite</target>
-      </segment>
-    </unit>
-    <unit id="2cd129207144980a">
-      <segment state="translated">
-        <source>Top Height</source>
-        <target>Höhe Oberkante</target>
-      </segment>
-    </unit>
-    <unit id="6f3609ef9692f359">
-      <segment state="translated">
-        <source>Depth</source>
-        <target>Tiefe</target>
-      </segment>
-    </unit>
-    <unit id="735460bb49573218">
-      <segment state="translated">
-        <source>Board thickness</source>
-        <target>Plattenstärke</target>
-      </segment>
-    </unit>
-    <unit id="4bba9c6dbb8c7767">
-      <segment state="translated">
-        <source>Door right side</source>
-        <target>Tür RH</target>
-      </segment>
-    </unit>
     <unit id="0df2e93544949e73">
       <segment state="translated">
         <source>End LH</source>
@@ -1169,12 +1039,6 @@
       <segment state="translated">
         <source>Top</source>
         <target>Oberboden</target>
-      </segment>
-    </unit>
-    <unit id="4def8e46b5a93535">
-      <segment state="translated">
-        <source>Adjustable shelf</source>
-        <target>Bewegl. Fachboden</target>
       </segment>
     </unit>
     <unit id="14cee00a9144cc72">

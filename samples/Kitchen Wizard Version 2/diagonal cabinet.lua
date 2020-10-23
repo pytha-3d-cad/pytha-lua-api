@@ -1,107 +1,4 @@
 --Diagonal corner cabinet with a variable number of shelves
-function diagonal_cabinet_solo()
-	local general_data = _G["general_default_data"]
-	local spec_index = initialize_cabinet_values(general_data)
-	local loaded_data = pyio.load_values("diagonal_dimensions")
-	if loaded_data ~= nil then 
-		merge_data(loaded_data, general_data)
-	end
-	local specific_data = general_data.cabinet_list[#general_data.cabinet_list]
-	specific_data.this_type = "diagonal"
-	specific_data.individual_call = true
-	
-	general_data.own_direction = 0
-	recreate_diagonal(general_data, general_data.cabinet_list[#general_data.cabinet_list])
-	
-	pyui.run_modal_dialog(diagonal_dialog, general_data)
-	
-	pyio.save_values("diagonal_dimensions", general_data)
-end
-
-local function diagonal_dialog(dialog, general_data)
-	local specific_data = general_data.cabinet_list[#general_data.cabinet_list]
-	
-	dialog:set_window_title(pyloc "Diagonal Cabinet")
-	
-	local label_benchtop = dialog:create_label(1, pyloc "Benchtop height")
-	local bt_height = dialog:create_text_box(2, pyui.format_length(general_data.benchtop_height))
-	local label_bt_thick = dialog:create_label(1, pyloc "Benchtop thickness")
-	local bt_thick = dialog:create_text_box(2, pyui.format_length(general_data.benchtop_thickness))
-	local label1 = dialog:create_label(1, pyloc "Left Width")
-	local width = dialog:create_text_box(2, pyui.format_length(specific_data.width))
-	local label7 = dialog:create_label(1, pyloc "Right Width")
-	local width2 = dialog:create_text_box(2, pyui.format_length(specific_data.width2))
-	local label2 = dialog:create_label(1, pyloc "Height")
-	local height = dialog:create_text_box(2, pyui.format_length(specific_data.height))
-	local label3 = dialog:create_label(1, pyloc "Depth")
-	local depth = dialog:create_text_box(2, pyui.format_length(general_data.depth))
-	local label4 = dialog:create_label(1, pyloc "Board thickness")
-	local thickness = dialog:create_text_box(2, pyui.format_length(general_data.thickness))
-	local label5 = dialog:create_label(1, pyloc "Drawer height")
-	local drawer_height = dialog:create_text_box(2, pyui.format_length(specific_data.drawer_height))
-	local label6 = dialog:create_label(1, pyloc "Number of shelves")
-	local shelf_count = dialog:create_text_box(2, pyui.format_length(specific_data.shelf_count))
-	
-	general_data.door_side = dialog:create_check_box({1, 2}, pyloc "Door right side")
-	general_data.door_side:set_control_checked(specific_data.door_rh)
-
-	local align1 = dialog:create_align({1,2}) -- So that OK and Cancel will be in the same row
-	local ok = dialog:create_ok_button(1)
-	local cancel = dialog:create_cancel_button(2)
-	dialog:equalize_column_widths({1,2,4})
-	
-	bt_height:set_on_change_handler(function(text)
-		general_data.benchtop_height = math.max(pyui.parse_length(text), 0)
-		recreate_diagonal_solo(general_data, specific_data)
-	end)
-	bt_thick:set_on_change_handler(function(text)
-		general_data.benchtop_thickness = math.max(pyui.parse_length(text), 0)
-		recreate_diagonal_solo(general_data, specific_data)
-	end)
-	
-	width:set_on_change_handler(function(text)
-		specific_data.width = math.max(pyui.parse_length(text), 0)
-		recreate_diagonal_solo(general_data, specific_data)
-	end)
-	
-	width2:set_on_change_handler(function(text)
-		specific_data.width2 = math.max(pyui.parse_length(text), 0)
-		recreate_diagonal_solo(general_data, specific_data)
-	end)
-	
-	height:set_on_change_handler(function(text)
-		specific_data.height = math.max(pyui.parse_length(text), 0)
-		recreate_diagonal_solo(general_data, specific_data)
-	end)
-	
-	depth:set_on_change_handler(function(text)
-		general_data.depth = math.max(pyui.parse_length(text), 0)
-		recreate_diagonal_solo(general_data, specific_data)
-	end)
-	
-	
-	thickness:set_on_change_handler(function(text)
-		general_data.thickness = math.max(pyui.parse_length(text), 0)
-		recreate_diagonal_solo(general_data, specific_data)
-	end)
-	
-	drawer_height:set_on_change_handler(function(text)
-		specific_data.drawer_height = math.max(pyui.parse_length(text), 0)
-		recreate_diagonal_solo(general_data, specific_data)
-	end)
-	
-	shelf_count:set_on_change_handler(function(text)
-		specific_data.shelf_count = math.max(pyui.parse_length(text), 0)
-		recreate_diagonal_solo(general_data, specific_data)
-	end)
-	
-	general_data.door_side:set_on_click_handler(function(state)
-		specific_data.door_rh = state
-		recreate_diagonal_solo(general_data, specific_data)
-	end)
-	
-	update_diagonal_ui(general_data, specific_data)
-end
 
 
 local function get_diag_door_length(general_data, specific_data)
@@ -109,36 +6,15 @@ local function get_diag_door_length(general_data, specific_data)
 	local door_length = PYTHAGORAS(p2[1] - general_data.gap, p2[2] + general_data.thickness, 0)
 	return door_length
 end
-
-local function recreate_diagonal_solo(general_data, specific_data)
-	update_diagonal_ui(general_data, specific_data)
-	
-	if specific_data.main_group ~= nil then
-		pytha.delete_element(specific_data.main_group)
-	end
-	recreate_diagonal(general_data, specific_data)
-end
-
-local function update_diagonal_ui(general_data, specific_data)
-	if get_diag_door_length(general_data, specific_data) - 2 * general_data.gap > 0 then
-		if get_diag_door_length(general_data, specific_data) > specific_data.door_width then
-			general_data.door_side:disable_control()
-		else
-			general_data.door_side:enable_control()
-		end
-	else 
-		general_data.door_side:disable_control()
-	end
-end
-
 local function recreate_diagonal(general_data, specific_data)
 	local cur_elements = {}
 	local base_height = general_data.benchtop_height - specific_data.height - general_data.benchtop_thickness
-
+	
+	local drawer_height = get_drawer_heights(general_data, specific_data)
 	local loc_origin= {}
 	--if the kitchen is L-shaped. The angle is inherited from the previous cabinet
-	local door_height = specific_data.height - general_data.top_gap - specific_data.drawer_height
-	if specific_data.drawer_height > 0 then
+	local door_height = specific_data.height - general_data.top_gap - drawer_height
+	if drawer_height > 0 then
 		door_height = door_height - general_data.gap
 	end
 
@@ -262,11 +138,11 @@ local function recreate_diagonal(general_data, specific_data)
 		
 		--Drawer
 		local coordinate_system = {{1, 0, 0}, {0, 1, 0}, {0,0,1}}
-		if specific_data.drawer_height > 0 then
+		if drawer_height > 0 then
 			loc_origin[1] = general_data.gap
 			loc_origin[2] = -general_data.thickness
-			loc_origin[3] = base_height + specific_data.height - general_data.top_gap - specific_data.drawer_height
-			new_elem = create_drawer(general_data, specific_data, door_length, specific_data.drawer_height, loc_origin, coordinate_system, 'center', 'center')
+			loc_origin[3] = base_height + specific_data.height - general_data.top_gap - drawer_height
+			new_elem = create_drawer(general_data, specific_data, door_length, drawer_height, loc_origin, coordinate_system, 'center', 'center')
 			pytha.rotate_element(new_elem, loc_origin, 'z', -slope_angle)--this will also rotate the group vector and therefore gives the correct action
 			table.insert(cur_elements, new_elem)
 		end
@@ -339,34 +215,31 @@ end
 local function ui_update_diagonal(general_data, soft_update)
 	local specific_data = general_data.cabinet_list[general_data.current_cabinet]
 	if get_diag_door_length(general_data, specific_data) - 2 * general_data.gap > 0 then
-		if get_diag_door_length(general_data, specific_data)  > specific_data.door_width then
-			controls.door_side:disable_control()
-		else
-			controls.door_side:enable_control()
+		if get_diag_door_length(general_data, specific_data)  <= specific_data.door_width then
+			controls.door_side:show_control()
 		end
 	else 
-		controls.door_side:enable_control()
+		controls.door_side:show_control()
 	end
 	
 	if soft_update == true then return end
 
-	controls.label_width:enable_control()
-	controls.width:enable_control()
-	controls.label_width2:enable_control()
-	controls.width2:enable_control()
-	controls.height_label:enable_control()
-	controls.height:enable_control()
-	controls.label5:enable_control()
-	controls.drawer_height:enable_control()
-	controls.label6:enable_control()
-	controls.shelf_count:enable_control()
-	controls.door_width:enable_control()
-	controls.label_door_width:enable_control()
+	controls.label_width:show_control()
+	controls.width:show_control()
+	controls.label_width2:show_control()
+	controls.width2:show_control()
+	controls.height_label:show_control()
+	controls.height:show_control()
+	controls.drawer_height_list_label:show_control()
+	controls.drawer_height_list:show_control()
+	controls.label6:show_control()
+	controls.shelf_count:show_control()
+	controls.door_width:show_control()
+	controls.label_door_width:show_control()
 	
-	controls.door_side:set_control_text(pyloc "Door RH")
-	controls.label_door_width:set_control_text(pyloc "Max door width")
 	controls.label_width:set_control_text(pyloc "Left width")		
 	controls.label_width2:set_control_text(pyloc "Right width")		
+	controls.drawer_height_list_label:set_control_text(pyloc "Drawer height")	
 end
 
 

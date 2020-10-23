@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xliff srcLang="de-DE" version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0">
+<xliff srcLang="en-US" version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0">
   <file original="corner_cabinet.lua">
     <unit id="0df2e93544949e73">
       <segment>
@@ -76,19 +76,24 @@
         <source>Benchtop</source>
       </segment>
     </unit>
+    <unit id="4bba9c6dbb8c7767">
+      <segment>
+        <source>Door right side</source>
+      </segment>
+    </unit>
     <unit id="0b34dcc2dd6063d7">
       <segment>
         <source>Door width</source>
       </segment>
     </unit>
-    <unit id="592a68fc7bfe32a5">
-      <segment>
-        <source>Width</source>
-      </segment>
-    </unit>
     <unit id="3699b45682257457">
       <segment>
         <source>Connecting width</source>
+      </segment>
+    </unit>
+    <unit id="785ecb317bfb3682">
+      <segment>
+        <source>Drawer height</source>
       </segment>
     </unit>
     <unit id="72c131018f474020">
@@ -98,26 +103,6 @@
     </unit>
   </file>
   <file original="corner_wall_cabinet.lua">
-    <unit id="1b46b77e0b7dbbe5">
-      <segment>
-        <source>Benchtop height</source>
-      </segment>
-    </unit>
-    <unit id="5321b785e2d4d05c">
-      <segment>
-        <source>Spacing to top</source>
-      </segment>
-    </unit>
-    <unit id="3559744848e9e388">
-      <segment>
-        <source>Left Width</source>
-      </segment>
-    </unit>
-    <unit id="2732607cdb9d34a0">
-      <segment>
-        <source>Right Width</source>
-      </segment>
-    </unit>
     <unit id="0df2e93544949e73">
       <segment>
         <source>End LH</source>
@@ -163,11 +148,6 @@
         <source>Door LH</source>
       </segment>
     </unit>
-    <unit id="0a4f3724bb22f71f">
-      <segment>
-        <source>Door RH</source>
-      </segment>
-    </unit>
     <unit id="2c546d86a6d218d6">
       <segment>
         <source>Left width</source>
@@ -178,11 +158,6 @@
         <source>Right width</source>
       </segment>
     </unit>
-    <unit id="026e3cf4defa0da6">
-      <segment>
-        <source>Max door width</source>
-      </segment>
-    </unit>
     <unit id="42f2e0504747156d">
       <segment>
         <source>Corner wall cabinet</source>
@@ -191,61 +166,6 @@
   </file>
   <file original="default_general_data.lua"></file>
   <file original="diagonal cabinet.lua">
-    <unit id="262408a8a97dd59c">
-      <segment>
-        <source>Diagonal Cabinet</source>
-      </segment>
-    </unit>
-    <unit id="1b46b77e0b7dbbe5">
-      <segment>
-        <source>Benchtop height</source>
-      </segment>
-    </unit>
-    <unit id="5a4dc65566d44c2e">
-      <segment>
-        <source>Benchtop thickness</source>
-      </segment>
-    </unit>
-    <unit id="3559744848e9e388">
-      <segment>
-        <source>Left Width</source>
-      </segment>
-    </unit>
-    <unit id="2732607cdb9d34a0">
-      <segment>
-        <source>Right Width</source>
-      </segment>
-    </unit>
-    <unit id="55080f47c80745ec">
-      <segment>
-        <source>Height</source>
-      </segment>
-    </unit>
-    <unit id="6f3609ef9692f359">
-      <segment>
-        <source>Depth</source>
-      </segment>
-    </unit>
-    <unit id="735460bb49573218">
-      <segment>
-        <source>Board thickness</source>
-      </segment>
-    </unit>
-    <unit id="785ecb317bfb3682">
-      <segment>
-        <source>Drawer height</source>
-      </segment>
-    </unit>
-    <unit id="7b4cc0fea5716da1">
-      <segment>
-        <source>Number of shelves</source>
-      </segment>
-    </unit>
-    <unit id="4bba9c6dbb8c7767">
-      <segment>
-        <source>Door right side</source>
-      </segment>
-    </unit>
     <unit id="0df2e93544949e73">
       <segment>
         <source>End LH</source>
@@ -301,16 +221,6 @@
         <source>Benchtop</source>
       </segment>
     </unit>
-    <unit id="0a4f3724bb22f71f">
-      <segment>
-        <source>Door RH</source>
-      </segment>
-    </unit>
-    <unit id="026e3cf4defa0da6">
-      <segment>
-        <source>Max door width</source>
-      </segment>
-    </unit>
     <unit id="2c546d86a6d218d6">
       <segment>
         <source>Left width</source>
@@ -319,6 +229,11 @@
     <unit id="5b2979be7de63eb6">
       <segment>
         <source>Right width</source>
+      </segment>
+    </unit>
+    <unit id="785ecb317bfb3682">
+      <segment>
+        <source>Drawer height</source>
       </segment>
     </unit>
     <unit id="3c20ac61eba2df49">
@@ -428,6 +343,11 @@
         <source>OA Height</source>
       </segment>
     </unit>
+    <unit id="4b6e88e2c631f669">
+      <segment>
+        <source>Sink model</source>
+      </segment>
+    </unit>
     <unit id="7b4cc0fea5716da1">
       <segment>
         <source>Number of shelves</source>
@@ -446,6 +366,11 @@
     <unit id="4bba9c6dbb8c7767">
       <segment>
         <source>Door right side</source>
+      </segment>
+    </unit>
+    <unit id="615c5909adb01fae">
+      <segment>
+        <source>Sink orientation</source>
       </segment>
     </unit>
     <unit id="40928fcc300714b5">
@@ -491,6 +416,31 @@
     <unit id="37cb188bc675f439">
       <segment>
         <source>Pick direction along wall</source>
+      </segment>
+    </unit>
+    <unit id="026e3cf4defa0da6">
+      <segment>
+        <source>Max door width</source>
+      </segment>
+    </unit>
+    <unit id="7b4cc0fea5716da1">
+      <segment>
+        <source>Number of shelves</source>
+      </segment>
+    </unit>
+    <unit id="0a4f3724bb22f71f">
+      <segment>
+        <source>Door RH</source>
+      </segment>
+    </unit>
+    <unit id="592a68fc7bfe32a5">
+      <segment>
+        <source>Width</source>
+      </segment>
+    </unit>
+    <unit id="0cbdde1783d03dd2">
+      <segment>
+        <source>Organization</source>
       </segment>
     </unit>
     <unit id="4088aa316c81490f">
@@ -594,6 +544,11 @@
     </unit>
   </file>
   <file original="front_organizatios.lua">
+    <unit id="7442409bafdbb1a6">
+      <segment>
+        <source>Drawer heights</source>
+      </segment>
+    </unit>
     <unit id="4def8e46b5a93535">
       <segment>
         <source>Adjustable shelf</source>
@@ -619,9 +574,24 @@
         <source>1/2 doors + 1/2 drawers</source>
       </segment>
     </unit>
+    <unit id="38f426bf47249927">
+      <segment>
+        <source>Number of drawers</source>
+      </segment>
+    </unit>
+    <unit id="7442409bafdbb1a6">
+      <segment>
+        <source>Drawer heights</source>
+      </segment>
+    </unit>
     <unit id="1acf1386c8f7dc17">
       <segment>
         <source>1/2 drawers</source>
+      </segment>
+    </unit>
+    <unit id="413145ff1f9b69c3">
+      <segment>
+        <source>1 drawer</source>
       </segment>
     </unit>
   </file>
@@ -643,41 +613,6 @@
     </unit>
   </file>
   <file original="high cabinet.lua">
-    <unit id="1b46b77e0b7dbbe5">
-      <segment>
-        <source>Benchtop height</source>
-      </segment>
-    </unit>
-    <unit id="5a4dc65566d44c2e">
-      <segment>
-        <source>Benchtop thickness</source>
-      </segment>
-    </unit>
-    <unit id="592a68fc7bfe32a5">
-      <segment>
-        <source>Width</source>
-      </segment>
-    </unit>
-    <unit id="55080f47c80745ec">
-      <segment>
-        <source>Height</source>
-      </segment>
-    </unit>
-    <unit id="6f3609ef9692f359">
-      <segment>
-        <source>Depth</source>
-      </segment>
-    </unit>
-    <unit id="735460bb49573218">
-      <segment>
-        <source>Board thickness</source>
-      </segment>
-    </unit>
-    <unit id="4bba9c6dbb8c7767">
-      <segment>
-        <source>Door right side</source>
-      </segment>
-    </unit>
     <unit id="0df2e93544949e73">
       <segment>
         <source>End LH</source>
@@ -718,21 +653,6 @@
         <source>Kickboard</source>
       </segment>
     </unit>
-    <unit id="0a4f3724bb22f71f">
-      <segment>
-        <source>Door RH</source>
-      </segment>
-    </unit>
-    <unit id="592a68fc7bfe32a5">
-      <segment>
-        <source>Width</source>
-      </segment>
-    </unit>
-    <unit id="026e3cf4defa0da6">
-      <segment>
-        <source>Max door width</source>
-      </segment>
-    </unit>
     <unit id="1de85576286ebce3">
       <segment>
         <source>High cabinet</source>
@@ -771,57 +691,94 @@
       </segment>
     </unit>
   </file>
+  <file original="sink cabinet.lua">
+    <unit id="2d08177684fc19b3">
+      <segment>
+        <source>No sink</source>
+      </segment>
+    </unit>
+    <unit id="14723137c0684944">
+      <segment>
+        <source>--Browse--</source>
+      </segment>
+    </unit>
+    <unit id="0df2e93544949e73">
+      <segment>
+        <source>End LH</source>
+      </segment>
+    </unit>
+    <unit id="7fa9865509cd2e16">
+      <segment>
+        <source>End RH</source>
+      </segment>
+    </unit>
+    <unit id="2a8bae4ff97600f9">
+      <segment>
+        <source>Bottom</source>
+      </segment>
+    </unit>
+    <unit id="29b992735459931d">
+      <segment>
+        <source>CR Front</source>
+      </segment>
+    </unit>
+    <unit id="017096f5010fff74">
+      <segment>
+        <source>CR Back</source>
+      </segment>
+    </unit>
+    <unit id="1f77ce3de5ca9b2d">
+      <segment>
+        <source>Kickboard</source>
+      </segment>
+    </unit>
+    <unit id="75720c9219489bba">
+      <segment>
+        <source>Benchtop</source>
+      </segment>
+    </unit>
+    <unit id="4eaf02becea3c41d">
+      <segment>
+        <source>left</source>
+      </segment>
+    </unit>
+    <unit id="50a4eec80d8f7e52">
+      <segment>
+        <source>centered</source>
+      </segment>
+    </unit>
+    <unit id="0415522c0243349a">
+      <segment>
+        <source>right</source>
+      </segment>
+    </unit>
+    <unit id="372f4715225b2d5e">
+      <segment>
+        <source>flipped, left</source>
+      </segment>
+    </unit>
+    <unit id="6bf50238e5a82135">
+      <segment>
+        <source>flipped, centered</source>
+      </segment>
+    </unit>
+    <unit id="5c694a4c78d5390b">
+      <segment>
+        <source>flipped, right</source>
+      </segment>
+    </unit>
+    <unit id="4b6e88e2c631f669">
+      <segment>
+        <source>Sink model</source>
+      </segment>
+    </unit>
+    <unit id="7b7f3feb1da95caf">
+      <segment>
+        <source>Sink cabinet</source>
+      </segment>
+    </unit>
+  </file>
   <file original="straight cabinet.lua">
-    <unit id="4d6d104420311ebc">
-      <segment>
-        <source>Straight Cabinet</source>
-      </segment>
-    </unit>
-    <unit id="1b46b77e0b7dbbe5">
-      <segment>
-        <source>Benchtop height</source>
-      </segment>
-    </unit>
-    <unit id="5a4dc65566d44c2e">
-      <segment>
-        <source>Benchtop thickness</source>
-      </segment>
-    </unit>
-    <unit id="592a68fc7bfe32a5">
-      <segment>
-        <source>Width</source>
-      </segment>
-    </unit>
-    <unit id="55080f47c80745ec">
-      <segment>
-        <source>Height</source>
-      </segment>
-    </unit>
-    <unit id="6f3609ef9692f359">
-      <segment>
-        <source>Depth</source>
-      </segment>
-    </unit>
-    <unit id="735460bb49573218">
-      <segment>
-        <source>Board thickness</source>
-      </segment>
-    </unit>
-    <unit id="785ecb317bfb3682">
-      <segment>
-        <source>Drawer height</source>
-      </segment>
-    </unit>
-    <unit id="7b4cc0fea5716da1">
-      <segment>
-        <source>Number of shelves</source>
-      </segment>
-    </unit>
-    <unit id="4bba9c6dbb8c7767">
-      <segment>
-        <source>Door right side</source>
-      </segment>
-    </unit>
     <unit id="0df2e93544949e73">
       <segment>
         <source>End LH</source>
@@ -862,21 +819,6 @@
         <source>Benchtop</source>
       </segment>
     </unit>
-    <unit id="0a4f3724bb22f71f">
-      <segment>
-        <source>Door RH</source>
-      </segment>
-    </unit>
-    <unit id="026e3cf4defa0da6">
-      <segment>
-        <source>Max door width</source>
-      </segment>
-    </unit>
-    <unit id="592a68fc7bfe32a5">
-      <segment>
-        <source>Width</source>
-      </segment>
-    </unit>
     <unit id="4bcc05cca5d9c031">
       <segment>
         <source>Straight cabinet</source>
@@ -884,36 +826,6 @@
     </unit>
   </file>
   <file original="top_cabinet.lua">
-    <unit id="1b46b77e0b7dbbe5">
-      <segment>
-        <source>Benchtop height</source>
-      </segment>
-    </unit>
-    <unit id="592a68fc7bfe32a5">
-      <segment>
-        <source>Width</source>
-      </segment>
-    </unit>
-    <unit id="745dd5b7418145d6">
-      <segment>
-        <source>Top height</source>
-      </segment>
-    </unit>
-    <unit id="6f3609ef9692f359">
-      <segment>
-        <source>Depth</source>
-      </segment>
-    </unit>
-    <unit id="735460bb49573218">
-      <segment>
-        <source>Board thickness</source>
-      </segment>
-    </unit>
-    <unit id="7b4cc0fea5716da1">
-      <segment>
-        <source>Number of shelves</source>
-      </segment>
-    </unit>
     <unit id="0df2e93544949e73">
       <segment>
         <source>End LH</source>
@@ -934,16 +846,6 @@
         <source>Back</source>
       </segment>
     </unit>
-    <unit id="0a4f3724bb22f71f">
-      <segment>
-        <source>Door RH</source>
-      </segment>
-    </unit>
-    <unit id="592a68fc7bfe32a5">
-      <segment>
-        <source>Width</source>
-      </segment>
-    </unit>
     <unit id="18edb80344372714">
       <segment>
         <source>Top cabinet</source>
@@ -951,41 +853,6 @@
     </unit>
   </file>
   <file original="wall_cabinet.lua">
-    <unit id="1b46b77e0b7dbbe5">
-      <segment>
-        <source>Benchtop height</source>
-      </segment>
-    </unit>
-    <unit id="5321b785e2d4d05c">
-      <segment>
-        <source>Spacing to top</source>
-      </segment>
-    </unit>
-    <unit id="592a68fc7bfe32a5">
-      <segment>
-        <source>Width</source>
-      </segment>
-    </unit>
-    <unit id="2cd129207144980a">
-      <segment>
-        <source>Top Height</source>
-      </segment>
-    </unit>
-    <unit id="6f3609ef9692f359">
-      <segment>
-        <source>Depth</source>
-      </segment>
-    </unit>
-    <unit id="735460bb49573218">
-      <segment>
-        <source>Board thickness</source>
-      </segment>
-    </unit>
-    <unit id="4bba9c6dbb8c7767">
-      <segment>
-        <source>Door right side</source>
-      </segment>
-    </unit>
     <unit id="0df2e93544949e73">
       <segment>
         <source>End LH</source>
@@ -1009,21 +876,6 @@
     <unit id="14cee00a9144cc72">
       <segment>
         <source>Back</source>
-      </segment>
-    </unit>
-    <unit id="0a4f3724bb22f71f">
-      <segment>
-        <source>Door RH</source>
-      </segment>
-    </unit>
-    <unit id="592a68fc7bfe32a5">
-      <segment>
-        <source>Width</source>
-      </segment>
-    </unit>
-    <unit id="026e3cf4defa0da6">
-      <segment>
-        <source>Max door width</source>
       </segment>
     </unit>
     <unit id="414a15d4f4a4c529">
