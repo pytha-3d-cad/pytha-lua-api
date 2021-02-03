@@ -2,7 +2,7 @@
 <plugin xmlns="http://xmlns.pytha.com/plugin_config/1.0">
   <header>
     <guid>62270391-af6f-4db3-8efb-96ddce947035</guid>
-    <version>1.0</version>
+    <version>2.0</version>
     <pytha-version>25.0</pytha-version>
     <name>Kitchen Wizard</name>
     <description>The description of your plugin goes here.</description>

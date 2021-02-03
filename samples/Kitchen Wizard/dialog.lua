@@ -260,7 +260,7 @@ function wizard_dialog(dialog, data)
 	end)
 	controls.button_delete:set_on_click_handler(function() delete_element(data) end)
 	
-	button_left:set_on_click_handler(function(state)
+	button_left:set_on_click_handler(function(state) 
 		if data.cabinet_list[data.current_cabinet].row == 0x2 then 
 			if data.cabinet_list[data.current_cabinet].left_top_element == nil then
 				local new_element = initialize_cabinet_values(data, typecombolist[data.cabinet_list[data.current_cabinet].row][1])
