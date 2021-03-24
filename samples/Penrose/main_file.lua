@@ -15,6 +15,8 @@ function main()
 
 	local loaded_data = pyio.load_values("default_dimensions")
 	if loaded_data ~= nil then data = loaded_data end
+	
+	data.subdivs = 4
 	pyui.run_modal_dialog(init_dlg, data)
 	pyio.save_values("default_dimensions", data)
 
@@ -176,7 +178,7 @@ function recreate_geometry(data)
 		end
 	end
 	--Safety check for too many structures
-	if data.cut_to_rectangle == true and data.subdivs > 12 then return end
+	if data.subdivs > 10 or (data.cut_to_rectangle == true and data.subdivs > 12) then return end
 	
 	-- Perform subdivisions
 	for i = 1, data.subdivs do
