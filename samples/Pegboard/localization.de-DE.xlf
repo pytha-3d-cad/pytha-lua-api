@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff srcLang="en-US" version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" trgLang="de-DE">
+  <file original="main_file.lua">
+    <unit id="1ff3d503cfe9631a">
+      <segment state="translated">
+        <source>Pegboard</source>
+        <target>Lochblech</target>
+      </segment>
+    </unit>
+    <unit id="1ff3d503cfe9631a">
+      <segment state="translated">
+        <source>Pegboard</source>
+        <target>Lochblech</target>
+      </segment>
+    </unit>
+    <unit id="6f4ce0a2b6431e8f">
+      <segment state="translated">
+        <source>Pick origin</source>
+        <target>Picke Ursprung</target>
+      </segment>
+    </unit>
+    <unit id="69cf3a65d5dd4eaf">
+      <segment state="translated">
+        <source>Hole pattern</source>
+        <target>Lochmuster</target>
+      </segment>
+    </unit>
+    <unit id="7480d3a60ed67f5e">
+      <segment state="translated">
+        <source>Rectangular</source>
+        <target>Rechteckig</target>
+      </segment>
+    </unit>
+    <unit id="11fd40b1c3017f7b">
+      <segment state="translated">
+        <source>Diagonal</source>
+        <target>Diagonal</target>
+      </segment>
+    </unit>
+    <unit id="58855a9dc3c8068b">
+      <segment state="translated">
+        <source>Honeycomb</source>
+        <target>Wabenmuster</target>
+      </segment>
+    </unit>
+    <unit id="1dfde047fe8e167b">
+      <segment state="translated">
+        <source>Board width</source>
+        <target>Breite</target>
+      </segment>
+    </unit>
+    <unit id="6776ab7a80fdac14">
+      <segment state="translated">
+        <source>Board height</source>
+        <target>Höhe</target>
+      </segment>
+    </unit>
+    <unit id="735460bb49573218">
+      <segment state="translated">
+        <source>Board thickness</source>
+        <target>Plattenstärke</target>
+      </segment>
+    </unit>
+    <unit id="3530ac26220b21ac">
+      <segment state="translated">
+        <source>Center holes on board</source>
+        <target>Zentriere Löcher auf Blech</target>
+      </segment>
+    </unit>
+    <unit id="4ef3d5f5ea6a4e8c">
+      <segment state="translated">
+        <source>Number of x panels</source>
+        <target>Anzahl Bleche in X</target>
+      </segment>
+    </unit>
+    <unit id="19c8bdaa9867a582">
+      <segment state="translated">
+        <source>Number of y panels</source>
+        <target>Anzahl Bleche in Y</target>
+      </segment>
+    </unit>
+    <unit id="72940e5e7f1c4729">
+      <segment state="translated">
+        <source>Peg diameter</source>
+        <target>Lochdurchmesser</target>
+      </segment>
+    </unit>
+    <unit id="4e9473995d1adeb5">
+      <segment state="translated">
+        <source>Border margin</source>
+        <target>Randbreite</target>
+      </segment>
+    </unit>
+    <unit id="367aabaf3329f47b">
+      <segment state="translated">
+        <source>Horizontal spacing</source>
+        <target>Horizontalabstand</target>
+      </segment>
+    </unit>
+    <unit id="1906890770e0154a">
+      <segment state="translated">
+        <source>Vertical spacing</source>
+        <target>Vertikalabstand</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

@@ -230,6 +230,7 @@ function wizard_dialog(dialog, data)
 	end)
 	
 	controls.appliance_model:set_on_change_handler(function(text, new_index)
+	pyui.alert("beep")
 		data.cabinet_list[data.current_cabinet].sink_file = get_appliance_from_current_selection(data, data.cabinet_list[data.current_cabinet], new_index)
 		recreate_all(data, true)
 	end)

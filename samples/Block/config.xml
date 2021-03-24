@@ -1,38 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://xmlns.pytha.com/plugin_config/1.0">
   <header>
-    <guid>26d93043-143e-4f9e-805d-406114b190b9</guid>
+    <guid>051510f9-6fe7-4fe9-9888-2d56a35c0b74</guid>
     <version>1.0</version>
     <pytha-version>25.0</pytha-version>
-    <name>Cube Sample</name>
+    <name>Block</name>
     <description>The description of your plugin goes here.</description>
     <licensing>Information about the licensing terms goes here.</licensing>
   </header>
   
   <extension type="function">
     <entry-point>main</entry-point>
-    <caption>Cube Sample</caption>
+    <caption>Block</caption>
     <description>A short description of the function goes here.</description>
     <help-file>help.html</help-file>
   </extension>
   
   <extension type="edit">
-    <id>block_history_demo</id>
+    <id>block_history</id>
     <entry-point>edit_block</entry-point>
   </extension>
-  
-  <extension type="attribute">
-    <id>block_special_attribute</id>
-<!--    <entry-point>eval</entry-point> -->
-    <caption>A Cube Attribute</caption>
-    <description>This can be a description</description>
-</extension>
-  
-  <extension type="attribute">
-    <id>block_special_eval_attribute</id>
-    <entry-point>eval</entry-point> 
-    <caption>A Cube Evaluated Attribute</caption>
-    <description>This can be a description</description>
-</extension>
+ 
   
 </plugin>

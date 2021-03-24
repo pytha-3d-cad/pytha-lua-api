@@ -1,76 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xliff srcLang="de-DE" version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0">
+<xliff srcLang="en-US" version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" trgLang="de-DE">
   <file original="main_file.lua">
     <unit id="79eaed758051508c">
-      <segment>
+      <segment state="translated">
         <source>Penrose Tiling</source>
-        <target/>
+        <target>Penrose Parkett</target>
       </segment>
     </unit>
     <unit id="3fa18d8de4cebc1e">
-      <segment>
+      <segment state="translated">
         <source>Tile edge length</source>
-        <target/>
+        <target>Kantenlänge Fliese&#11;</target>
       </segment>
     </unit>
     <unit id="60b746064a99aa7a">
-      <segment>
+      <segment state="translated">
         <source>Subdivisions</source>
-        <target/>
+        <target>Unterteilungen</target>
       </segment>
     </unit>
     <unit id="0a24c0f56c3e6048">
-      <segment>
+      <segment state="translated">
         <source>Cut tiling to box</source>
-        <target/>
+        <target>Auf Box zurechtschneiden</target>
       </segment>
     </unit>
     <unit id="74cc3d1265dadee1">
-      <segment>
+      <segment state="translated">
         <source>Center on box</source>
-        <target/>
+        <target>In Box zenrtriert</target>
       </segment>
     </unit>
     <unit id="56d6f29941b3ed9c">
-      <segment>
+      <segment state="translated">
         <source>Box length</source>
-        <target/>
+        <target>Box Länge</target>
       </segment>
     </unit>
     <unit id="142472b36cd9a071">
-      <segment>
+      <segment state="translated">
         <source>Box width</source>
-        <target/>
+        <target>Box Breite</target>
       </segment>
     </unit>
     <unit id="74c13fd71966904e">
-      <segment>
+      <segment state="translated">
         <source>blue</source>
-        <target/>
+        <target>blau</target>
       </segment>
     </unit>
     <unit id="57096cbd6231e5dd">
-      <segment>
+      <segment state="translated">
         <source>red</source>
-        <target/>
+        <target>rot</target>
       </segment>
     </unit>
     <unit id="74c13fd71966904e">
-      <segment>
+      <segment state="translated">
         <source>blue</source>
-        <target/>
+        <target>blau</target>
       </segment>
     </unit>
     <unit id="57096cbd6231e5dd">
-      <segment>
+      <segment state="translated">
         <source>red</source>
-        <target/>
+        <target>rot</target>
       </segment>
     </unit>
     <unit id="063396bc891e2718">
-      <segment>
+      <segment state="translated">
         <source>Penrose</source>
-        <target/>
+        <target>Penrose</target>
       </segment>
     </unit>
   </file>

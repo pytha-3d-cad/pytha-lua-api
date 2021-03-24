@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff srcLang="de-DE" version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0">
+  <file original="block.lua">
+    <unit id="21f4091b90960be0">
+      <segment>
+        <source>No data found</source>
+      </segment>
+    </unit>
+    <unit id="4cafaf1fb13dd149">
+      <segment>
+        <source>Block</source>
+      </segment>
+    </unit>
+    <unit id="2c6c809e9d67add0">
+      <segment>
+        <source>My Block</source>
+      </segment>
+    </unit>
+    <unit id="6726b235d785d68e">
+      <segment>
+        <source>Name</source>
+      </segment>
+    </unit>
+    <unit id="36bcb5720394fa52">
+      <segment>
+        <source>Material</source>
+      </segment>
+    </unit>
+    <unit id="3e45b51557956431">
+      <segment>
+        <source>Origin</source>
+      </segment>
+    </unit>
+    <unit id="597ecb2f697fd59c">
+      <segment>
+        <source>Pick</source>
+      </segment>
+    </unit>
+    <unit id="654d813539eb77b6">
+      <segment>
+        <source>Centered</source>
+      </segment>
+    </unit>
+    <unit id="56b67fe49cdbd2a4">
+      <segment>
+        <source>lx, ly, lz</source>
+      </segment>
+    </unit>
+    <unit id="5244cf79a2a28da5">
+      <segment>
+        <source>Angle</source>
+      </segment>
+    </unit>
+  </file>
+</xliff>

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xliff srcLang="de-DE" version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0">
+<xliff srcLang="en-US" version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" trgLang="de-DE">
   <file original="Menger Sponge.lua">
     <unit id="249c0d1b7db23745">
-      <segment>
+      <segment state="translated">
         <source>Size</source>
+        <target>Größe</target>
       </segment>
     </unit>
     <unit id="6f3609ef9692f359">
-      <segment>
+      <segment state="translated">
         <source>Depth</source>
+        <target>Tiefe</target>
       </segment>
     </unit>
   </file>

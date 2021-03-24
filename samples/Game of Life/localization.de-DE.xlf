@@ -1,65 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xliff srcLang="de-DE" version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0">
-  <file original="config-gosper.lua"></file>
+<xliff srcLang="en-US" version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" trgLang="de-DE">
+  <file original="config-gosper.lua"/>
   <file original="game-of-life.lua">
     <unit id="37752ba377b4cb2e">
-      <segment>
+      <segment state="translated">
         <source>Game of Life</source>
+        <target>Spiel des Lebens</target>
       </segment>
     </unit>
     <unit id="5aac1ac81f59cd7b">
-      <segment>
+      <segment state="translated">
         <source>Clear</source>
+        <target>Zurücksetzen</target>
       </segment>
     </unit>
     <unit id="5ee9756bc27f683d">
-      <segment>
+      <segment state="translated">
         <source>Gosper</source>
+        <target>Gosper</target>
       </segment>
     </unit>
     <unit id="4ae93cc7e03b803d">
-      <segment>
+      <segment state="translated">
         <source>Light Spaceship</source>
+        <target>Leichtes Raumschiff</target>
       </segment>
     </unit>
     <unit id="06dddaca0cf1cf64">
-      <segment>
+      <segment state="translated">
         <source>Switch Engine</source>
+        <target>Klötzchenleger</target>
       </segment>
     </unit>
     <unit id="72bc49e77dbd3ba7">
-      <segment>
+      <segment state="translated">
         <source>Blinker Puffer</source>
+        <target>Blinker Generator</target>
       </segment>
     </unit>
     <unit id="7ccaedaa997ed8ef">
-      <segment>
+      <segment state="translated">
         <source>Centinal</source>
+        <target>100er Oszillator</target>
       </segment>
     </unit>
     <unit id="242875700dd5c447">
-      <segment>
+      <segment state="translated">
         <source>X Size</source>
+        <target>Länge</target>
       </segment>
     </unit>
     <unit id="1355015e6e70c6ca">
-      <segment>
+      <segment state="translated">
         <source>Y Size</source>
+        <target>Breite</target>
       </segment>
     </unit>
     <unit id="3cc011b9a924b579">
-      <segment>
+      <segment state="translated">
         <source>Density</source>
+        <target>Dichte</target>
       </segment>
     </unit>
     <unit id="08baad772b229a0a">
-      <segment>
+      <segment state="translated">
         <source>Random seeds</source>
+        <target>Zufälliger Start</target>
       </segment>
     </unit>
     <unit id="4e3f4c4faec3d3a9">
-      <segment>
+      <segment state="translated">
         <source>Manual</source>
+        <target>Manuell</target>
       </segment>
     </unit>
   </file>

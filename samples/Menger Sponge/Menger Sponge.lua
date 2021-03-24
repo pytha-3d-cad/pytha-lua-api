@@ -14,9 +14,9 @@ end
 function cube_dialog(dialog, data)
 	dialog:set_window_title("My Cube")
 	
-	local label1 = dialog:create_label(1, "Size")
+	local label1 = dialog:create_label(1, pyloc "Size")
 	local size = dialog:create_text_box(2, pyui.format_length(data.size))
-	local label2 = dialog:create_label(1, "Depth")
+	local label2 = dialog:create_label(1, pyloc "Depth")
 	local depth = dialog:create_text_spin(2, pyui.format_number(data.depth), {1,5})
 	local ok = dialog:create_ok_button(1)
 	local cancel = dialog:create_cancel_button(2)

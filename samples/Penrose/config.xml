@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://xmlns.pytha.com/plugin_config/1.0">
+  <header>
+    <guid>ceb5edb2-2ef2-49c3-8243-f278d378c9ce</guid>
+    <version>1.0</version>
+    <pytha-version>25.0</pytha-version>
+    <name>Penrose</name>
+    <description>The description of your plugin goes here.</description>
+    <licensing>Information about the licensing terms goes here.</licensing>
+  </header>
+  <extension type="function">
+    <entry-point>main</entry-point>
+    <caption>Penrose</caption>
+    <description>A short description of the function goes here.</description>
+    <help-file>help.html</help-file>
+  </extension>
+</plugin>

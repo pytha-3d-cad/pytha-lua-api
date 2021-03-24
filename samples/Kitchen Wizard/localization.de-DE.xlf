@@ -335,7 +335,7 @@
     <unit id="258c95c445ce1d7c">
       <segment state="translated">
         <source>Wall cabinet height</source>
-        <target>Wandschrank Höhe</target>
+        <target>Oberschrank Höhe</target>
       </segment>
     </unit>
     <unit id="4448bc806795bd66">
@@ -353,7 +353,7 @@
     <unit id="2423b4ad93f6a0dc">
       <segment state="translated">
         <source>Depth Wall</source>
-        <target>Tiefe Wandschränke</target>
+        <target>Tiefe Oberschränke</target>
       </segment>
     </unit>
     <unit id="637c36fdda431790">
@@ -539,7 +539,7 @@
     <unit id="4088aa316c81490f">
       <segment state="translated">
         <source>Top </source>
-        <target>Oberboden</target>
+        <target>Oberboden </target>
       </segment>
     </unit>
     <unit id="3f063bb5f32a4f50">
@@ -1050,7 +1050,7 @@
     <unit id="414a15d4f4a4c529">
       <segment state="translated">
         <source>Wall cabinet</source>
-        <target>Wandschrank</target>
+        <target>Oberschrank</target>
       </segment>
     </unit>
   </file>
