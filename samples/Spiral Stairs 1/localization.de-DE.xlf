@@ -1,76 +1,148 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xliff srcLang="de-DE" version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" trgLang="de-DE">
+<xliff srcLang="en-US" version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" trgLang="de-DE">
   <file original="main_file.lua">
-    <unit id="79eaed758051508c">
-      <segment>
-        <source>Penrose Tiling</source>
-        <target/>
+    <unit id="21f4091b90960be0">
+      <segment state="translated">
+        <source>No data found</source>
+        <target>Keine History gefunden</target>
       </segment>
     </unit>
-    <unit id="3fa18d8de4cebc1e">
-      <segment>
-        <source>Tile edge length</source>
-        <target/>
+    <unit id="466b85a0f4b4d9ac">
+      <segment state="translated">
+        <source>Spiral Staircase</source>
+        <target>Spindeltreppe</target>
       </segment>
     </unit>
-    <unit id="60b746064a99aa7a">
-      <segment>
-        <source>Subdivisions</source>
-        <target/>
+    <unit id="14ddf3f49fca74f4">
+      <segment state="translated">
+        <source>Total Height</source>
+        <target>Gesamthöhe</target>
       </segment>
     </unit>
-    <unit id="0a24c0f56c3e6048">
-      <segment>
-        <source>Cut tiling to box</source>
-        <target/>
+    <unit id="3d996901a72d17dc">
+      <segment state="translated">
+        <source>Diameter</source>
+        <target>Durchmesser</target>
       </segment>
     </unit>
-    <unit id="74cc3d1265dadee1">
-      <segment>
-        <source>Center on box</source>
-        <target/>
+    <unit id="0a3f042d02744b39">
+      <segment state="translated">
+        <source>No. of steps</source>
+        <target>Anzahl Stufen</target>
       </segment>
     </unit>
-    <unit id="56d6f29941b3ed9c">
-      <segment>
-        <source>Box length</source>
-        <target/>
+    <unit id="7931b94042b2eddc">
+      <segment state="translated">
+        <source>Pole diameter</source>
+        <target>Spindeldurchmesser</target>
       </segment>
     </unit>
-    <unit id="142472b36cd9a071">
-      <segment>
-        <source>Box width</source>
-        <target/>
+    <unit id="28e73a5135c3e460">
+      <segment state="translated">
+        <source>Clockwise</source>
+        <target>Rechts gewendelt</target>
       </segment>
     </unit>
-    <unit id="74c13fd71966904e">
-      <segment>
-        <source>blue</source>
-        <target/>
+    <unit id="6c0fcac270cf45fa">
+      <segment state="translated">
+        <source>Auto Calc</source>
+        <target>Auto-Berechnung</target>
       </segment>
     </unit>
-    <unit id="57096cbd6231e5dd">
-      <segment>
-        <source>red</source>
-        <target/>
+    <unit id="5137a4c1e9e5e2f1">
+      <segment state="translated">
+        <source>Step Thickness</source>
+        <target>Stufendicke</target>
       </segment>
     </unit>
-    <unit id="74c13fd71966904e">
-      <segment>
-        <source>blue</source>
-        <target/>
+    <unit id="417e29ee5feb5610">
+      <segment state="translated">
+        <source>Total Angle</source>
+        <target>Drehwinkel </target>
       </segment>
     </unit>
-    <unit id="57096cbd6231e5dd">
-      <segment>
-        <source>red</source>
-        <target/>
+    <unit id="30ce0f7b53ef9fca">
+      <segment state="translated">
+        <source>Calculated values</source>
+        <target>Kennzahlen</target>
       </segment>
     </unit>
-    <unit id="063396bc891e2718">
-      <segment>
-        <source>Penrose</source>
-        <target/>
+    <unit id="2521e75f33b331f1">
+      <segment state="translated">
+        <source>Riser</source>
+        <target>Steigung</target>
+      </segment>
+    </unit>
+    <unit id="0496dd647e277cbd">
+      <segment state="translated">
+        <source>Tread (min/avg/max)</source>
+        <target>Auftritt (min/GL/max)</target>
+      </segment>
+    </unit>
+    <unit id="3da6277020d040c5">
+      <segment state="translated">
+        <source>2*R + T</source>
+        <target>2s + a</target>
+      </segment>
+    </unit>
+    <unit id="325fa028527d1a7f">
+      <segment state="translated">
+        <source>Headroom</source>
+        <target>Kopfhöhe</target>
+      </segment>
+    </unit>
+    <unit id="4dce5ad7cdd78e7b">
+      <segment state="translated">
+        <source>Handrail</source>
+        <target>Handlauf</target>
+      </segment>
+    </unit>
+    <unit id="5db56dc8ffdf0be4">
+      <segment state="translated">
+        <source>Shape</source>
+        <target>Form</target>
+      </segment>
+    </unit>
+    <unit id="0820577e063ede5f">
+      <segment state="translated">
+        <source>Round</source>
+        <target>Rund</target>
+      </segment>
+    </unit>
+    <unit id="2df12609403ee644">
+      <segment state="translated">
+        <source>Square</source>
+        <target>Rechteck</target>
+      </segment>
+    </unit>
+    <unit id="19bb52ecd00d7e99">
+      <segment state="translated">
+        <source>Line</source>
+        <target>Linie</target>
+      </segment>
+    </unit>
+    <unit id="4de103c48ddce7a8">
+      <segment state="translated">
+        <source>lx, lz</source>
+        <target>lx, lz</target>
+      </segment>
+    </unit>
+    <unit id="4629c86e89bb7bfb">
+      <segment state="translated">
+        <source>Upright</source>
+        <target>Stehend</target>
+      </segment>
+    </unit>
+    <unit id="3d996901a72d17dc">
+      <segment state="translated">
+        <source>Diameter</source>
+        <target>Durchmesser</target>
+      </segment>
+    </unit>
+    <unit id="4de103c48ddce7a8">
+      <segment state="translated">
+        <source>lx, lz</source>
+        <target>lx, lz</target>
       </segment>
     </unit>
   </file>

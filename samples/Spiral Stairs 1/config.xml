@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://xmlns.pytha.com/plugin_config/1.0">
   <header>
-    <guid>9b803764-e47e-4973-997e-58353d1fe01b</guid>
+    <guid>25fb669b-975b-41d3-9c15-72507fc05d67</guid>
     <version>1.0</version>
     <pytha-version>25.0</pytha-version>
     <name>Spiral Stairs 1</name>

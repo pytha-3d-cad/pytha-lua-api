@@ -6,5 +6,120 @@
         <source>No data found</source>
       </segment>
     </unit>
+    <unit id="466b85a0f4b4d9ac">
+      <segment>
+        <source>Spiral Staircase</source>
+      </segment>
+    </unit>
+    <unit id="14ddf3f49fca74f4">
+      <segment>
+        <source>Total Height</source>
+      </segment>
+    </unit>
+    <unit id="3d996901a72d17dc">
+      <segment>
+        <source>Diameter</source>
+      </segment>
+    </unit>
+    <unit id="0a3f042d02744b39">
+      <segment>
+        <source>No. of steps</source>
+      </segment>
+    </unit>
+    <unit id="7931b94042b2eddc">
+      <segment>
+        <source>Pole diameter</source>
+      </segment>
+    </unit>
+    <unit id="28e73a5135c3e460">
+      <segment>
+        <source>Clockwise</source>
+      </segment>
+    </unit>
+    <unit id="6c0fcac270cf45fa">
+      <segment>
+        <source>Auto Calc</source>
+      </segment>
+    </unit>
+    <unit id="5137a4c1e9e5e2f1">
+      <segment>
+        <source>Step Thickness</source>
+      </segment>
+    </unit>
+    <unit id="417e29ee5feb5610">
+      <segment>
+        <source>Total Angle</source>
+      </segment>
+    </unit>
+    <unit id="30ce0f7b53ef9fca">
+      <segment>
+        <source>Calculated values</source>
+      </segment>
+    </unit>
+    <unit id="2521e75f33b331f1">
+      <segment>
+        <source>Riser</source>
+      </segment>
+    </unit>
+    <unit id="0496dd647e277cbd">
+      <segment>
+        <source>Tread (min/avg/max)</source>
+      </segment>
+    </unit>
+    <unit id="3da6277020d040c5">
+      <segment>
+        <source>2*R + T</source>
+      </segment>
+    </unit>
+    <unit id="325fa028527d1a7f">
+      <segment>
+        <source>Headroom</source>
+      </segment>
+    </unit>
+    <unit id="4dce5ad7cdd78e7b">
+      <segment>
+        <source>Handrail</source>
+      </segment>
+    </unit>
+    <unit id="5db56dc8ffdf0be4">
+      <segment>
+        <source>Shape</source>
+      </segment>
+    </unit>
+    <unit id="0820577e063ede5f">
+      <segment>
+        <source>Round</source>
+      </segment>
+    </unit>
+    <unit id="2df12609403ee644">
+      <segment>
+        <source>Square</source>
+      </segment>
+    </unit>
+    <unit id="19bb52ecd00d7e99">
+      <segment>
+        <source>Line</source>
+      </segment>
+    </unit>
+    <unit id="4de103c48ddce7a8">
+      <segment>
+        <source>lx, lz</source>
+      </segment>
+    </unit>
+    <unit id="4629c86e89bb7bfb">
+      <segment>
+        <source>Upright</source>
+      </segment>
+    </unit>
+    <unit id="3d996901a72d17dc">
+      <segment>
+        <source>Diameter</source>
+      </segment>
+    </unit>
+    <unit id="4de103c48ddce7a8">
+      <segment>
+        <source>lx, lz</source>
+      </segment>
+    </unit>
   </file>
 </xliff>
