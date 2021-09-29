@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://xmlns.pytha.com/plugin_config/1.0">
+  <header>
+    <guid>3F0FFA7C-D802-4E5E-B439-0A798FEC8639</guid>
+    <version>1.0</version>
+    <pytha-version>25.0</pytha-version>
+    <name>Part selector material thickness</name>
+    <description>A sample to illustrate the part selection plugin functionality</description>
+    <licensing>Copyright (c) 2020 PYTHA Lab GmbH. This plugin is distributed under the terms of the MIT license.</licensing>
+  </header>
+  
+  <extension type="part-selector">
+    <entry-point>select_parts_by_material_thickness</entry-point>
+	<caption>Mat-Thick</caption>
+	<description>Selection by a material and thickness</description>
+  </extension>
+  
+</plugin>
