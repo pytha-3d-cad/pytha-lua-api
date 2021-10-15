@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://xmlns.pytha.com/plugin_config/1.0">
+  <header>
+    <guid>7b50acc5-7391-4dc9-ab0e-0aed2b55f0c0</guid>
+    <version>1.0</version>
+    <pytha-version>25.0</pytha-version>
+    <name>Multiple Plugin Attributes</name>
+    <description>The description of your plugin goes here.</description>
+    <licensing>Copyright (c) 2021 PYTHA Lab GmbH. This plugin is distributed under the terms of the MIT license.</licensing>
+  </header>
+  
+  <extension type="attribute">
+    <id>material_thickness</id>
+    <entry-point>material_thickness_eval</entry-point>
+    <caption>Material_Thickness</caption>
+    <description>Combines the part material and board thickness</description>
+  </extension>
+ 
+  <extension type="attribute">
+    <id>"edge_banding_l1_with_offset"</id>
+    <entry-point>edge_banding_l1_with_offset_eval</entry-point>
+    <caption>Edge banding l1 with offset</caption>
+    <description>Certain edge banding machines always remove e.g. 1mm for the edge banding independent of the banding thickness. This attribute corrects the cut size for that relative offset in l1.</description>
+  </extension>
+  
+  <extension type="attribute">
+    <id>"edge_banding_l2_with_offset"</id>
+    <entry-point>edge_banding_l2_with_offset_eval</entry-point>
+    <caption>Edge banding l2 with offset</caption>
+    <description>Certain edge banding machines always remove e.g. 1mm for the edge banding independent of the banding thickness. This attribute corrects the cut size for that relative offset in l2</description>
+  </extension>
+  
+  <extension type="attribute">
+    <id>"eb_selection_l3_fr"</id>
+    <entry-point>eb_selection_l3_fr</entry-point>
+    <caption>Edge banding width sel. front</caption>
+    <description>Automatically selects the proper edge banding width from the board size. Please fill out the list of available edge banding materials and widths.</description>
+  </extension>
+  <extension type="attribute">
+    <id>"eb_selection_l3_ba"</id>
+    <entry-point>eb_selection_l3_ba</entry-point>
+    <caption>Edge banding width sel. back</caption>
+    <description>Automatically selects the proper edge banding width from the board size. Please fill out the list of available edge banding materials and widths.</description>
+  </extension>
+  <extension type="attribute">
+    <id>"eb_selection_l3_le"</id>
+    <entry-point>eb_selection_l3_le</entry-point>
+    <caption>Edge banding width sel. left</caption>
+    <description>Automatically selects the proper edge banding width from the board size. Please fill out the list of available edge banding materials and widths.</description>
+  </extension>
+  <extension type="attribute">
+    <id>"eb_selection_l3_ri"</id>
+    <entry-point>eb_selection_l3_ri</entry-point>
+    <caption>Edge banding width sel. right</caption>
+    <description>Automatically selects the proper edge banding width from the board size. Please fill out the list of available edge banding materials and widths.</description>
+  </extension>
+  
+</plugin>
