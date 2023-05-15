@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://xmlns.pytha.com/plugin_config/1.0">
+  <header>
+    <guid>4d4bfba2-c3f4-4302-bee2-a19658ed1132</guid>
+    <version>1.000</version>
+    <pytha-version>25.0</pytha-version>
+    <name>Random Rotation</name>
+    <description>The description of your plugin goes here.</description>
+    <licensing>Information about the licensing terms goes here.</licensing>
+  </header>
+  
+  <extension type="function">
+    <entry-point>main</entry-point>
+    <caption>Random Rotation</caption>
+    <description>Randomly rotate objects around their individual centers.</description>
+    <help-file>help.html</help-file>
+  </extension>
+  
+ 
+  
+</plugin>
