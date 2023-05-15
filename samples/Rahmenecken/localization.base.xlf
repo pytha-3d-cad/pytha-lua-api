@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff srcLang="en-US" version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0">
+  <file original="Rahmenecken.lua">
+    <unit id="587f64c630dd02a8">
+      <segment>
+        <source>Breite</source>
+      </segment>
+    </unit>
+    <unit id="702d67ef9d6d6ff4">
+      <segment>
+        <source>Dicke</source>
+      </segment>
+    </unit>
+    <unit id="725412de8e429bd1">
+      <segment>
+        <source>Ausfuehrung</source>
+      </segment>
+    </unit>
+    <unit id="6391729421fbab56">
+      <segment>
+        <source>ohne</source>
+      </segment>
+    </unit>
+    <unit id="27db0ab2e309af8e">
+      <segment>
+        <source>Falz</source>
+      </segment>
+    </unit>
+    <unit id="1e83fdce91d91ad8">
+      <segment>
+        <source>Nut</source>
+      </segment>
+    </unit>
+    <unit id="7af5d53898859054">
+      <segment>
+        <source>Falz-/Nutbreite</source>
+      </segment>
+    </unit>
+    <unit id="7de0baf4bbddc79d">
+      <segment>
+        <source>Falz-/Nuttiefe</source>
+      </segment>
+    </unit>
+    <unit id="666cd078d435846c">
+      <segment>
+        <source>Fase</source>
+      </segment>
+    </unit>
+    <unit id="46f6819766ebc304">
+      <segment>
+        <source>Fasenbreite</source>
+      </segment>
+    </unit>
+    <unit id="2b186899acbb9dfc">
+      <segment>
+        <source>Fasentiefe</source>
+      </segment>
+    </unit>
+  </file>
+</xliff>

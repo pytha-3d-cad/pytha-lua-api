@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://xmlns.pytha.com/plugin_config/1.0">
+  <header>
+    <guid>b0e9f9fa-c332-49d1-b5c7-9ab44dec47e6</guid>
+    <version>1.0</version>
+    <pytha-version>25.0</pytha-version>
+    <name>Rahmenecken</name>
+    <description>Erzeugt Rahmenecken in Vollholz mit Schlitz und Zapfen. Bei Verwendung von Nut, Falz und Fase wird das korrekte Gegenprofil erzeugt.</description>
+    <licensing>Information about the licensing terms goes here.</licensing>
+  </header>
+  <extension type="function">
+    <entry-point>main</entry-point>
+    <caption>Rahmenecken</caption>
+    <description>A short description of the function goes here.</description>
+    <help-file>help.html</help-file>
+  </extension>
+</plugin>
