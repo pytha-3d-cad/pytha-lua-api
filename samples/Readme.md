@@ -13,3 +13,7 @@
 - Penrose
 
   In honor of [Sir Roger Penrose OM](https://en.wikipedia.org/wiki/Roger_Penrose), winner of the 2020 Nobel Prize in Physics. A small rhombi [Penrose tiling](https://en.wikipedia.org/wiki/Penrose_tiling) generator that can easily be modified to kites and darts.
+
+- Rahmenecken (Frame corner)
+
+  A plugin that creates mortise and tenon corners for frames.  Kindly provided by P. Laube.
