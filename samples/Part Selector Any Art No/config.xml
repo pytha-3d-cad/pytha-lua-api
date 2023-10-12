@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://xmlns.pytha.com/plugin_config/1.0">
+  <header>
+    <guid>fcf21630-c6e7-48e2-ade1-8a7a764ddec9</guid>
+    <version>1.0</version>
+    <pytha-version>25.0</pytha-version>
+    <name>Filter parts having any article number</name>
+    <description>A sample to illustrate the part selection plugin functionality</description>
+    <licensing>Copyright (c) 2020 PYTHA Lab GmbH. This plugin is distributed under the terms of the MIT license.</licensing>
+  </header>
+  
+  <extension type="part-selector">
+    <entry-point>change_selection</entry-point>
+	<caption>Having article no</caption>
+	<description>Filter parts having any article number</description>
+  </extension>
+  
+  
+  
+</plugin>
